@@ -1,0 +1,229 @@
+offer_codes:
+  - issue_types:
+      - aws-redshift-snapshot-obsolete
+    service_code: AmazonRedshift
+    filters:
+      - key: productFamily
+        value: Redshift Managed Storage
+      - key: regionCode
+        eval: region
+    price_components:
+      - metadata["total_backup_size_in_mega_bytes"]
+      - (1.0 / 1024)      # Convert to GB
+      - price_per_unit    # Multiply by price
+  - issue_types:
+      - aws-rds-db-snapshot-obsolete
+    service_code: AmazonRDS
+    filters:
+      - key: productFamily
+        value: Storage Snapshot
+      - key: regionCode
+        eval: region
+      - key: databaseEngine
+        eval: translate_engine(metadata["engine"])
+    price_components:
+      - metadata["allocated_storage"]   # In GB
+      - price_per_unit
+  - issue_types:
+      - aws-ebs-snapshot-obsolete
+      - aws-ec2-ami-obsolete
+    constant_price: "0.04"
+    service_code: AmazonEC2
+    filters:
+      - key: productFamily
+        value: Storage Snapshot
+      - key: regionCode
+        eval: region
+      - key: usageType
+        eval: region_prefix(region) + "EBS:SnapshotUsage"
+    price_components:
+      - metadata["volume_size"]
+      - price_per_unit
+  - issue_types:
+      - aws-rds-db-instance-unused
+    service_code: AmazonRDS
+    filters:
+      - key: productFamily
+        value: Database Instance
+      - key: regionCode
+        eval: region
+      - key: databaseEngine
+        eval: translate_engine(metadata["engine"])
+      - key: instanceType
+        eval: metadata["db_instance_class"]
+    price_components:
+      - "720.0"
+      - price_per_unit
+  - issue_types:
+      - aws-ec2-ebs-volume-not-attached-to-running-instance
+      - aws-ec2-ebs-volume-unused
+    service_code: AmazonEC2
+    filters:
+      - key: productFamily
+        value: Storage
+      - key: regionCode
+        eval: region
+      - key: volumeApiName
+        eval: metadata["volume_type"]
+    price_components:
+      - metadata["size"]
+      - price_per_unit
+  - issue_types:
+      - aws-ec2-security-group-unused
+      - aws-elb2-target-group-unused
+    constant_price: "0.0"
+  - issue_types:
+      - aws-elbv2-load-balancer-unused
+      - aws-elbv2-network-load-balancer-unused
+    service_code: AWSELB
+    filters:
+      - key: regionCode
+        eval: region
+      - key: usageType
+        value: LoadBalancerUsage
+      - key: productFamily
+        eval: translate_load_balancer_family(metadata["type"])
+    price_components:
+      - "720.0"
+      - price_per_unit
+  - issue_types:
+      - aws-ec2-nat-gateway-unused
+    service_code: AmazonEC2
+    filters:
+      - key: productFamily
+        value: NAT Gateway
+      - key: regionCode
+        eval: region
+      - key: usageType
+        eval: region_prefix(region) + "NatGateway-Hours"
+    price_components:
+      - price_per_unit
+      - "720.0"
+  - issue_types:
+      - aws-elasticache-instance-unused
+    service_code: AmazonElastiCache
+    filters:
+      - key: productFamily
+        value: Cache Instance
+      - key: regionCode
+        eval: region
+      - key: instanceType
+        eval: metadata["cache_node_type"]
+      - key: cacheEngine
+        eval: translate_cache_engine(metadata["engine"])
+      - key: locationType
+        value: AWS Region
+    price_components:
+      - price_per_unit
+      - "720.0"
+  - issue_types:
+      - aws-ec2-instance-unused
+    service_code: AmazonEC2
+    filters:
+      - key: productFamily
+        value: Compute Instance
+      - key: regionCode
+        eval: region
+      - key: instanceType
+        eval: metadata["instance_type"]
+      - key: locationType
+        value: AWS Region
+    price_components:
+      - price_per_unit
+      - "720.0"
+  - issue_types:
+      - aws-logs-log-group-has-unacceptable-retention-period
+    service_code: AmazonCloudWatch
+    filters:
+      - key: productFamily
+        value: Storage Snapshot
+      - key: regionCode
+        eval: region
+    price_components:
+      - price_per_unit
+      - metadata["stored_bytes"]
+      - (1/1024.0)   # Convert to KB
+      - (1/1024.0)   # Convert to MB
+      - (1/1024.0)   # Convert to Gigabytes
+  - issue_types:
+      - aws-private-ca-unused
+    service_code: AWSCertificateManager
+    filters:
+      - key: productFamily
+        value: AWS Certificate Manager
+      - key: regionCode
+        eval: region
+      - key: group
+        value: Certificate Authority Paid
+    price_components:
+      - price_per_unit
+  - issue_types:
+      - aws-ecr-repository-no-lifecycle-policy
+    constant_price: "3.08"
+  - issue_types:
+      - aws-secretsmanager-secret-obsolete
+    service_code: AWSSecretsManager
+    filters:
+      - key: productFamily
+        value: Secret
+      # - key: region
+      #   eval: region
+    price_components:
+      - price_per_unit
+
+  - issue_types:
+      - aws-transfer-server-unused
+    service_code: AWSTransfer
+    filters:
+      - key: productFamily
+        value: AWS Transfer Family
+      - key: regionCode
+        eval: region
+      - key: usageType
+        eval: transfer_region_prefix(region) + "ProtocolHours"
+    price_components:
+      - price_per_unit
+      - "720.0"
+
+  - issue_types:
+      - aws-dms-replication-instance-unused
+    service_code: AWSDatabaseMigrationSvc
+    filters:
+      - key: productFamily
+        value: Replication Server
+      - key: regionCode
+        eval: region
+      - key: instanceType
+        eval: remove_prefix("dms.", metadata["replication_instance_class"])
+      - key: availabilityZone
+        eval: get_availability_zone_type(metadata["multi_az"])
+    price_components:
+      - price_per_unit
+      - "720.0"
+
+  - issue_types:
+      - aws-route53resolver-endpoint-unused
+    service_code: Route53
+    filters:
+      - key: productFamily
+        value: DNS Query
+      # - key: regionCode
+      #   eval: region
+      - key: description
+        value: Endpoint
+      - key: UsageType
+        eval: transfer_region_prefix(region) + "ResolverNetworkInterface"
+    price_components:
+      - price_per_unit
+      - metadata["ip_address_count"]
+      - "720.0"
+  - issue_types:
+      - aws-ec2-vpc-endpoint-unused
+    service_code: AmazonVPC
+    filters:
+      - key: usageType
+        eval: transfer_region_prefix(region) + "VpcEndpoint-Hours"
+    price_components:
+      - price_per_unit
+      - metadata["subnet_ids"].size
+      - "720.0"

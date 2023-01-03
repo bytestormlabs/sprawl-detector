@@ -1,0 +1,140 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activemodel (6.1.7)
+      activesupport (= 6.1.7)
+    activerecord (6.1.7)
+      activemodel (= 6.1.7)
+      activesupport (= 6.1.7)
+    activesupport (6.1.7)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
+      zeitwerk (~> 2.3)
+    aws-eventstream (1.2.0)
+    aws-partitions (1.686.0)
+    aws-sdk-acmpca (1.51.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-cloudformation (1.73.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-cloudwatch (1.70.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-cloudwatchlogs (1.58.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-core (3.168.4)
+      aws-eventstream (~> 1, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.651.0)
+      aws-sigv4 (~> 1.5)
+      jmespath (~> 1, >= 1.6.1)
+    aws-sdk-databasemigrationservice (1.74.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-ec2 (1.356.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-ecr (1.57.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-elasticache (1.83.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-elasticloadbalancingv2 (1.82.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-elasticsearchservice (1.68.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-mq (1.48.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-pricing (1.41.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-rds (1.168.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-redshift (1.87.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-route53resolver (1.38.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-sagemaker (1.159.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-secretsmanager (1.70.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-transfer (1.65.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sigv4 (1.5.2)
+      aws-eventstream (~> 1, >= 1.0.2)
+    concurrent-ruby (1.1.10)
+    diff-lcs (1.5.0)
+    i18n (1.12.0)
+      concurrent-ruby (~> 1.0)
+    jmespath (1.6.2)
+    mini_portile2 (2.8.1)
+    minitest (5.17.0)
+    rspec (3.12.0)
+      rspec-core (~> 3.12.0)
+      rspec-expectations (~> 3.12.0)
+      rspec-mocks (~> 3.12.0)
+    rspec-core (3.12.0)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-mocks (3.12.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-support (3.12.0)
+    sqlite3 (1.5.4)
+      mini_portile2 (~> 2.8.0)
+    sqlite3-ruby (1.3.3)
+      sqlite3 (>= 1.3.3)
+    terminal-table (3.0.2)
+      unicode-display_width (>= 1.1.1, < 3)
+    tzinfo (2.0.5)
+      concurrent-ruby (~> 1.0)
+    unicode-display_width (2.4.0)
+    vcr (6.1.0)
+    zeitwerk (2.6.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activerecord
+  aws-sdk-acmpca
+  aws-sdk-cloudformation
+  aws-sdk-cloudwatch
+  aws-sdk-cloudwatchlogs
+  aws-sdk-databasemigrationservice
+  aws-sdk-ec2
+  aws-sdk-ecr
+  aws-sdk-elasticache
+  aws-sdk-elasticloadbalancingv2
+  aws-sdk-elasticsearchservice
+  aws-sdk-mq
+  aws-sdk-pricing
+  aws-sdk-rds
+  aws-sdk-redshift
+  aws-sdk-route53resolver
+  aws-sdk-sagemaker
+  aws-sdk-secretsmanager
+  aws-sdk-transfer
+  concurrent-ruby
+  rspec
+  sqlite3-ruby
+  terminal-table
+  vcr
+
+BUNDLED WITH
+   1.17.2

@@ -1,0 +1,41 @@
+actions:
+  - issue_types:
+      - aws-redshift-snapshot-obsolete
+    commands:
+      - title: Delete Snapshot
+        linux: '"aws redshift delete-cluster-snapshot --snapshot-identifier #{finding.resource_id} --region #{region}"'
+  - issue_types:
+      - aws-ec2-security-group-unused
+    commands:
+      - title: Delete Security Group
+        linux: '"aws ec2 delete-security-group --group-id #{finding.resource_id} --region #{region}"'
+  - issue_types:
+      - aws-ec2-ami-obsolete
+    commands:
+      - title: Deregister Machine Image
+        linux: '"aws ec2 deregister-image --image-id #{finding.resource_id} --region #{region}"'
+  - issue_types:
+      - aws-ebs-snapshot-obsolete
+    commands:
+      - title: Delete Snapshot
+        linux: '"aws ec2 delete-snapshot --snapshot-id #{finding.resource_id} --region #{region}"'
+  - issue_types:
+      - aws-logs-log-group-has-unacceptable-retention-period
+    commands:
+      - title: Update Retention Policy
+        linux: '"aws logs put-retention-policy --log-group-name #{finding.resource_id} --retention-in-days 30 --region #{region}"'
+  - issue_types:
+      - aws-rds-db-snapshot-obsolete
+    commands:
+      - title: Delete Snapshot
+        linux: '"aws rds delete-db#{add_cluster_if_prudent(metadata)}-snapshot --db#{add_cluster_if_prudent(metadata)}-snapshot-identifier #{finding.resource_id} --region #{region}"'
+  - issue_types:
+      - aws-cloudwatch-dashboard-obsolete
+    commands:
+      - title: Delete Dashboard
+        linux: '"aws cloudwatch delete-dashboards --dashboard-name #{finding.resource_id} --region #{region}"'
+  - issue_types:
+      - aws-ecr-repository-no-lifecycle-policy
+    commands:
+      - title: Set Lifecycle Policy
+        linux: '"aws ecr put-lifecycle-policy --repository-name #{finding.resource_id} --region #{region} --lifecycle-policy-text file://ecr-lifecycle-policy.json"'
