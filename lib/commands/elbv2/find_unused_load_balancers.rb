@@ -10,8 +10,6 @@ class FindUnusedLoadBalancers < Command
       load_balancers = elb_client.describe_load_balancers.load_balancers
 
       load_balancers.each do |load_balancer|
-        pp load_balancer
-
         type = load_balancer["type"]
 
         if type == "application"
