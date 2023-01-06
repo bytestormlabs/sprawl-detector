@@ -3,7 +3,6 @@ require "aws-sdk-pricing"
 require "yaml"
 
 class CostDecorator
-
   def initialize
     load_configuration
     @cache = {}
@@ -23,7 +22,7 @@ class CostDecorator
   end
 
   def decorate(finding)
-    if (finding.issue_type == "aws-route53resolver-endpoint-unused")
+    if finding.issue_type == "aws-route53resolver-endpoint-unused"
       # Why did this break!?
       return 0.125 * finding.metadata["ip_address_count"] * 720.0
     end
@@ -45,11 +44,11 @@ class CostDecorator
 
     price_list = fetch_or_set(params) { |params|
       puts
-        ["aws pricing get-products --service-code ",
-          params[:service_code],
-          " --filters ",
-          params[:filters].map { |f| "Type=TERM_MATCH,Field=#{f[:field]},Value=#{f[:value]}" },
-          " --region us-east-1" ].join("")
+      ["aws pricing get-products --service-code ",
+        params[:service_code],
+        " --filters ",
+        params[:filters].map { |f| "Type=TERM_MATCH,Field=#{f[:field]},Value=#{f[:value]}" },
+        " --region us-east-1"].join("")
       result = nil
       begin
         result = client.get_products(params).price_list
@@ -67,7 +66,7 @@ class CostDecorator
 
     # puts "Found #{price_list.size} prices."
 
-    return if price_list.nil? || price_list&.size < 1
+    return if price_list.nil? || price_list&.size&. < 1
 
     price_component = JSON.parse(price_list.first)
 

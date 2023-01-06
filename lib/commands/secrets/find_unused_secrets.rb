@@ -14,7 +14,7 @@ class FindUnusedSecrets < Command
 
       secret_list.each do |secret|
         target_date = (DateTime.now - 60)
-        if (secret.created_date < target_date && (secret.last_accessed_date.nil? || secret.last_accessed_date < target_date))
+        if secret.created_date < target_date && (secret.last_accessed_date.nil? || secret.last_accessed_date < target_date)
           f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/secretsmanager").find_or_create_by(
             issue_type: "aws-secretsmanager-secret-obsolete",
             resource_id: secret.name,

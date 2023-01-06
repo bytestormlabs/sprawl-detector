@@ -51,7 +51,7 @@ class FindUnusedAcmPrivateCA < Command
       attribute: "Operation",
       statistic: "Sum",
       namespace: "AWS/ACMPrivateCA",
-      period: (24*60*60),
+      period: (24 * 60 * 60),
       message: "No certificates issued during time period",
       start_time: (DateTime.now - 180).to_s
     })

@@ -25,7 +25,7 @@ class FindUnusedElasticSearchDomains < Command
     ).tap do |f|
       f.region = region
       f.message = activity_check.message,
-      f.metadata = domain_name.to_h
+        f.metadata = domain_name.to_h
       f.scan = context.scan
     end
     f.save!
@@ -38,7 +38,7 @@ class FindUnusedElasticSearchDomains < Command
       statistic: "Sum",
       attribute: "Broker",
       namespace: "AWS/ES",
-      period: (24*60*60),
+      period: (24 * 60 * 60),
       message: "No activity during the time period."
     })
   end

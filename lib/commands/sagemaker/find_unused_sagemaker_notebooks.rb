@@ -15,7 +15,7 @@ class FindUnusedSagemakerNotebooks < Command
 
       context.logger.debug "Found #{notebook_instances&.size} running Jupyter notebook instances in #{region}."
 
-      if notebook_instances&.size > 0
+      if notebook_instances&.size&.> 0
         # Find the last cloudwatch log event
         log_streams = cwl_client.describe_log_streams(log_group_name: "/aws/sagemaker/NotebookInstances")&.log_streams
 
@@ -26,7 +26,7 @@ class FindUnusedSagemakerNotebooks < Command
             log_stream.log_stream_name == "#{notebook_instance.notebook_instance_name}/jupyter.log"
           end
 
-          if log_stream && Time.at(log_stream.last_event_timestamp/1000).to_datetime < (DateTime.now - 7) # TODO: Refactor this into a configurable value
+          if log_stream && Time.at(log_stream.last_event_timestamp / 1000).to_datetime < (DateTime.now - 7) # TODO: Refactor this into a configurable value
             f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/sagemaker").find_or_create_by(
               issue_type: "aws-sagemaker-notebook-instance-unused",
               resource_id: notebook_instance.notebook_instance_name,
@@ -40,7 +40,7 @@ class FindUnusedSagemakerNotebooks < Command
             f.save!
 
           else
-            context.logger.debug "AWS SageMaker notebook #{notebook_instance.notebook_instance_name} was last used at #{Time.at(log_stream.last_event_timestamp/1000).to_datetime}"
+            context.logger.debug "AWS SageMaker notebook #{notebook_instance.notebook_instance_name} was last used at #{Time.at(log_stream.last_event_timestamp / 1000).to_datetime}"
             context.logger.debug "Current time is #{DateTime.now.utc}"
           end
         end

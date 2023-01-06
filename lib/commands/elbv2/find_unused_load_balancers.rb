@@ -75,7 +75,7 @@ class FindUnusedLoadBalancers < Command
       statistic: "Sum",
       attribute: "LoadBalancerName",
       namespace: "AWS/ELB",
-      period: (60*60*24),
+      period: (60 * 60 * 24),
       message: "Classic Load Balancer has received 0 requests in time period"
     )
   end
@@ -87,7 +87,7 @@ class FindUnusedLoadBalancers < Command
       statistic: "Sum",
       attribute: "LoadBalancer",
       namespace: "AWS/ApplicationELB",
-      period: (60*60*24),
+      period: (60 * 60 * 24),
       message: "Application Load Balancer has received 0 requests in time period"
     )
   end
@@ -118,7 +118,7 @@ class FindUnusedLoadBalancers < Command
       statistic: "Sum",
       attribute: "LoadBalancer",
       namespace: "AWS/NetworkELB",
-      period: (60*60*24),
+      period: (60 * 60 * 24),
       message: "Network Load Balancer has received 0 active flows in time period"
     )
   end

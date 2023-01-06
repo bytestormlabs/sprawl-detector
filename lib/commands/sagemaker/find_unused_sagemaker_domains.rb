@@ -15,7 +15,7 @@ class FindUnusedSagemakerDomains < Command
 
       context.logger.debug "Found #{domains&.size} running SageMaker domains in #{region}."
 
-      if domains&.size > 0
+      if domains&.size&.> 0
         # Find the last cloudwatch log event
         log_streams = cwl_client.describe_log_streams(log_group_name: "/aws/sagemaker/studio")&.log_streams
 
@@ -29,11 +29,11 @@ class FindUnusedSagemakerDomains < Command
 
           # Find the latest time
 
-          last_touched = domain_log_streams&.map { |log_stream| Time.at(log_stream.last_event_timestamp/1000).to_datetime }.max
+          last_touched = domain_log_streams&.map { |log_stream| Time.at(log_stream.last_event_timestamp / 1000).to_datetime }&.max
 
           puts "Last touched: #{last_touched}"
           if !last_touched.nil? && last_touched < (DateTime.now - 7) # TODO: Refactor this into a configurable value
-            context.logger.debug "Creating a finding #{last_touched} < #{(DateTime.now - 7)}"
+            context.logger.debug "Creating a finding #{last_touched} < #{DateTime.now - 7}"
             f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/sagemaker").find_or_create_by(
               issue_type: "aws-sagemaker-domain-instance-unused",
               resource_id: domain.domain_id,

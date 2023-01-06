@@ -9,7 +9,7 @@ require "commands/ec2/find_unused_nat_gateways"
 require "commands/ec2/find_unused_instances"
 require "commands/ec2/find_unused_volumes"
 require "commands/ecr/find_repositories_without_lifecycle_policy"
-require "commands/cache/find_unused_elasticache_clusters.rb"
+require "commands/cache/find_unused_elasticache_clusters"
 require "commands/elbv2/find_unused_target_groups"
 require "commands/elbv2/find_unused_load_balancers"
 require "commands/es/find_unused_elasticsearch_domains"
@@ -27,7 +27,7 @@ require "commands/secrets/find_unused_secrets"
 require "commands/transfer/find_unused_transfer_servers"
 require "commands/dms/find_unused_replication_instances"
 require "commands/redshift/find_unused_redshift_clusters"
-require "commands/route53/find_unused_route53_resolvers.rb"
+require "commands/route53/find_unused_route53_resolvers"
 require "commands/cloudformation/find_stacks_in_delete_failed_status"
 
 class ScanForFindings < Command
@@ -100,7 +100,7 @@ class ScanForFindings < Command
 
     puts "Updating where account_id = #{context.aws_account_id} and scan_id < #{scan.id}"
 
-    puts Finding.where("account_id = ? AND (scan_id != ? OR scan_id IS NULL)", context.aws_account_id, scan.id).update_all(status_id: Status.find_by_name('Closed').id)
+    puts Finding.where("account_id = ? AND (scan_id != ? OR scan_id IS NULL)", context.aws_account_id, scan.id).update_all(status_id: Status.find_by_name("Closed").id)
 
     context.logger.debug "exiting execute"
   end

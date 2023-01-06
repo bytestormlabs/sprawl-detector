@@ -22,7 +22,6 @@ class FindStacksInDeleteFailedStatus < Command
         break if response.next_token.nil?
         params[:next_token] = response.next_token
       end
-
     end
   end
 

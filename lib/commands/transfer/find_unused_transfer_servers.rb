@@ -27,6 +27,7 @@ class FindUnusedTransferServers < Command
   end
 
   private
+
   def check_file_activity(context, region, server)
     files_in_check.matches(context, region, server) && files_out_check.matches(context, region, server)
   end

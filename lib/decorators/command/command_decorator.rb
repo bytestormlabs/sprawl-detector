@@ -1,5 +1,4 @@
 class CommandDecorator
-
   def initialize
     load_configuration
   end

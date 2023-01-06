@@ -38,7 +38,7 @@ class FindUnusedReplicationInstances < Command
       statistic: "Sum",
       attribute: "ReplicationInstanceIdentifier",
       namespace: "AWS/DMS",
-      period: (24*60*60),
+      period: (24 * 60 * 60),
       message: "Extremely low network activity in the last week.",
       predicate: proc { |x| x < 20000 }
     })

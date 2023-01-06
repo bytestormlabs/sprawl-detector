@@ -8,7 +8,7 @@ class FindUnusedMqBrokers < Command
       client = Aws::MQ::Client.new(region: region)
 
       brokers = client.list_brokers.broker_summaries
-      
+
       brokers.each do |broker|
         if connection_count_check.matches(context, region, broker[:broker_name])
           create_finding(context, region, broker)
@@ -25,7 +25,7 @@ class FindUnusedMqBrokers < Command
     ).tap do |f|
       f.region = region
       f.message = connection_count_check.message,
-      f.metadata = broker.to_h
+        f.metadata = broker.to_h
       f.scan = context.scan
     end
     f.save!
@@ -38,7 +38,7 @@ class FindUnusedMqBrokers < Command
       statistic: "Average",
       attribute: "Broker",
       namespace: "AWS/AmazonMQ",
-      period: (24*60*60),
+      period: (24 * 60 * 60),
       message: "No connections made in the time period."
     })
   end

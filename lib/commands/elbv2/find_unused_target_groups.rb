@@ -86,7 +86,7 @@ class FindUnusedTargetGroups < Command
       statistic: "Sum",
       attribute: "TargetGroup",
       namespace: "AWS/ApplicationELB",
-      period: (60*60),
+      period: (60 * 60),
       message: "Target group has received 0 requests in time period"
     )
   end
@@ -98,7 +98,7 @@ class FindUnusedTargetGroups < Command
       statistic: "Sum",
       attribute: "TargetGroup",
       namespace: "AWS/NetworkELB",
-      period: (60*60),
+      period: (60 * 60),
       message: "Target group has 0 healthy hosts during the time period."
     )
   end

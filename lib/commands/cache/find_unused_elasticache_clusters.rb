@@ -38,7 +38,7 @@ class FindUnusedElastiCacheClusters < Command
       statistic: "Average",
       attribute: "CacheClusterId",
       namespace: "AWS/ElastiCache",
-      period: (24*60*60),
+      period: (24 * 60 * 60),
       message: "Extremely low network activity in the last week.",
       predicate: proc { |x| x < 200000 }
     })

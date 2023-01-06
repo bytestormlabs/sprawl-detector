@@ -27,6 +27,7 @@ class FindUnusedRoute53Resolvers < Command
   end
 
   private
+
   def check_query_activity(context, region, resolver_endpoint_id)
     inbound_query_check.matches(context, region, resolver_endpoint_id) && outbound_query_check.matches(context, region, resolver_endpoint_id)
   end

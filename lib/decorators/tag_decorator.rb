@@ -1,5 +1,4 @@
 class TagDecorator
-
   def decorate(finding)
     # See if there is a Cloudformation stack attached
 
@@ -9,7 +8,7 @@ class TagDecorator
       tag["name"] == "aws:cloudformation:stack-name"
     end
 
-    if (has_cloudformation_tag)
+    if has_cloudformation_tag
       finding.tags.push("CloudFormation")
     end
   end
