@@ -29,10 +29,20 @@ require "commands/dms/find_unused_replication_instances"
 require "commands/redshift/find_unused_redshift_clusters"
 require "commands/route53/find_unused_route53_resolvers"
 require "commands/cloudformation/find_stacks_in_delete_failed_status"
+require "decorators/cost/cost_decorator"
 
 class ScanForFindings < Command
   def execute(context)
     context.logger.debug "entering execute"
+
+    decorator = CostDecorator.new
+    # Add decorations
+    Finding.joins(:status).where("account_id = ? AND status_id = ?", context.aws_account_id, Status.find_by_name("Open").id).each do |finding|
+      price = decorator.decorate(finding)
+      finding.cost = price
+      finding.save!
+    end
+
 
     scan = Scan.new
     puts scan.save!

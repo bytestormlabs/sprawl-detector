@@ -22,10 +22,10 @@ class CostDecorator
   end
 
   def decorate(finding)
-    if finding.issue_type == "aws-route53resolver-endpoint-unused"
-      # Why did this break!?
-      return 0.125 * finding.metadata["ip_address_count"] * 720.0
-    end
+    # if finding.issue_type == "aws-route53resolver-endpoint-unused"
+    #   # Why did this break!?
+    #   return 0.125 * finding.metadata["ip_address_count"] * 720.0
+    # end
     offer_code_configuration = @configuration[:offer_codes].find do |offer_code_configuration|
       offer_code_configuration[:issue_types].include?(finding.issue_type)
     end
@@ -66,7 +66,7 @@ class CostDecorator
 
     # puts "Found #{price_list.size} prices."
 
-    return if price_list.nil? || price_list&.size&. < 1
+    return if price_list.nil? || price_list&.size < 1
 
     price_component = JSON.parse(price_list.first)
 

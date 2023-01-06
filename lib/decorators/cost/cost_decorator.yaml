@@ -27,7 +27,6 @@ offer_codes:
   - issue_types:
       - aws-ebs-snapshot-obsolete
       - aws-ec2-ami-obsolete
-    constant_price: "0.04"
     service_code: AmazonEC2
     filters:
       - key: productFamily
@@ -159,7 +158,6 @@ offer_codes:
       - price_per_unit
   - issue_types:
       - aws-ecr-repository-no-lifecycle-policy
-    constant_price: "3.08"
   - issue_types:
       - aws-secretsmanager-secret-obsolete
     service_code: AWSSecretsManager

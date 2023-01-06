@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_17_221018) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_06_165754) do
   create_table "feature_configurations", force: :cascade do |t|
     t.string "tenant_id"
     t.string "key"
@@ -32,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_17_221018) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "scan_id"
+    t.float "cost"
     t.index ["resolution_id"], name: "index_findings_on_resolution_id"
     t.index ["scan_id"], name: "index_findings_on_scan_id"
     t.index ["status_id"], name: "index_findings_on_status_id"
