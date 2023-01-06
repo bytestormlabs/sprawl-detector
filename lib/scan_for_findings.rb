@@ -43,7 +43,6 @@ class ScanForFindings < Command
       finding.save!
     end
 
-
     scan = Scan.new
     puts scan.save!
 

@@ -23,7 +23,7 @@ Rails.application.configure do
   }
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
   config.cache_store = :null_store
 
@@ -41,6 +41,11 @@ Rails.application.configure do
 
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
+
+  # Added for devise
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_deliveries = false
+  config.action_mailer.default_url_options = {host: "localhost", port: 3000}
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
