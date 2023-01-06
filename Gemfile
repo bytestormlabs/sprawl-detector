@@ -15,6 +15,8 @@ gem "puma", "~> 5.0"
 gem "active_model_serializers"
 
 gem "ox"
+gem "devise"
+gem "omniauth"
 
 # AWS SDKs
 gem "aws-sdk-acm"
