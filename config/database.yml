@@ -22,11 +22,12 @@ test:
 # Do not set this db to the same as development or production.
 staging: &staging
   adapter: mysql2
+  <% if ENV["USE_SECRETS"] %>
   <% secret = Sekreto.get_json_value("mysql") %>
   database: <%= secret["dbname"] %>
   host:     <%= secret["host"] %>
   username: <%= secret["username"] %>
   password: <%= secret["password"] %>
-
+  <% end %>
 production:
   <<: *staging
