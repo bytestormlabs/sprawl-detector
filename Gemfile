@@ -17,6 +17,7 @@ gem "active_model_serializers"
 gem "ox"
 gem "devise"
 gem "omniauth"
+gem "faker"
 
 # AWS SDKs
 gem "aws-sdk-acm"

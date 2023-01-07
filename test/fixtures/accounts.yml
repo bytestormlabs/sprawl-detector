@@ -7,6 +7,9 @@
 test:
   account_id: 163788863765
   tenant: bytestormlabs
+  external_id: <%= Account.new.send(:create_random_external_id) %>
+
 acme:
   account_id: 123456789012
   tenant: acme
+  external_id: <%= Account.new.send(:create_random_external_id) %>
