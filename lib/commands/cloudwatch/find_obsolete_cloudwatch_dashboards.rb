@@ -14,7 +14,7 @@ class FindObsoleteCloudwatchDashboard < Command
           f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/cloudwatch").find_or_create_by(
             issue_type: "aws-cloudwatch-dashboard-obsolete",
             resource_id: dashboard.dashboard_name,
-            account_id: context.aws_account_id
+            aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
           ).tap do |f|
             f.region = region
             f.message = "Cloudwatch dashboard has not been modified within time period."

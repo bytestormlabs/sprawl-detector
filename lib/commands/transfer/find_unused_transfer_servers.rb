@@ -12,7 +12,7 @@ class FindUnusedTransferServers < Command
           f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/transfer").find_or_create_by(
             issue_type: "aws-transfer-server-unused",
             resource_id: server.server_id,
-            account_id: context.aws_account_id
+            aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
           ).tap do |f|
             f.region = region
             f.message = "No file activity for AWS Transfer server in the last 90 days."

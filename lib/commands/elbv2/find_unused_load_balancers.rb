@@ -37,7 +37,7 @@ class FindUnusedLoadBalancers < Command
     f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/elb").find_or_create_by(
       issue_type: classic_lb_request_count_check.issue_type,
       resource_id: load_balancer_name,
-      account_id: context.aws_account_id
+      aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
     ).tap do |f|
       f.region = region
       f.message = classic_lb_request_count_check.message
@@ -56,7 +56,7 @@ class FindUnusedLoadBalancers < Command
     f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/elbv2").find_or_create_by(
       issue_type: request_count_check.issue_type,
       resource_id: load_balancer_name,
-      account_id: context.aws_account_id
+      aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
     ).tap do |f|
       f.region = region
       f.message = request_count_check.message
@@ -99,7 +99,7 @@ class FindUnusedLoadBalancers < Command
     f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/elbv2").find_or_create_by(
       issue_type: active_flow_count_check.issue_type,
       resource_id: load_balancer_name,
-      account_id: context.aws_account_id
+      aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
     ).tap do |f|
       f.region = region
       f.message = active_flow_count_check.message

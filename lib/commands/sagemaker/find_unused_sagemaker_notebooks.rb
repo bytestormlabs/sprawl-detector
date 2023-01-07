@@ -30,7 +30,7 @@ class FindUnusedSagemakerNotebooks < Command
             f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/sagemaker").find_or_create_by(
               issue_type: "aws-sagemaker-notebook-instance-unused",
               resource_id: notebook_instance.notebook_instance_name,
-              account_id: context.aws_account_id
+              aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
             ).tap do |f|
               f.region = region
               f.message = "AWS Sagemaker notebook instance hasn't been used in 7 days."

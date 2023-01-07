@@ -17,7 +17,7 @@ class FindLogGroupsWithUnacceptableRetentionPeriods < Command
             f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/logs").find_or_create_by(
               issue_type: "aws-logs-log-group-has-unacceptable-retention-period",
               resource_id: log_group.log_group_name,
-              account_id: context.aws_account_id
+              aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
             ).tap do |f|
               f.region = region
               f.message = "Log group has an unacceptable retention period."

@@ -14,7 +14,7 @@ class FindUnusedNatGateways < Command
           f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/ec2").find_or_create_by(
             issue_type: nat_gateway_check.issue_type,
             resource_id: nat_gateway.nat_gateway_id,
-            account_id: context.aws_account_id
+            aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
           ).tap do |f|
             f.region = region
             f.message = nat_gateway_check.message

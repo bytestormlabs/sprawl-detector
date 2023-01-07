@@ -13,7 +13,7 @@ class FindUnusedVolumes < Command
           f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/ec2").find_or_create_by(
             issue_type: "aws-ec2-ebs-volume-unused",
             resource_id: volume.volume_id,
-            account_id: context.aws_account_id
+            aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
           ).tap do |f|
             f.region = region
             f.message = "EBS volume not attached to any EC2 instances."
@@ -25,7 +25,7 @@ class FindUnusedVolumes < Command
           f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/ec2").find_or_create_by(
             issue_type: "aws-ec2-ebs-volume-not-attached-to-running-instance",
             resource_id: volume.volume_id,
-            account_id: context.aws_account_id
+            aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
           ).tap do |f|
             f.region = region
             f.message = "EBS volume is attached to an EC2 instance that isn't running."

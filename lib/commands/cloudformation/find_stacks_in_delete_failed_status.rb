@@ -34,7 +34,7 @@ class FindStacksInDeleteFailedStatus < Command
         f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/cloudformation").find_or_create_by(
           issue_type: "aws-cloudformation-failed-to-delete-resources",
           resource_id: "#{stack.stack_name}.#{stack_resource.logical_resource_id}",
-          account_id: context.aws_account_id
+          aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
         ).tap do |f|
           f.region = region
           f.message = stack_resource.resource_status_reason

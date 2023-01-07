@@ -14,7 +14,7 @@ class FindObsoleteClusterSnapshots < Command
           f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/redshift").find_or_create_by(
             issue_type: "aws-redshift-snapshot-obsolete",
             resource_id: snapshot.snapshot_identifier,
-            account_id: context.aws_account_id
+            aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
           ).tap do |f|
             f.region = region
             f.message = "Amazon Redshift DB Cluster snapshot is obsolete."

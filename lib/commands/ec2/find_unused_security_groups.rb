@@ -24,7 +24,7 @@ class FindUnusedSecurityGroups < Command
         f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/ec2").find_or_create_by(
           issue_type: "aws-ec2-security-group-unused",
           resource_id: security_group.group_id,
-          account_id: context.aws_account_id
+          aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
         ).tap do |f|
           f.region = region
           f.message = "Security group not attached to any network interfaces."

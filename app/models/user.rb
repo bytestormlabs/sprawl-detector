@@ -6,4 +6,6 @@ class User < ApplicationRecord
     :lockable, :trackable, :omniauthable
 
   belongs_to :tenant
+  has_many :accounts, through: :tenant
+  has_many :findings, through: :accounts
 end

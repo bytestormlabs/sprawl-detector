@@ -33,7 +33,7 @@ class FindUnusedAcmPrivateCA < Command
       f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/acmpca").find_or_create_by(
         issue_type: certificate_issuance_check.issue_type,
         resource_id: certificate_authority.arn,
-        account_id: context.aws_account_id
+        aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
       ).tap do |f|
         f.region = region
         f.message = certificate_issuance_check.message

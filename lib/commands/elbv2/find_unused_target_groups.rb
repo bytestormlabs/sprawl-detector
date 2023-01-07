@@ -15,7 +15,7 @@ class FindUnusedTargetGroups < Command
           f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/elbv2").find_or_create_by(
             issue_type: request_count_check.issue_type,
             resource_id: target_group.target_group_name,
-            account_id: context.aws_account_id
+            aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
           ).tap do |f|
             f.region = region
             f.message = "Target group is not associated with a load balancer."
@@ -47,7 +47,7 @@ class FindUnusedTargetGroups < Command
     f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/elbv2").find_or_create_by(
       issue_type: request_count_check.issue_type,
       resource_id: target_group.target_group_name,
-      account_id: context.aws_account_id
+      aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
     ).tap do |f|
       f.region = region
       f.message = request_count_check.message
@@ -67,7 +67,7 @@ class FindUnusedTargetGroups < Command
     f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/elbv2").find_or_create_by(
       issue_type: healthy_host_count_check.issue_type,
       resource_id: target_group.target_group_name,
-      account_id: context.aws_account_id
+      aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
     ).tap do |f|
       f.region = region
       f.message = healthy_host_count_check.message

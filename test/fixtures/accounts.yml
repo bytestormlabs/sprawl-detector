@@ -4,10 +4,9 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-bytestormlabs:
-  name: ByteStorm Labs
-# column: value
-#
+test:
+  account_id: 163788863765
+  tenant: bytestormlabs
 acme:
-  name: Acme, Inc.
-# column: value
+  account_id: 123456789012
+  tenant: acme

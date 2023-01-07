@@ -27,7 +27,7 @@ class FindRepositoriesWithoutLifecyclePolicy < Command
     f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/ecr").find_or_create_by(
       issue_type: "aws-ecr-repository-no-lifecycle-policy",
       resource_id: repository.repository_name,
-      account_id: context.aws_account_id
+      aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
     ).tap do |f|
       f.region = region
       f.message = "Amazon ECR Repository does not have a lifecycle policy."

@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_06_203219) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_07_125620) do
+  create_table "accounts", force: :cascade do |t|
+    t.string "account_id"
+    t.integer "tenant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tenant_id"], name: "index_accounts_on_tenant_id"
+  end
+
   create_table "feature_configurations", force: :cascade do |t|
     t.string "tenant_id"
     t.string "key"
@@ -21,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_06_203219) do
 
   create_table "findings", force: :cascade do |t|
     t.string "category"
-    t.string "account_id"
+    t.string "aws_account_id"
     t.string "resource_id"
     t.string "issue_type"
     t.string "region"
@@ -33,6 +41,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_06_203219) do
     t.datetime "updated_at", null: false
     t.integer "scan_id"
     t.float "cost"
+    t.integer "account_id"
+    t.index ["account_id"], name: "index_findings_on_account_id"
     t.index ["resolution_id"], name: "index_findings_on_resolution_id"
     t.index ["scan_id"], name: "index_findings_on_scan_id"
     t.index ["status_id"], name: "index_findings_on_status_id"
@@ -92,6 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_06_203219) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "accounts", "tenants"
   add_foreign_key "findings", "resolutions"
   add_foreign_key "findings", "statuses"
 end

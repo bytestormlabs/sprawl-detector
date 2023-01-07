@@ -66,7 +66,7 @@ class CostDecorator
 
     # puts "Found #{price_list.size} prices."
 
-    return if price_list.nil? || price_list&.size&. < 1
+    return if price_list.nil? || price_list&.size < 1
 
     price_component = JSON.parse(price_list.first)
 

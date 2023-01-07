@@ -41,7 +41,7 @@ class FindScheduledInstanceCandidates < Command
         #
         # if should_issue_finding
         #   context.logger.info "Creating a new finding for database instance #{instance[:db_instance_identifier]}"
-        #   Finding.find_or_create_by(account_id: context.aws_account_id, resource_id: instance[:db_instance_identifier], category: "aws/rds").tap do |f|
+        #   Finding.find_or_create_by(aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id), resource_id: instance[:db_instance_identifier], category: "aws/rds").tap do |f|
         #     f.finding_type = "unused_rds_instance"
         #     f.region = region
         #     f.status = Status.find_by_name("Open")

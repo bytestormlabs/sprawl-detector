@@ -12,7 +12,7 @@ class FindUnusedRoute53Resolvers < Command
           f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/route53resolver").find_or_create_by(
             issue_type: "aws-route53resolver-endpoint-unused",
             resource_id: resolver_endpoint.id,
-            account_id: context.aws_account_id
+            aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
           ).tap do |f|
             f.region = region
             f.message = "No inbound or outbound DNS queries during the time period."

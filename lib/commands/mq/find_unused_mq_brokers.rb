@@ -21,7 +21,7 @@ class FindUnusedMqBrokers < Command
     f = Finding.create_with(status: Status.find_by_name("Open"), category: "aws/mq").find_or_create_by(
       issue_type: connection_count_check.issue_type,
       resource_id: broker.broker_name,
-      account_id: context.aws_account_id
+      aws_account_id: context.aws_account_id, account: Account.find_by_account_id(context.aws_account_id)
     ).tap do |f|
       f.region = region
       f.message = connection_count_check.message,
