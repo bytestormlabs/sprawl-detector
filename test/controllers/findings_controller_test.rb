@@ -2,17 +2,20 @@ require "test_helper"
 
 class FindingsControllerTest < ActionDispatch::IntegrationTest
   class AuthenticatedTests < FindingsControllerTest
-    test "#index" do
+    test "show all findings" do
       get findings_url, headers: {Authorization: "Bearer: abc-123-def-456"}
       assert_response 200
       assert_equal 100, JSON.parse(@response.body)["data"].count
+
+      get findings_url, headers: {Authorization: "Bearer: zzz-999-zzz-999"}
+      assert_response 200
+      assert_equal 20, JSON.parse(@response.body)["data"].count
     end
 
-    test "#index only shows logged in users findings" do
-      skip "Not implemented yet."
-      get findings_url, headers: {Authorization: "Bearer: abc-123-def-456"}
+    test "filter by status" do
+      get findings_url, params: { status: "Closed" }, headers: {Authorization: "Bearer: abc-123-def-456"}
       assert_response 200
-      assert_equal 100, JSON.parse(@response.body)["data"].count
+      assert_equal 20, JSON.parse(@response.body)["data"].count
     end
   end
 

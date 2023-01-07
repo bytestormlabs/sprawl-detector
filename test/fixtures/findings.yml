@@ -12,7 +12,21 @@ finding_<%= i %>:
   status: open
 <% end %>
 
-<% (100...120).each do |i| %>
+<% (100..119).each do |i| %>
+finding_<%= i %>:
+  account: test
+  region: <%=
+    [ "us-east-1", "us-east-2", "us-west-1", "us-west-2"].sample
+  %>
+  issue_type: <%=
+    [
+      "aws-ec2-ebs-volume-unused"
+    ].sample
+  %>
+  status: closed
+<% end %>
+
+<% (120..139).each do |i| %>
 finding_<%= i %>:
   account: acme
   region: <%=

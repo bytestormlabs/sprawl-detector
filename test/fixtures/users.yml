@@ -11,3 +11,11 @@ frank:
   confirmed_at: <% Time.now %>
   tenant: bytestormlabs
   authentication_token: abc-123-def-456
+
+john:
+  name: Johnny Cage
+  email: johnny.cage@acmeinc.com
+  encrypted_password: <%= User.new.send(:password_digest, 'hello123') %>
+  confirmed_at: <% Time.now %>
+  tenant: acme
+  authentication_token: zzz-999-zzz-999
