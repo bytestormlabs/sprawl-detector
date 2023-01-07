@@ -31,7 +31,10 @@ class RegistrationsController < ApplicationController
     @user = User.create(user_sign_up_params.merge(tenant: @tenant))
 
     if @user.save
-      render(status: 200, json: @user)
+      render json: {
+        data: ActiveModelSerializers::SerializableResource.new(@user, each_serializer: UserSerializer),
+        message: "Success."
+      }
     else
       render status: 400,
         json: {message: @user.errors.full_messages}

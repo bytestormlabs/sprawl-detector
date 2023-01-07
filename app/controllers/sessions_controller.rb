@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
-  before_filter :authenticate_with_token!, except: [:create]
+  before_action :authenticate_with_token!, except: [:create]
 
-  before_filter :ensure_params_exist
+  before_action :ensure_params_exist
 
   respond_to :json
 
@@ -13,7 +13,10 @@ class SessionsController < ApplicationController
 
     if resource.valid_password?(params[:user][:password])
       sign_in(:user, resource)
-      render(status: 200, success: true, json: Api::V1::UserSerializer.new(resource, root: false).to_json)
+
+      render json: {
+        data: resource
+      }, status: 200
       return
     end
     invalid_login_attempt

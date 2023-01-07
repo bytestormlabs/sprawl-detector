@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable,
-    :confirmable, :lockable, :trackable, :omniauthable
+    :lockable, :trackable, :omniauthable
 
   belongs_to :tenant
 end
