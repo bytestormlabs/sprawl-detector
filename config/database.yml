@@ -13,13 +13,20 @@ development:
   <<: *default
   database: db/development.sqlite3
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   <<: *default
   database: db/test.sqlite3
 
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+staging: &staging
+  adapter: mysql2
+  <% secret = Sekreto.get_json_value("mysql") %>
+  database: <%= secret["dbname"] %>
+  host:     <%= secret["host"] %>
+  username: <%= secret["username"] %>
+  password: <%= secret["password"] %>
+
 production:
-  <<: *default
-  database: db/production.sqlite3
+  <<: *staging
