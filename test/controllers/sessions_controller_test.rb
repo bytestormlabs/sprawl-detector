@@ -2,7 +2,7 @@ require "test_helper"
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
-  # include Warden::Test::Helpers
+  include Warden::Test::Helpers
 
   test "don't allow login for a bad password" do
     post user_session_url, params: {
