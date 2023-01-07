@@ -14,4 +14,6 @@ Resolution.find_or_create_by(name: "Ignored").save!
 Resolution.find_or_create_by(name: "Closed").save!
 
 Tenant.find_or_create_by(name: "ByteStorm Labs").save!
-Account.find_or_create_by(account_id: "163788863765", tenant: Tenant.find_by_name("ByteStorm Labs")).save!
+account = Account.find_or_create_by(account_id: "163788863765", tenant: Tenant.find_by_name("ByteStorm Labs"))
+account.create_random_external_id
+account.save!
