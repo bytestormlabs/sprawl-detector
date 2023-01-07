@@ -11,7 +11,7 @@ class RegistrationsController < ApplicationController
       render status: 400,
         json: {message: "User request must contain the user password."}
       return
-    elsif (params[:tenant].nil? || params[:tenant][:name].nil?)
+    elsif params[:tenant].nil? || params[:tenant][:name].nil?
       render status: 400,
         json: {message: "User request must contain the company name."}
       return
