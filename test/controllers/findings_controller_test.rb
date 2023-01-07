@@ -8,6 +8,7 @@ class FindingsControllerTest < ActionDispatch::IntegrationTest
     test "#index" do
       get findings_url, headers: {Authorization: "Bearer: abc-123-def-456"}
       assert_response 200
+      assert_equal 100, JSON.parse(@response.body)["data"].count
     end
   end
 
