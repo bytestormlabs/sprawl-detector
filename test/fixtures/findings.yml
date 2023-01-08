@@ -1,9 +1,6 @@
 <% 100.times do |i| %>
 finding_<%= i %>:
   account: test
-  region: <%=
-    [ "us-east-1", "us-east-2", "us-west-1", "us-west-2"].sample
-  %>
   issue_type: <%=
     [
       "aws-ec2-ebs-volume-unused"
@@ -15,9 +12,6 @@ finding_<%= i %>:
 <% (100..119).each do |i| %>
 finding_<%= i %>:
   account: test
-  region: <%=
-    [ "us-east-1", "us-east-2", "us-west-1", "us-west-2"].sample
-  %>
   issue_type: <%=
     [
       "aws-ec2-ebs-volume-unused"
@@ -29,9 +23,6 @@ finding_<%= i %>:
 <% (120..139).each do |i| %>
 finding_<%= i %>:
   account: acme
-  region: <%=
-    [ "us-east-1", "us-east-2", "us-west-1", "us-west-2"].sample
-  %>
   issue_type: <%=
     [
       "aws-ec2-ebs-volume-unused"

@@ -1,5 +1,5 @@
 class FindingSerializer < ActiveModel::Serializer
-  attributes :id, :message, :resource_id, :region, :status, :metadata, :cost
+  attributes :id, :message, :status, :estimated_cost
 
   def status
     object.status&.name
