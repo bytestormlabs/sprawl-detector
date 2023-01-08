@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://monitoring.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=DBInstanceIdentifier&Dimensions.member.1.Value=byte-storm-labs-test-database-mysql-dbinstance-a7m8ktttcki8&EndTime=2023-01-08T18%3A56%3A58Z&MetricName=Queries&Namespace=AWS%2FRDS&Period=86400&StartTime=2022-12-25T18%3A56%3A58Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230108T185658Z
+      X-Amz-Content-Sha256:
+      - 79d47ea6c93bdb08c5d4cc48183f1ec438da9402417bba1629c9396af32ff755
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '321'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 92b44dff-86b1-400e-b459-73ebdeabcb35
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '656'
+      Date:
+      - Sun, 08 Jan 2023 18:56:58 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>1811.6212781282825</Sum>
+                <Timestamp>2022-12-30T18:56:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>41.55260814148863</Sum>
+                <Timestamp>2022-12-31T18:56:00Z</Timestamp>
+              </member>
+            </Datapoints>
+            <Label>Queries</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>92b44dff-86b1-400e-b459-73ebdeabcb35</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Sun, 08 Jan 2023 18:56:58 GMT
+recorded_with: VCR 6.1.0
