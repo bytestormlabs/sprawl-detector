@@ -6,10 +6,6 @@ class CreateFindings < ActiveRecord::Migration[6.0]
       t.references :tenant, foreign_key: true
       t.timestamps
     end
-    create_table :statuses do |t|
-      t.string :name
-      t.timestamps
-    end
     create_table :resolutions do |t|
       t.string :name
       t.timestamps
@@ -31,10 +27,11 @@ class CreateFindings < ActiveRecord::Migration[6.0]
     create_table :findings do |t|
       t.string :category
       t.string :issue_type
-      t.string :message
+      t.string :status
       t.decimal :estimated_cost, :precision=>64, :scale=>12
+      t.json :params
+      t.references :resource, foreign_key: true
       t.references :account, foreign_key: true
-      t.references :status, foreign_key: true
       t.references :resolution, foreign_key: true, null: true
       t.references :scan, foreign_key: true, null: true
       t.timestamps

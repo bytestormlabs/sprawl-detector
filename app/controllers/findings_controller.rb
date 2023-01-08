@@ -1,6 +1,6 @@
 class FindingsController < ApplicationController
   def index
-    findings = @current_user.findings.joins(:status).where(status: list_params)
+    findings = @current_user.findings.where(list_params)
 
     render json: {
       data: ActiveModelSerializers::SerializableResource.new(findings, each_serializer: FindingSerializer),
@@ -11,7 +11,7 @@ class FindingsController < ApplicationController
   private
   def list_params
     {
-      name: (params[:status] || "Open")
+      status: (params[:status]&.to_sym || :open)
     }
   end
 end

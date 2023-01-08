@@ -34,18 +34,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_220259) do
   create_table "findings", force: :cascade do |t|
     t.string "category"
     t.string "issue_type"
-    t.string "message"
+    t.string "status"
     t.decimal "estimated_cost", precision: 64, scale: 12
+    t.json "params"
+    t.integer "resource_id"
     t.integer "account_id"
-    t.integer "status_id"
     t.integer "resolution_id"
     t.integer "scan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_findings_on_account_id"
     t.index ["resolution_id"], name: "index_findings_on_resolution_id"
+    t.index ["resource_id"], name: "index_findings_on_resource_id"
     t.index ["scan_id"], name: "index_findings_on_scan_id"
-    t.index ["status_id"], name: "index_findings_on_status_id"
   end
 
   create_table "resolutions", force: :cascade do |t|
@@ -73,12 +74,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_220259) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_scans_on_account_id"
-  end
-
-  create_table "statuses", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "tenants", force: :cascade do |t|
@@ -122,8 +117,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_220259) do
   add_foreign_key "aws_cost_line_items", "accounts"
   add_foreign_key "findings", "accounts"
   add_foreign_key "findings", "resolutions"
+  add_foreign_key "findings", "resources"
   add_foreign_key "findings", "scans"
-  add_foreign_key "findings", "statuses"
   add_foreign_key "resources", "accounts"
   add_foreign_key "resources", "scans"
   add_foreign_key "scans", "accounts"
