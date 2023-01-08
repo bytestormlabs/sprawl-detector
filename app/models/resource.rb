@@ -11,7 +11,7 @@ class Resource < ApplicationRecord
       resource: self,
       issue_type: issue_type,
       account: self.account,
-      scan: self.scan,
+      scan: self.scan
     )
   end
 end

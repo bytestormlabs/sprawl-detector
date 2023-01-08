@@ -1,5 +1,5 @@
 require "detector/secrets_manager/unused_secrets.rb"
-require "base_vcr_test"
+require "base_aws_integration_test"
 
 class UnusedSecretsTest < ActiveSupport::TestCase
   detector = UnusedSecrets.new
@@ -11,9 +11,10 @@ class UnusedSecretsTest < ActiveSupport::TestCase
     assert detector.resource_type == "AWS::SecretsManager::Secret"
   end
 
-  class IntegrationTests < BaseVcrTest
+  class IntegrationTests < BaseAwsIntegrationTest
     detector = UnusedSecrets.new
-    scan = Scan.create(account: Account.first)
+    # TODO: Refactor this so it can be shared.
+    scan = Scan.create(account: Account.first, credentials: Aws::SharedCredentials.new)
 
     test "handle no secrets found" do
       before = Resource.count

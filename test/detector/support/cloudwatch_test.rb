@@ -7,8 +7,6 @@ class CloudwatchTest < BaseAwsIntegrationTest
     check = check("AWS/RDS", "Queries")
       .with_dimension("DBInstanceIdentifier", "byte-storm-labs-test-database-mysql-dbinstance-a7m8ktttcki8")
       .in("us-east-1")
-
-    pp check
     assert check.indicates_zero_activity? == false, "There aren't enough datapoints to conclude there is zero activity"
   end
 
@@ -16,8 +14,6 @@ class CloudwatchTest < BaseAwsIntegrationTest
     check = check("AWS/RDS", "Queries")
       .with_dimension("DBInstanceIdentifier", "byte-storm-labs-test-database-mysql-dbinstance-eke8ouwvjk1c")
       .in("us-east-1")
-
-    pp check
     assert check.indicates_zero_activity?
   end
 end

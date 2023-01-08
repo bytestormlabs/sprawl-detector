@@ -12,16 +12,7 @@ module Cloudwatch
     PERIOD_DAILY = (60*60*24)
 
     attr_accessor :request
-    # attr_accessor :metric
-    # attr_accessor :namespace
     attr_accessor :region
-
-    # Defaults to 'Sum'
-    # attr_accessor :statistic
-
-    # Defaults to daily
-    # attr_accessor :period
-    attr_accessor :dimensions
     attr_accessor :number_of_days
 
     def initialize(namespace, metric)
@@ -84,7 +75,6 @@ module Cloudwatch
 
     def indicates_zero_activity?
       fetch_results if @results.nil?
-      pp @results
       has_expected_number_of_data_points? && @results.datapoints.map do |d|
         d[@request[:statistics].first.downcase.to_sym]
       end.sum == 0

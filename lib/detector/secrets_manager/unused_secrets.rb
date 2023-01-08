@@ -11,7 +11,7 @@ class UnusedSecrets
     expect region, "Paramater 'region' is required."
     expect scan, "Paramater 'scan' is required."
 
-    client = Aws::SecretsManager::Client.new(region: region)
+    client = Aws::SecretsManager::Client.new(region: region, credentials: scan.credentials)
     loop_until_finished(client, :list_secrets) do |response|
       response.secret_list.each do |secret|
         process_secret(scan, region, secret)
