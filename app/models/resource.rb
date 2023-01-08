@@ -5,4 +5,13 @@ class Resource < ApplicationRecord
   %i[resource_id region scan account resource_type].each do |field|
     validates field, presence: true
   end
+
+  def create_finding(issue_type)
+    Finding.find_or_create_by(
+      resource: self,
+      issue_type: issue_type,
+      account: @account,
+      scan: @scan,
+    )
+  end
 end

@@ -23,8 +23,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_220259) do
   create_table "aws_cost_line_items", force: :cascade do |t|
     t.date "date"
     t.string "service"
-    t.string "service_billing_code"
-    t.string "usage_type"
     t.string "region"
     t.decimal "cost"
     t.integer "account_id"
@@ -59,20 +57,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_220259) do
   create_table "resources", force: :cascade do |t|
     t.string "resource_id"
     t.string "resource_type"
+    t.string "region"
     t.json "metadata"
-    t.integer "accounts_id"
-    t.integer "scans_id"
+    t.integer "account_id"
+    t.integer "scan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["accounts_id"], name: "index_resources_on_accounts_id"
-    t.index ["scans_id"], name: "index_resources_on_scans_id"
+    t.index ["account_id"], name: "index_resources_on_account_id"
+    t.index ["scan_id"], name: "index_resources_on_scan_id"
   end
 
   create_table "scans", force: :cascade do |t|
-    t.integer "accounts_id"
+    t.integer "account_id"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["accounts_id"], name: "index_scans_on_accounts_id"
+    t.index ["account_id"], name: "index_scans_on_account_id"
   end
 
   create_table "statuses", force: :cascade do |t|
@@ -124,7 +124,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_220259) do
   add_foreign_key "findings", "resolutions"
   add_foreign_key "findings", "scans"
   add_foreign_key "findings", "statuses"
-  add_foreign_key "resources", "accounts", column: "accounts_id"
-  add_foreign_key "resources", "scans", column: "scans_id"
-  add_foreign_key "scans", "accounts", column: "accounts_id"
+  add_foreign_key "resources", "accounts"
+  add_foreign_key "resources", "scans"
+  add_foreign_key "scans", "accounts"
 end

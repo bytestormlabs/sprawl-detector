@@ -15,15 +15,17 @@ class CreateFindings < ActiveRecord::Migration[6.0]
       t.timestamps
     end
     create_table :scans do |t|
-      t.references :accounts, foreign_key: true
+      t.references :account, foreign_key: true
+      t.string :status
       t.timestamps
     end
     create_table :resources do |t|
       t.string :resource_id
       t.string :resource_type
+      t.string :region
       t.json :metadata
-      t.references :accounts, foreign_key: true
-      t.references :scans, foreign_key: true
+      t.references :account, foreign_key: true
+      t.references :scan, foreign_key: true
       t.timestamps
     end
     create_table :findings do |t|
