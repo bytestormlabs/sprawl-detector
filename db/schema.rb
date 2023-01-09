@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_07_220259) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_09_015310) do
   create_table "accounts", force: :cascade do |t|
     t.string "account_id"
     t.string "external_id"
@@ -76,6 +76,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_220259) do
     t.index ["account_id"], name: "index_scans_on_account_id"
   end
 
+  create_table "settings", force: :cascade do |t|
+    t.string "data_type", default: "integer"
+    t.string "name"
+    t.text "description"
+    t.string "value"
+    t.integer "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_settings_on_account_id"
+  end
+
   create_table "tenants", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -122,4 +133,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_220259) do
   add_foreign_key "resources", "accounts"
   add_foreign_key "resources", "scans"
   add_foreign_key "scans", "accounts"
+  add_foreign_key "settings", "accounts"
 end

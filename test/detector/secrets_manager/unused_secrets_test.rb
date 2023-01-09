@@ -10,9 +10,13 @@ class UnusedSecretsTest < ActiveSupport::TestCase
   test "has correct resource type" do
     assert detector.resource_type == "AWS::SecretsManager::Secret"
   end
+  test "generates default settings" do
+    assert detector.default_settings.count == 1
+  end
 
   class IntegrationTests < BaseAwsIntegrationTest
     detector = UnusedSecrets.new
+
     # TODO: Refactor this so it can be shared.
     scan = Scan.create(account: Account.first, credentials: Aws::SharedCredentials.new)
 
@@ -39,10 +43,8 @@ class UnusedSecretsTest < ActiveSupport::TestCase
 
     test "obsolete secrets have findings" do
       before = Finding.count
-      # pp Finding.all
       detector.execute(scan, "us-east-2")
       after = Finding.count
-      # pp Finding.all
       assert (before + 2) == after, "Obsolete resources should have findings"
     end
   end
