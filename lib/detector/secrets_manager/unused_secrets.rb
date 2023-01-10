@@ -38,4 +38,10 @@ class UnusedSecrets
   def resource_type
     "AWS::SecretsManager::Secret"
   end
+
+  def default_settings
+    [
+      Setting.create_int(ISSUE_TYPE, "number_of_days_since_last_accessed", "The number of days (since today) to check for this secret being accessed.", 60)
+    ]
+  end
 end
