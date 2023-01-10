@@ -30,22 +30,22 @@ module Cloudwatch
     end
 
     def sum
-      @request[:statistic] = ["Sum"]
+      @request[:statistics] = ["Sum"]
       self
     end
 
     def average
-      @request[:statistic] = ["Average"]
+      @request[:statistics] = ["Average"]
       self
     end
 
     def minimum
-      @request[:statistic] = ["Minimum"]
+      @request[:statistics] = ["Minimum"]
       self
     end
 
     def maximum
-      @request[:statistic] = ["Maximum"]
+      @request[:statistics] = ["Maximum"]
       self
     end
 
@@ -83,6 +83,13 @@ module Cloudwatch
       @results.datapoints.empty? || @results.datapoints.map do |d|
         d[@request[:statistics].first.downcase.to_sym]
       end.sum == 0
+    end
+
+    def less_than?(number)
+      fetch_results if @results.nil?
+      @results.datapoints.empty? || @results.datapoints.all? do |d|
+        d[@request[:statistics].first.downcase.to_sym] < number
+      end
     end
 
     private
