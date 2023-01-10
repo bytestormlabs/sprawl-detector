@@ -1,0 +1,102 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://logs.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatchlogs/1.59.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - Logs_20140328.DescribeLogGroups
+      Host:
+      - logs.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230110T162903Z
+      X-Amz-Content-Sha256:
+      - 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '2'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - '078cebce-45dc-4d18-a2f8-9896b989976a'
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '1744'
+      Date:
+      - Tue, 10 Jan 2023 16:29:03 GMT
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "logGroups": [
+            {
+              "arn": "arn:aws:logs:us-east-1:012345678912:log-group:/aws/ecs/containerinsights/Test-Cluster/performance:*",
+              "creationTime": 1672511011916,
+              "logGroupName": "/aws/ecs/containerinsights/Test-Cluster/performance",
+              "metricFilterCount": 0,
+              "retentionInDays": 1,
+              "storedBytes": 0
+            },
+            {
+              "arn": "arn:aws:logs:us-east-1:012345678912:log-group:/aws/lambda/SecretRotationSchedule-MySQLSingleUser-Lambda:*",
+              "creationTime": 1672425268353,
+              "logGroupName": "/aws/lambda/SecretRotationSchedule-MySQLSingleUser-Lambda",
+              "metricFilterCount": 0,
+              "storedBytes": 27026
+            },
+            {
+              "arn": "arn:aws:logs:us-east-1:012345678912:log-group:/aws/rds/cluster/byte-storm-labs-test-database-mysql-dbcluster-btbz84miu6j7/error:*",
+              "creationTime": 1672543351240,
+              "logGroupName": "/aws/rds/cluster/byte-storm-labs-test-database-mysql-dbcluster-btbz84miu6j7/error",
+              "metricFilterCount": 0,
+              "storedBytes": 9158
+            },
+            {
+              "arn": "arn:aws:logs:us-east-1:012345678912:log-group:/aws/rds/cluster/byte-storm-labs-test-database-mysql-dbcluster-i5qk8sggjtxw/error:*",
+              "creationTime": 1672630895212,
+              "logGroupName": "/aws/rds/cluster/byte-storm-labs-test-database-mysql-dbcluster-i5qk8sggjtxw/error",
+              "metricFilterCount": 0,
+              "storedBytes": 19444
+            },
+            {
+              "arn": "arn:aws:logs:us-east-1:012345678912:log-group:/ecs/stop-db-cluster:*",
+              "creationTime": 1672512045557,
+              "logGroupName": "/ecs/stop-db-cluster",
+              "metricFilterCount": 0,
+              "storedBytes": 51978
+            },
+            {
+              "arn": "arn:aws:logs:us-east-1:012345678912:log-group:/ecs/stop-db-cluster-manual:*",
+              "creationTime": 1672501258551,
+              "logGroupName": "/ecs/stop-db-cluster-manual",
+              "metricFilterCount": 0,
+              "storedBytes": 2932
+            },
+            {
+              "arn": "arn:aws:logs:us-east-1:012345678912:log-group:RDSOSMetrics:*",
+              "creationTime": 1672416445350,
+              "logGroupName": "RDSOSMetrics",
+              "metricFilterCount": 0,
+              "retentionInDays": 30,
+              "storedBytes": 62226
+            }
+          ]
+        }
+  recorded_at: Tue, 10 Jan 2023 16:29:04 GMT
+recorded_with: VCR 6.1.0
