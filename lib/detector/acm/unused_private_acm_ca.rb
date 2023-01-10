@@ -6,6 +6,7 @@ require "detector/support/cloudwatch"
 
 class UnusedAcmPrivateCA
   ISSUE_TYPE = "aws-private-ca-unused"
+
   include AwsSdkOperations
   include Assertions
   include Cloudwatch
@@ -19,32 +20,31 @@ class UnusedAcmPrivateCA
 
     certificates = []
     loop_until_finished(acm_client, :list_certificates) do |response|
-      certificates << response.certificate_summary_list.map do |certificate|
-        acm_client.describe_certificate(certificate_arn: certificate.certificate_arn).certificate
+      response.certificate_summary_list.each do |certificate|
+        certificates << acm_client.describe_certificate(certificate_arn: certificate.certificate_arn).certificate
       end
     end
-    certificates.flatten
-
 
     certificate_authorities = client.list_certificate_authorities.certificate_authorities
     certificate_authorities.each do |certificate_authority|
       resource = scan.build_resource(region, "AWS::ACMPCA::CertificateAuthority", certificate_authority.arn, certificate_authority)
+      next if certificate_authority.status != "ACTIVE"
 
       is_certificate_authority_referenced_by_an_active_cert = certificates.any? do |certificate|
         certificate.certificate_authority_arn == certificate_authority.arn && certificate.status == "ISSUED"
       end
 
+      next if is_certificate_authority_referenced_by_an_active_cert
+
       number_of_days = 90   # TODO: Refactor this
       cloudwatch_issue_certificate_metrics = check("AWS/ACMPrivateCA", "Success")
-        .for_last(number_of_days).days
+        .in(region)
+        .in_last(number_of_days)
         .with_dimension("Operation", "IssueCertificate")
         .with_dimension("PrivateCAArn", certificate_authority.arn)
+        .with(scan.credentials)
 
-      resource.create_finding(ISSUE_TYPE, certificate_authority) if [
-        certificate_authority.status == "ACTIVE",
-        !is_certificate_authority_referenced_by_an_active_cert,
-        cloudwatch_issue_certificate_metrics.indicates_zero_activity?
-      ].all?
+      resource.create_finding(ISSUE_TYPE, certificate_authority) if cloudwatch_issue_certificate_metrics.indicates_zero_activity?
     end
   end
 

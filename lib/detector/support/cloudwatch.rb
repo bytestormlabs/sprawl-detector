@@ -68,6 +68,11 @@ module Cloudwatch
       self
     end
 
+    def with(credentials)
+      @credentials = credentials
+      self
+    end
+
     def has_expected_number_of_data_points?
       fetch_results if @results.nil?
       @results.datapoints.count >= @number_of_days
@@ -75,14 +80,18 @@ module Cloudwatch
 
     def indicates_zero_activity?
       fetch_results if @results.nil?
-      has_expected_number_of_data_points? && @results.datapoints.map do |d|
+      @results.datapoints.empty? || @results.datapoints.map do |d|
         d[@request[:statistics].first.downcase.to_sym]
       end.sum == 0
     end
 
     private
     def fetch_results
-      client = Aws::CloudWatch::Client.new(region: region)
+      params = {
+        region: region
+      }
+      params[:credentials] = @credentials if @credentials
+      client = Aws::CloudWatch::Client.new(params)
       @results = client.get_metric_statistics(@request)
     end
   end
