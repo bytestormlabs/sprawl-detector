@@ -22,6 +22,6 @@ class DetectorGenerator < Rails::Generators::NamedBase
       .gsub("{service}", service)
       .gsub("{detector_name}", detector_name)
       .gsub("{detector_class_name}", detector_name.camelize)
-    create_file("test/detector/#{service}/#{detector_name}_test.rb", contents)
+    create_file("test/lib/detector/#{service}/#{detector_name}_test.rb", contents)
   end
 end
