@@ -1,0 +1,144 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://ec2.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeNetworkInterfaces&Version=2016-11-15
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ec2/1.356.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - ec2.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230110T224504Z
+      X-Amz-Content-Sha256:
+      - 19ba5dc918b1e927d0c1a179e1bed2a393fa8987b6fbc66e756823d414115566
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '51'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - a0a3639f-fc57-4d6a-bb6a-27fbdf49181c
+      Cache-Control:
+      - no-cache, no-store
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '251'
+      Date:
+      - Tue, 10 Jan 2023 22:45:04 GMT
+      Server:
+      - AmazonEC2
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <DescribeNetworkInterfacesResponse xmlns="http://ec2.amazonaws.com/doc/2016-11-15/">
+            <requestId>a0a3639f-fc57-4d6a-bb6a-27fbdf49181c</requestId>
+            <networkInterfaceSet/>
+        </DescribeNetworkInterfacesResponse>
+  recorded_at: Tue, 10 Jan 2023 22:45:04 GMT
+- request:
+    method: post
+    uri: https://ec2.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeSecurityGroups&Version=2016-11-15
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ec2/1.356.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - ec2.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230110T224504Z
+      X-Amz-Content-Sha256:
+      - 398587829763af2624ad0faa257a51949217b85bb2957c3948946c38ab0fddac
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '48'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - b152291d-86f7-4e37-b0d0-0a85949c1492
+      Cache-Control:
+      - no-cache, no-store
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '1511'
+      Date:
+      - Tue, 10 Jan 2023 22:45:05 GMT
+      Server:
+      - AmazonEC2
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <DescribeSecurityGroupsResponse xmlns="http://ec2.amazonaws.com/doc/2016-11-15/">
+            <requestId>b152291d-86f7-4e37-b0d0-0a85949c1492</requestId>
+            <securityGroupInfo>
+                <item>
+                    <ownerId>163788863765</ownerId>
+                    <groupId>sg-0aecd63d713f3c40d</groupId>
+                    <groupName>default</groupName>
+                    <groupDescription>default VPC security group</groupDescription>
+                    <vpcId>vpc-0af1dc5c0a6e0186d</vpcId>
+                    <ipPermissions>
+                        <item>
+                            <ipProtocol>-1</ipProtocol>
+                            <groups>
+                                <item>
+                                    <userId>163788863765</userId>
+                                    <groupId>sg-0aecd63d713f3c40d</groupId>
+                                </item>
+                            </groups>
+                            <ipRanges/>
+                            <ipv6Ranges/>
+                            <prefixListIds/>
+                        </item>
+                    </ipPermissions>
+                    <ipPermissionsEgress>
+                        <item>
+                            <ipProtocol>-1</ipProtocol>
+                            <groups/>
+                            <ipRanges>
+                                <item>
+                                    <cidrIp>0.0.0.0/0</cidrIp>
+                                </item>
+                            </ipRanges>
+                            <ipv6Ranges/>
+                            <prefixListIds/>
+                        </item>
+                    </ipPermissionsEgress>
+                </item>
+            </securityGroupInfo>
+        </DescribeSecurityGroupsResponse>
+  recorded_at: Tue, 10 Jan 2023 22:45:05 GMT
+recorded_with: VCR 6.1.0
