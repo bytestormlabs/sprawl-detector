@@ -6,6 +6,7 @@ class CreateSettings < ActiveRecord::Migration[7.0]
       t.text :description, null: true
       t.string :value
       t.references :account, foreign_key: true
+      t.references :tenant, foreign_key: true
       t.timestamps
     end
   end

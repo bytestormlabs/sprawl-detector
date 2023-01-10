@@ -82,9 +82,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_09_015310) do
     t.text "description"
     t.string "value"
     t.integer "account_id"
+    t.integer "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_settings_on_account_id"
+    t.index ["tenant_id"], name: "index_settings_on_tenant_id"
   end
 
   create_table "tenants", force: :cascade do |t|
@@ -134,4 +136,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_09_015310) do
   add_foreign_key "resources", "scans"
   add_foreign_key "scans", "accounts"
   add_foreign_key "settings", "accounts"
+  add_foreign_key "settings", "tenants"
 end
