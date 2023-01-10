@@ -19,7 +19,7 @@ class UnusedElastiCacheClustersTest < ActiveSupport::TestCase
     detector = UnusedElastiCacheClusters.new
 
     # TODO: Refactor this so it can be shared.
-    scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "123"))
+    scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
 
     test "handle has network activity" do
       before = Resource.count

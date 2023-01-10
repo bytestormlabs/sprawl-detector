@@ -5,19 +5,19 @@ class {detector_class_name}Test < ActiveSupport::TestCase
   detector = {detector_class_name}.new
 
 #  test "has correct service name" do
-#    assert detector.service_name == "AWS Service Name"
+#    assert_equal detector.service_name, "AWS Service Name"
 #  end
 #  test "has correct resource type" do
-#    assert detector.resource_type == "AWS::Service::ResourceType"
+#    assert_equal detector.resource_type, "AWS::Service::ResourceType"
 #  end
 #  test "generates default settings" do
-#    assert detector.default_settings.count == 1
+#    assert_equal detector.default_settings.count, 1
 #  end
 
   class IntegrationTests < BaseAwsIntegrationTest
     detector = {detector_class_name}.new
 
-    scan = Scan.create(account: Account.first, credentials: Aws::SharedCredentials.new)
+    scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
 
     test "create resources" do
       findings = Finding.count
