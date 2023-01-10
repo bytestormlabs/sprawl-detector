@@ -1,0 +1,219 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://elasticache.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeCacheClusters&Version=2015-02-02
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-elasticache/1.83.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - elasticache.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230110T124919Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - 7d5fa81bb12b569f001c103e15accd6359ef8ba8bfc9cae29aaaf140ec73265b
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '47'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - ff159255-9958-49b2-a1a9-e9f4f6ad46cf
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '4561'
+      Date:
+      - Tue, 10 Jan 2023 12:49:19 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <DescribeCacheClustersResponse xmlns="http://elasticache.amazonaws.com/doc/2015-02-02/">
+          <DescribeCacheClustersResult>
+            <CacheClusters>
+              <CacheCluster>
+                <LogDeliveryConfigurations/>
+                <CacheSubnetGroupName>bytestorm-redis-13sfvaifp4qd7</CacheSubnetGroupName>
+                <PreferredAvailabilityZone>us-east-1c</PreferredAvailabilityZone>
+                <AtRestEncryptionEnabled>true</AtRestEncryptionEnabled>
+                <DeleteProtection>false</DeleteProtection>
+                <CacheClusterCreateTime>2018-07-18T02:18:28.907Z</CacheClusterCreateTime>
+                <SnapshotRetentionLimit>7</SnapshotRetentionLimit>
+                <NumCacheNodes>1</NumCacheNodes>
+                <CacheClusterStatus>available</CacheClusterStatus>
+                <Engine>redis</Engine>
+                <CacheSecurityGroups/>
+                <CacheParameterGroup>
+                  <ParameterApplyStatus>in-sync</ParameterApplyStatus>
+                  <CacheNodeIdsToReboot/>
+                  <CacheParameterGroupName>bytestorm-redis-1waosmvlxsjb</CacheParameterGroupName>
+                </CacheParameterGroup>
+                <ARN>arn:aws:elasticache:us-east-1:012345678912:cluster:abcdef12ab45fed-001</ARN>
+                <NetworkType>ipv4</NetworkType>
+                <EngineVersion>6.2.6</EngineVersion>
+                <CacheClusterId>abcdef12ab45fed-001</CacheClusterId>
+                <AuthTokenEnabled>false</AuthTokenEnabled>
+                <ClientDownloadLandingPage>https://console.aws.amazon.com/elasticache/home#client-download:</ClientDownloadLandingPage>
+                <SnapshotWindow>05:30-06:30</SnapshotWindow>
+                <IpDiscovery>ipv4</IpDiscovery>
+                <CacheNodeType>cache.m5.large</CacheNodeType>
+                <PendingModifiedValues/>
+                <PreferredMaintenanceWindow>sat:04:30-sat:05:30</PreferredMaintenanceWindow>
+                <SecurityGroups>
+                  <member>
+                    <SecurityGroupId>sg-abcdef12ab4542ef3</SecurityGroupId>
+                    <Status>active</Status>
+                  </member>
+                </SecurityGroups>
+                <TransitEncryptionEnabled>true</TransitEncryptionEnabled>
+                <ReplicationGroupId>abcdef12ab45fed</ReplicationGroupId>
+                <AutoMinorVersionUpgrade>true</AutoMinorVersionUpgrade>
+                <ReplicationGroupLogDeliveryEnabled>false</ReplicationGroupLogDeliveryEnabled>
+                <TransitEncryptionMode>required</TransitEncryptionMode>
+              </CacheCluster>
+            </CacheClusters>
+          </DescribeCacheClustersResult>
+          <ResponseMetadata>
+            <RequestId>ff159255-9958-49b2-a1a9-e9f4f6ad46cf</RequestId>
+          </ResponseMetadata>
+        </DescribeCacheClustersResponse>
+  recorded_at: Tue, 10 Jan 2023 12:49:20 GMT
+- request:
+    method: post
+    uri: https://monitoring.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=CacheClusterId&Dimensions.member.1.Value=abcdef12ab45fed-001&EndTime=2023-01-10T12%3A49%3A20Z&MetricName=NetworkBytesIn&Namespace=AWS%2FElastiCache&Period=86400&StartTime=2022-12-27T12%3A49%3A20Z&Statistics.member.1=Average&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230110T124920Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - 69efec04ec23d48b312eda431ac2d515771fb678ad71f74d5407673607485002
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '294'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 5d931180-418e-4f18-8846-4ac2203a10d5
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '2519'
+      Date:
+      - Tue, 10 Jan 2023 12:49:20 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints>
+              <member>
+                <Average>50.0</Average>
+                <Unit>Bytes</Unit>
+                <Timestamp>2022-12-29T12:49:00Z</Timestamp>
+              </member>
+              <member>
+                <Average>50.0</Average>
+                <Unit>Bytes</Unit>
+                <Timestamp>2023-01-04T12:49:00Z</Timestamp>
+              </member>
+              <member>
+                <Average>50.0</Average>
+                <Unit>Bytes</Unit>
+                <Timestamp>2022-12-31T12:49:00Z</Timestamp>
+              </member>
+              <member>
+                <Average>50.0</Average>
+                <Unit>Bytes</Unit>
+                <Timestamp>2023-01-06T12:49:00Z</Timestamp>
+              </member>
+              <member>
+                <Average>50.0</Average>
+                <Unit>Bytes</Unit>
+                <Timestamp>2022-12-30T12:49:00Z</Timestamp>
+              </member>
+              <member>
+                <Average>50.0</Average>
+                <Unit>Bytes</Unit>
+                <Timestamp>2023-01-05T12:49:00Z</Timestamp>
+              </member>
+              <member>
+                <Average>50.0</Average>
+                <Unit>Bytes</Unit>
+                <Timestamp>2023-01-01T12:49:00Z</Timestamp>
+              </member>
+              <member>
+                <Average>50.0</Average>
+                <Unit>Bytes</Unit>
+                <Timestamp>2023-01-07T12:49:00Z</Timestamp>
+              </member>
+              <member>
+                <Average>50.0</Average>
+                <Unit>Bytes</Unit>
+                <Timestamp>2022-12-28T12:49:00Z</Timestamp>
+              </member>
+              <member>
+                <Average>50.0</Average>
+                <Unit>Bytes</Unit>
+                <Timestamp>2023-01-03T12:49:00Z</Timestamp>
+              </member>
+              <member>
+                <Average>50.0</Average>
+                <Unit>Bytes</Unit>
+                <Timestamp>2023-01-09T12:49:00Z</Timestamp>
+              </member>
+              <member>
+                <Average>50.0</Average>
+                <Unit>Bytes</Unit>
+                <Timestamp>2022-12-27T12:49:00Z</Timestamp>
+              </member>
+              <member>
+                <Average>50.0</Average>
+                <Unit>Bytes</Unit>
+                <Timestamp>2023-01-02T12:49:00Z</Timestamp>
+              </member>
+              <member>
+                <Average>50.0</Average>
+                <Unit>Bytes</Unit>
+                <Timestamp>2023-01-08T12:49:00Z</Timestamp>
+              </member>
+            </Datapoints>
+            <Label>NetworkBytesIn</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>5d931180-418e-4f18-8846-4ac2203a10d5</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Tue, 10 Jan 2023 12:49:21 GMT
