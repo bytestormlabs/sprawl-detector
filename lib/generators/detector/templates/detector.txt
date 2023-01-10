@@ -1,0 +1,43 @@
+require "detector/support/cloudwatch"
+require "aws-sdk-{service}"
+
+class {detector_class_name}
+  ISSUE_TYPE = "issuetype"
+
+  include AwsSdkOperations
+  include Assertions
+  include Cloudwatch
+
+  def execute(scan, region)
+    expect region, "parameter 'region' is required."
+    expect scan, "parameter 'scan' is required."
+
+    client = Aws::SDK::Client.new(region: region, credentials: scan.credentials)
+    loop_until_finished(client, :list_certificates) do |response|
+      response.items.each do |item|
+        resource = scan.build_resource(region, resource_type, item.arn, item)
+        number_of_days = 90   # TODO: Refactor this
+        success = check("AWS/Service", "Success")
+          .in(region)
+          .in_last(number_of_days)
+          .with_dimension("ItemArn", item.arn)
+          .with(scan.credentials)
+
+        resource.create_finding(ISSUE_TYPE) if success.indicates_zero_activity?
+      end
+    end
+  end
+  def service_name
+    "AWS Service Name"
+  end
+
+  def resource_type
+    "AWS::Service::ResourceType"
+  end
+
+  def default_settings
+    [
+      Setting.create_int(ISSUE_TYPE, "number_of_days_since_last_accessed", "The number of days (since today) to check for this certificate authority issuing a certificate.", 90)
+    ]
+  end
+end

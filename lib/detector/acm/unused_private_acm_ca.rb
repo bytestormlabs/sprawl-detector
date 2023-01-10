@@ -1,4 +1,3 @@
-require "checks/cloudwatch/private_ca_check"
 require "aws-sdk-acmpca"
 require "aws-sdk-acm"
 require "date"

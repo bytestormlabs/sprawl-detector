@@ -2,6 +2,8 @@ require 'minitest/around/unit'
 require "aws-sdk-sts"
 
 class BaseAwsIntegrationTest < ActiveSupport::TestCase
+  include MiniTest::Assertions
+  
   def around
     VCR.use_cassette("#{self.class.name}_#{@test_name}", update_content_length_header: true, erb: true) do
       yield

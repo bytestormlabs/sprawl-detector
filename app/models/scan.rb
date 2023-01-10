@@ -12,14 +12,13 @@ class Scan < ApplicationRecord
 
   def build_resource(region, resource_type, resource_id, resource)
     Resource.create_with(
-      scan: self
+      scan: self,
+      metadata: resource.to_h
     ).find_or_create_by!(
       account: self.account,
       resource_type: resource_type,
       resource_id: resource_id,
       region: region
-    ).tap do |r|
-      r.metadata = resource.to_h
-    end
+    )
   end
 end

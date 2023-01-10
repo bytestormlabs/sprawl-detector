@@ -7,7 +7,7 @@ class Resource < ApplicationRecord
   end
 
   def create_finding(issue_type)
-    Finding.find_or_create_by!(
+    Finding.create_with(status: :open).find_or_create_by!(
       resource: self,
       issue_type: issue_type,
       account: self.account,
