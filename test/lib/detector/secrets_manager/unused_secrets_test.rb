@@ -16,11 +16,10 @@ class UnusedSecretsTest < ActiveSupport::TestCase
 
   class IntegrationTests < BaseAwsIntegrationTest
     detector = UnusedSecrets.new
-
-    # TODO: Refactor this so it can be shared.
-    scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
+    fixtures(:accounts)
 
     test "handle no secrets found" do
+      scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
       before = Resource.count
       detector.execute(scan, "us-east-1")
       after = Resource.count
@@ -28,6 +27,7 @@ class UnusedSecretsTest < ActiveSupport::TestCase
     end
 
     test "newly created secrets don't trigger findings" do
+      scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
       before = Finding.count
       detector.execute(scan, "us-east-2")
       after = Finding.count
@@ -35,6 +35,7 @@ class UnusedSecretsTest < ActiveSupport::TestCase
     end
 
     test "resources are created" do
+      scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
       before = Resource.count
       detector.execute(scan, "us-east-2")
       after = Resource.count
@@ -42,6 +43,7 @@ class UnusedSecretsTest < ActiveSupport::TestCase
     end
 
     test "obsolete secrets have findings" do
+      scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
       before = Finding.count
       detector.execute(scan, "us-east-2")
       after = Finding.count

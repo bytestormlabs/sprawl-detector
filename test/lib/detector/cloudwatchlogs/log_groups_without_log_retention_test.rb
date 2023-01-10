@@ -17,10 +17,10 @@ class LogGroupsWithoutLogRetentionTest < ActiveSupport::TestCase
 
   class IntegrationTests < BaseAwsIntegrationTest
     detector = LogGroupsWithoutLogRetention.new
-
-    scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
+    fixtures(:accounts)
 
     test "create finding for log group with no retention" do
+      scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
       findings = Finding.count
       detector.execute(scan, "us-east-1")
       assert findings < Finding.count

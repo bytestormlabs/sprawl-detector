@@ -17,11 +17,10 @@ class UnusedElastiCacheClustersTest < ActiveSupport::TestCase
 
   class IntegrationTests < BaseAwsIntegrationTest
     detector = UnusedElastiCacheClusters.new
-
-    # TODO: Refactor this so it can be shared.
-    scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
+    fixtures(:accounts)
 
     test "handle has network activity" do
+      scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
       before = Resource.count
       detector.execute(scan, "us-east-1")
       after = Resource.count
@@ -30,6 +29,7 @@ class UnusedElastiCacheClustersTest < ActiveSupport::TestCase
     end
 
     test "handle has no network activity" do
+      scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
       assert Finding.where(issue_type: "aws-elasticache-instance-unused").count == 0
       detector.execute(scan, "us-east-1")
       assert Finding.where(issue_type: "aws-elasticache-instance-unused").count == 1

@@ -17,10 +17,10 @@ class ObsoleteDashboardsTest < ActiveSupport::TestCase
 
   class IntegrationTests < BaseAwsIntegrationTest
     detector = ObsoleteDashboards.new
-
-    scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
+    fixtures(:accounts)
 
     test "create resources" do
+      scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
       detector.execute(scan, "us-east-1")
       findings = Resource.where(resource_id: "Super_Neat_Dashboard01").first.findings
       assert_equal findings.count, 1
