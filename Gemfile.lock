@@ -334,6 +334,7 @@ DEPENDENCIES
   faker
   minitest-around
   mysql2
+  nokogiri
   omniauth
   ox
   puma (~> 5.0)

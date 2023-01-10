@@ -43,6 +43,8 @@ gem "aws-sdk-secretsmanager"
 gem "aws-sdk-pricing"
 gem "aws-sdk-transfer"
 
+gem "nokogiri"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

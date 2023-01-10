@@ -18,7 +18,7 @@ class UnusedSecretsTest < ActiveSupport::TestCase
     detector = UnusedSecrets.new
 
     # TODO: Refactor this so it can be shared.
-    scan = Scan.create(account: Account.first, credentials: Aws::SharedCredentials.new)
+    scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
 
     test "handle no secrets found" do
       before = Resource.count

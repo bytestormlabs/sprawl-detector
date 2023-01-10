@@ -18,7 +18,7 @@ class ObsoleteDashboardsTest < ActiveSupport::TestCase
   class IntegrationTests < BaseAwsIntegrationTest
     detector = ObsoleteDashboards.new
 
-    scan = Scan.create(account: Account.first, credentials: Aws::SharedCredentials.new)
+    scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
 
     test "create resources" do
       detector.execute(scan, "us-east-1")

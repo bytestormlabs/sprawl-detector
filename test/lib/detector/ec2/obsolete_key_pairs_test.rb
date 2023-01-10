@@ -19,7 +19,7 @@ class ObsoleteKeyPairsTest < ActiveSupport::TestCase
   class IntegrationTests < BaseAwsIntegrationTest
     detector = ObsoleteKeyPairs.new
 
-    scan = Scan.create(account: Account.first, credentials: Aws::SharedCredentials.new)
+    scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
 
     test "create resources" do
       findings = Finding.count

@@ -18,7 +18,7 @@ class UnusedTransferServersTest < ActiveSupport::TestCase
     detector = UnusedTransferServers.new
 
     # TODO: Refactor this so it can be shared.
-    scan = Scan.create(account: Account.first, credentials: Aws::SharedCredentials.new)
+    scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
 
     test "create findings" do
       findings = Finding.count
