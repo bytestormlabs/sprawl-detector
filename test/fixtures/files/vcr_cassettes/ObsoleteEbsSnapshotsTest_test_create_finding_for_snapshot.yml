@@ -1,0 +1,87 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://ec2.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeSnapshots&Owner.1=163788863765&Version=2016-11-15
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ec2/1.356.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - ec2.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230110T174531Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - 1ed3cb1aeb0bd06985afdd11c6aa8399ebc5ead9b08a531cd0303ed5da1a2108
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '64'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - de5a0ec8-1dcc-4477-9360-e5b2e37f00e4
+      Cache-Control:
+      - no-cache, no-store
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Vary:
+      - accept-encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 10 Jan 2023 17:45:31 GMT
+      Server:
+      - AmazonEC2
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <DescribeSnapshotsResponse xmlns="http://ec2.amazonaws.com/doc/2016-11-15/">
+            <requestId>de5a0ec8-1dcc-4477-9360-e5b2e37f00e4</requestId>
+            <snapshotSet>
+                <item>
+                    <snapshotId>snap-0386481fb47c2fdfa</snapshotId>
+                    <volumeId>vol-ffffffff</volumeId>
+                    <status>completed</status>
+                    <startTime>2021-03-02T16:38:41.602Z</startTime>
+                    <progress>100%</progress>
+                    <ownerId>163788863765</ownerId>
+                    <volumeSize>100</volumeSize>
+                    <description></description>
+                    <encrypted>true</encrypted>
+                    <kmsKeyId>arn:aws:kms:us-east-1:012345678912:key/cae079bd-0af4-49d5-82c8-580e827d8b57</kmsKeyId>
+                    <storageTier>standard</storageTier>
+                </item>
+                <item>
+                    <snapshotId>snap-06bfb342d5ed149d3</snapshotId>
+                    <volumeId>vol-ffffffff</volumeId>
+                    <status>completed</status>
+                    <startTime><%= (DateTime.now - 7).to_s %></startTime>
+                    <progress>100%</progress>
+                    <ownerId>163788863765</ownerId>
+                    <volumeSize>100</volumeSize>
+                    <description></description>
+                    <encrypted>true</encrypted>
+                    <kmsKeyId>arn:aws:kms:us-east-1:012345678912:key/cae079bd-0af4-49d5-82c8-580e827d8b57</kmsKeyId>
+                    <storageTier>standard</storageTier>
+                </item>
+            </snapshotSet>
+        </DescribeSnapshotsResponse>
+  recorded_at: Tue, 10 Jan 2023 17:45:31 GMT
+recorded_with: VCR 6.1.0
