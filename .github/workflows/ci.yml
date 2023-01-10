@@ -15,11 +15,14 @@ jobs:
         run: bundle exec rake db:migrate
         env:
           AWS_REGION: us-east-2
+          RAILS_ENV: test
       - name: Seed database
         run: bundle exec rake db:seed
         env:
           AWS_REGION: us-east-2
+          RAILS_ENV: test
       - name: Run tests
-        run: bundle exec rails test
+        run: bundle exec rake test
         env:
           AWS_REGION: us-east-2
+          RAILS_ENV: test
