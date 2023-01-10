@@ -17,10 +17,9 @@ class UnusedTransferServers
 
     loop_until_finished(client, :list_servers) do |response|
       response.servers.each do |server|
-
         resource = scan.build_resource(region, resource_type, server.server_id, server)
 
-        files_in =   check("AWS/Transfer", "FilesIn").with(scan.credentials).in(region).in_last(90).with_dimension("ServerId", server.server_id)
+        files_in = check("AWS/Transfer", "FilesIn").with(scan.credentials).in(region).in_last(90).with_dimension("ServerId", server.server_id)
         files_out = check("AWS/Transfer", "FilesOut").with(scan.credentials).in(region).in_last(90).with_dimension("ServerId", server.server_id)
 
         resource.create_finding(ISSUE_TYPE) if files_in.indicates_zero_activity? && files_out.indicates_zero_activity?

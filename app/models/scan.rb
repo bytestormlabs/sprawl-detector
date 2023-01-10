@@ -15,7 +15,7 @@ class Scan < ApplicationRecord
       scan: self,
       metadata: resource.to_h
     ).find_or_create_by!(
-      account: self.account,
+      account: account,
       resource_type: resource_type,
       resource_id: resource_id,
       region: region

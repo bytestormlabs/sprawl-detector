@@ -10,8 +10,8 @@ class Resource < ApplicationRecord
     Finding.create_with(status: :open).find_or_create_by!(
       resource: self,
       issue_type: issue_type,
-      account: self.account,
-      scan: self.scan
+      account: account,
+      scan: scan
     )
   end
 end

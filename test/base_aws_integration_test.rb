@@ -1,4 +1,4 @@
-require 'minitest/around/unit'
+require "minitest/around/unit"
 require "aws-sdk-sts"
 require "test_helper"
 
@@ -10,8 +10,9 @@ class BaseAwsIntegrationTest < ActiveSupport::TestCase
       yield
     end
   end
+
   def initialize(name = nil)
-    @test_name = name.gsub(/\s+/, '_').gsub(/[^a-zA-Z0-9_-]/, '')
+    @test_name = name.gsub(/\s+/, "_").gsub(/[^a-zA-Z0-9_-]/, "")
     super(name) unless name.nil?
   end
 end

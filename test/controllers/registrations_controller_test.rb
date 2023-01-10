@@ -1,7 +1,6 @@
 require "test_helper"
 
 class RegistrationsControllerTest < ActionDispatch::IntegrationTest
-
   class SignupTests < RegistrationsControllerTest
     test "ensure a new tenant is created upon signup" do
       assert_difference "Tenant.count", 1 do
@@ -19,6 +18,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
       end
     end
   end
+
   class ValidationTests < RegistrationsControllerTest
     test "don't allow duplicate signups" do
       post user_registration_url, params: {

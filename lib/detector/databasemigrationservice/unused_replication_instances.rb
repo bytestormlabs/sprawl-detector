@@ -29,6 +29,7 @@ class UnusedReplicationInstances
       end
     end
   end
+
   def service_name
     "AWS Database Migration Service"
   end

@@ -4,7 +4,7 @@ class DetectorGenerator < Rails::Generators::NamedBase
   def create_detector_file
     parts = file_name.split(/\s+/)
     service = parts.shift
-    detector_name = parts.join('_')
+    detector_name = parts.join("_")
 
     contents = File.read(File.expand_path("templates/detector.txt", __dir__))
       .gsub("{service}", service)
@@ -16,7 +16,7 @@ class DetectorGenerator < Rails::Generators::NamedBase
   def create_detector_test_file
     parts = file_name.split(/\s+/)
     service = parts.shift
-    detector_name = parts.join('_')
+    detector_name = parts.join("_")
 
     contents = File.read(File.expand_path("templates/detector-test.txt", __dir__))
       .gsub("{service}", service)

@@ -5,7 +5,7 @@ class Finding < ApplicationRecord
   belongs_to :resource
 
   attr_accessor :message
-  
+
   enum :status, {
     open: "OPEN",
     closed: "CLOSED"

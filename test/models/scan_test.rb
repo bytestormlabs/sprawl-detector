@@ -33,7 +33,7 @@ class ScanTest < ActiveSupport::TestCase
 
     # Let's find the same thing on another scan
     scan2 = Scan.create(account: account)
-    resource2 = scan1.build_resource("us-east-1", "AWS::EC2::Instance", "i-3fasdf23das", {
+    resource2 = scan2.build_resource("us-east-1", "AWS::EC2::Instance", "i-3fasdf23das", {
       instance_type: "m5.xlarge"
     })
     resource2.save!

@@ -9,7 +9,7 @@ class ObsoleteKeyPairs
 
   def execute(scan, region)
     expect region, "parameter 'region' is required."
-    expect scan,   "parameter 'scan' is required."
+    expect scan, "parameter 'scan' is required."
 
     client = Aws::EC2::Client.new(region: region, credentials: scan.credentials)
     key_pairs_in_use = []
@@ -28,6 +28,7 @@ class ObsoleteKeyPairs
       resource.create_finding(ISSUE_TYPE) unless key_pairs_in_use.include? key_pair.key_name
     end
   end
+
   def service_name
     "AWS EC2"
   end

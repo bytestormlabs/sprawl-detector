@@ -1,4 +1,4 @@
-require "detector/secrets_manager/unused_secrets.rb"
+require "detector/secrets_manager/unused_secrets"
 require "base_aws_integration_test"
 
 class UnusedSecretsTest < ActiveSupport::TestCase

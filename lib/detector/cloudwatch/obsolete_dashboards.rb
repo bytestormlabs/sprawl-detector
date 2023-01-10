@@ -22,6 +22,7 @@ class ObsoleteDashboards
       end
     end
   end
+
   def service_name
     "AmazonCloudWatch"
   end

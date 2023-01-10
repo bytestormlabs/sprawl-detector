@@ -20,8 +20,7 @@ class ObsoleteMachineImages
       end
     end.flatten.compact.uniq
 
-
-    images = client.describe_images(owners: [ scan.account.account_id ]).images
+    images = client.describe_images(owners: [scan.account.account_id]).images
 
     images.each do |image|
       resource = scan.build_resource(region, resource_type, image.image_id, image)

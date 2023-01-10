@@ -22,6 +22,7 @@ class ObsoleteEbsSnapshots
       resource.create_finding(ISSUE_TYPE) if snapshot.start_time < (DateTime.now - number_of_days)
     end
   end
+
   def service_name
     "EC2 - Other"
   end

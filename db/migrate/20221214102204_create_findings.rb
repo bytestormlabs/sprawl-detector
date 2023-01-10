@@ -28,7 +28,7 @@ class CreateFindings < ActiveRecord::Migration[6.0]
       t.string :category
       t.string :issue_type
       t.string :status
-      t.decimal :estimated_cost, :precision=>64, :scale=>12
+      t.decimal :estimated_cost, precision: 64, scale: 12
       t.json :params
       t.references :resource, foreign_key: true
       t.references :account, foreign_key: true

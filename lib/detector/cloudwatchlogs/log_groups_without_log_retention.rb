@@ -21,10 +21,11 @@ class LogGroupsWithoutLogRetention
 
         resource.create_finding(ISSUE_TYPE) if
           log_group.retention_in_days.nil? ||
-          log_group.retention_in_days > number_of_days
+            log_group.retention_in_days > number_of_days
       end
     end
   end
+
   def service_name
     "AmazonCloudWatch"
   end

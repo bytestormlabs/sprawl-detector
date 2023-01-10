@@ -4,7 +4,7 @@ require "test_helper"
 
 class UnusedElastiCacheClustersTest < ActiveSupport::TestCase
   detector = UnusedElastiCacheClusters.new
-  
+
   test "has correct service name" do
     assert detector.service_name == "Amazon ElastiCache"
   end
@@ -25,6 +25,7 @@ class UnusedElastiCacheClustersTest < ActiveSupport::TestCase
       before = Resource.count
       detector.execute(scan, "us-east-1")
       after = Resource.count
+      assert before < after
       assert Finding.where(issue_type: "aws-elasticache-instance-unused").count == 0
     end
 

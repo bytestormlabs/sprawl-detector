@@ -2,7 +2,7 @@ require "detector/ec2/obsolete_machine_images"
 require "base_aws_integration_test"
 
 class ObsoleteMachineImagesTest < ActiveSupport::TestCase
-  detector = ObsoleteMachineImages.new
+  # detector = ObsoleteMachineImages.new
 
   # test "has correct service name" do
   #   assert detector.service_name == "AWS Service Name"

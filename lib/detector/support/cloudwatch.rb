@@ -1,5 +1,4 @@
 module Cloudwatch
-
   def check(namespace, metric)
     builder = RequestBuilder.new(namespace, metric)
   end
@@ -9,7 +8,7 @@ module Cloudwatch
   # b.with_dimension("PrivateCAArn", resource.arn)
   # b.indicates_no_activity
   class RequestBuilder
-    PERIOD_DAILY = (60*60*24)
+    PERIOD_DAILY = (60 * 60 * 24)
 
     attr_accessor :request
     attr_accessor :region
@@ -23,7 +22,7 @@ module Cloudwatch
         metric_name: metric,
         statistics: ["Sum"],
         period: PERIOD_DAILY,
-        start_time: (DateTime.now-@number_of_days).to_s,
+        start_time: (DateTime.now - @number_of_days).to_s,
         end_time: DateTime.now.to_s,
         dimensions: []
       }
@@ -93,6 +92,7 @@ module Cloudwatch
     end
 
     private
+
     def fetch_results
       params = {
         region: region
@@ -102,5 +102,4 @@ module Cloudwatch
       @results = client.get_metric_statistics(@request)
     end
   end
-
 end
