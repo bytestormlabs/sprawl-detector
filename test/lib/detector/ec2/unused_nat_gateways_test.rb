@@ -18,7 +18,7 @@ class UnusedNatGatewaysTest < ActiveSupport::TestCase
     detector = UnusedNatGateways.new
 
     test "create resources" do
-      scan = Scan.create(account: Account.first, credentials: Aws::SharedCredentials.new)
+      scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "134"))
       before = Finding.count
       detector.execute(scan, "us-east-1")
       assert_equal before + 1, Finding.count
