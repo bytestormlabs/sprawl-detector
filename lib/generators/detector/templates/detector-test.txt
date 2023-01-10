@@ -17,9 +17,8 @@ class {detector_class_name}Test < ActiveSupport::TestCase
   class IntegrationTests < BaseAwsIntegrationTest
     detector = {detector_class_name}.new
 
-    scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
-
     test "create resources" do
+      scan = Scan.create(account: Account.first, credentials: Aws::SharedCredentials.new)
       findings = Finding.count
       detector.execute(scan, "us-east-1")
       assert findings < Finding.count
