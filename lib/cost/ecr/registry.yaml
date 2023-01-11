@@ -1,0 +1,11 @@
+service: AmazonECR
+resource_type: AWS::ECR::Repository
+filters:
+  - key: regionCode
+    eval: region
+price_components:
+  - metadata["images"].sum { |image| image["image_size_in_bytes"] }
+  - (1.0/1024)  # Convert to KB
+  - (1.0/1024)  # Convert to MB
+  - (1.0/1024)  # Convert to GB
+  - price_per_unit
