@@ -38,7 +38,7 @@ class UnusedResolvers
     end
   end
   def service_name
-    "AWS Service Name"
+    "Amazon Route 53"
   end
 
   def resource_type

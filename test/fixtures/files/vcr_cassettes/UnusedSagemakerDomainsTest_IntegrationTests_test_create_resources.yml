@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.sagemaker.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-sagemaker/1.159.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - SageMaker.ListDomains
+      Host:
+      - api.sagemaker.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230111T230712Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '2'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 281e3fec-6862-4610-9395-35d83af40c95
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '14'
+      Date:
+      - Wed, 11 Jan 2023 23:07:12 GMT
+    body:
+      encoding: UTF-8
+      string: '{"Domains":[]}'
+  recorded_at: Wed, 11 Jan 2023 23:07:12 GMT
+recorded_with: VCR 6.1.0

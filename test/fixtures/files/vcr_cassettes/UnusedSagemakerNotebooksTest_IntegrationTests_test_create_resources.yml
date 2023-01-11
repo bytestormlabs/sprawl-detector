@@ -1,0 +1,132 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.sagemaker.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-sagemaker/1.159.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - SageMaker.ListNotebookInstances
+      Host:
+      - api.sagemaker.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230111T230731Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '2'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 2709d1de-451f-4a9d-8b23-225321bfbb5e
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '361'
+      Date:
+      - Wed, 11 Jan 2023 23:07:31 GMT
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "NotebookInstances": [
+            {
+              "CreationTime": 1600893042.521,
+              "InstanceType": "ml.t2.medium",
+              "LastModifiedTime": 1671169335.754,
+              "NotebookInstanceArn": "arn:aws:sagemaker:us-east-1:012345678912:notebook-instance/franks-notebook",
+              "NotebookInstanceName": "Franks-Notebook",
+              "NotebookInstanceStatus": "InService",
+              "Url": "franks-notebook.notebook.us-east-1.sagemaker.aws"
+            }
+          ]
+        }
+  recorded_at: Wed, 11 Jan 2023 23:07:31 GMT
+- request:
+    method: post
+    uri: https://logs.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"logGroupName":"/aws/sagemaker/NotebookInstances"}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatchlogs/1.59.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - Logs_20140328.DescribeLogStreams
+      Host:
+      - logs.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230111T230731Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - fec3cdcc6e16ba756c8e7e11727e5629ae7a02c31af6df4da886903857ea9cd8
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '51'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 336cb063-5988-4c60-bd5c-b355479b3cf1
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '828'
+      Date:
+      - Wed, 11 Jan 2023 23:07:31 GMT
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "logStreams": [
+            {
+              "arn": "arn:aws:logs:us-east-1:012345678912:log-group:/aws/sagemaker/NotebookInstances:log-stream:FranksNotebook/jupyter.log",
+              "creationTime": 1671159771482,
+              "firstEventTimestamp": 1671159766368,
+              "lastEventTimestamp": 1671159771653,
+              "lastIngestionTime": 1671159776660,
+              "logStreamName": "FranksNotebook/jupyter.log",
+              "storedBytes": 0,
+              "uploadSequenceToken": "49039859529060804033606542724017354549235698784441266019"
+            },
+            {
+              "arn": "arn:aws:logs:us-east-1:012345678912:log-group:/aws/sagemaker/NotebookInstances:log-stream:Franks-Notebook/jupyter.log",
+              "creationTime": 1600893190219,
+              "firstEventTimestamp": 1600893181833,
+              "lastEventTimestamp": 1671165008374,
+              "lastIngestionTime": 1671165013378,
+              "logStreamName": "Franks-Notebook/jupyter.log",
+              "storedBytes": 0,
+              "uploadSequenceToken": "49039859529067764825778173517097476662900019116687552482"
+            }
+          ]
+        }
+  recorded_at: Wed, 11 Jan 2023 23:07:32 GMT
+recorded_with: VCR 6.1.0
