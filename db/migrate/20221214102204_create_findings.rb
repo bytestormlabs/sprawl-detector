@@ -1,5 +1,9 @@
 class CreateFindings < ActiveRecord::Migration[6.0]
   def change
+    create_table :tenants do |t|
+      t.string :name
+      t.timestamps
+    end
     create_table :accounts do |t|
       t.string :account_id, unique: true
       t.string :external_id
