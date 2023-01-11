@@ -91,6 +91,10 @@ module Cloudwatch
       end
     end
 
+    def hourly
+      @request[:period] = (60*60)
+      self
+    end
     private
 
     def fetch_results
