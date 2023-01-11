@@ -1,0 +1,164 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://route53resolver.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-route53resolver/1.38.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - Route53Resolver.ListResolverEndpoints
+      Host:
+      - route53resolver.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T224651Z
+      X-Amz-Content-Sha256:
+      - 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '2'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Wed, 11 Jan 2023 22:46:51 GMT
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '525'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - e6dee26d-2bab-4c4a-a7ec-e5f9f0939b7f
+    body:
+      encoding: UTF-8
+      string: '{"MaxResults":10,"ResolverEndpoints":[{"Arn":"arn:aws:route53resolver:us-east-2:163788863765:resolver-endpoint/rslvr-in-5f92fc14cd034aaab","CreationTime":"2022-01-11T22:43:15.405456Z","CreatorRequestId":"72c6edaf-bd38-4f72-8cfa-5bb80bcf60d3","Direction":"INBOUND","HostVPCId":"vpc-05a674355c69e1775","Id":"rslvr-in-5f92fc14cd034aaab","IpAddressCount":2,"ModificationTime":"2023-01-11T22:43:47.658Z","SecurityGroupIds":["sg-08c7f9e4b8dab6d67"],"Status":"OPERATIONAL","StatusMessage":"This
+        Resolver Endpoint is operational."}]}'
+  recorded_at: Wed, 11 Jan 2023 22:46:51 GMT
+- request:
+    method: post
+    uri: https://monitoring.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=EndpointId&Dimensions.member.1.Value=rslvr-in-5f92fc14cd034aaab&EndTime=2023-01-11T22%3A46%3A51Z&MetricName=InboundQueryVolume&Namespace=AWS%2FRoute53Resolver&Period=86400&StartTime=2022-12-28T22%3A46%3A51Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T224651Z
+      X-Amz-Content-Sha256:
+      - cf34478b2e31b20f708453ae336b1fd0bc8034f1d990748d2eea21c623c7c142
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '301'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 451aabb2-58d4-4c8f-8a72-421473f224ef
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '491'
+      Date:
+      - Wed, 11 Jan 2023 22:46:51 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-10T22:46:00Z</Timestamp>
+              </member>
+            </Datapoints>
+            <Label>InboundQueryVolume</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>451aabb2-58d4-4c8f-8a72-421473f224ef</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Wed, 11 Jan 2023 22:46:51 GMT
+- request:
+    method: post
+    uri: https://monitoring.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=EndpointId&Dimensions.member.1.Value=rslvr-in-5f92fc14cd034aaab&EndTime=2023-01-11T22%3A46%3A51Z&MetricName=OutboundQueryVolume&Namespace=AWS%2FRoute53Resolver&Period=86400&StartTime=2022-12-28T22%3A46%3A51Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T224651Z
+      X-Amz-Content-Sha256:
+      - 7c63acb91bbdcec253338508a5e96ad3728753a76996407a34a1805ad7b657f7
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '302'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - b005903a-b01c-45d6-91ad-8cdb11f619d7
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '342'
+      Date:
+      - Wed, 11 Jan 2023 22:46:51 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-10T22:46:00Z</Timestamp>
+              </member>
+            </Datapoints>
+            <Label>OutboundQueryVolume</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>b005903a-b01c-45d6-91ad-8cdb11f619d7</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Wed, 11 Jan 2023 22:46:52 GMT
+recorded_with: VCR 6.1.0

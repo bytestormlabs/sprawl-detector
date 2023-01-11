@@ -27,8 +27,9 @@ class UnusedRedshiftCluster
       resource.create_finding(ISSUE_TYPE) if database_connections.indicates_zero_activity? && cluster.cluster_create_time < (DateTime.now - number_of_days)
     end
   end
+  
   def service_name
-    "AWS Redshift"
+    "Amazon Redshift"
   end
 
   def resource_type
