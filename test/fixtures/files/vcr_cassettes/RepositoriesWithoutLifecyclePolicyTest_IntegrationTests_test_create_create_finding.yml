@@ -1,0 +1,139 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.ecr.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ecr/1.57.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - AmazonEC2ContainerRegistry_V20150921.DescribeRepositories
+      Host:
+      - api.ecr.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T164946Z
+      X-Amz-Content-Sha256:
+      - 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '2'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 77b6b042-7137-4782-832f-21e00a795cb2
+      Date:
+      - Wed, 11 Jan 2023 16:49:47 GMT
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '797'
+    body:
+      encoding: UTF-8
+      string: '{"repositories":[{"createdAt":1.672952688E9,"encryptionConfiguration":{"encryptionType":"AES256"},"imageScanningConfiguration":{"scanOnPush":false},"imageTagMutability":"MUTABLE","registryId":"163788863765","repositoryArn":"arn:aws:ecr:us-east-2:163788863765:repository/sprawl-detector","repositoryName":"sprawl-detector","repositoryUri":"163788863765.dkr.ecr.us-east-2.amazonaws.com/sprawl-detector"},{"createdAt":1.672931895E9,"encryptionConfiguration":{"encryptionType":"AES256"},"imageScanningConfiguration":{"scanOnPush":false},"imageTagMutability":"MUTABLE","registryId":"163788863765","repositoryArn":"arn:aws:ecr:us-east-2:163788863765:repository/resource-scheduler","repositoryName":"resource-scheduler","repositoryUri":"163788863765.dkr.ecr.us-east-2.amazonaws.com/resource-scheduler"}]}'
+  recorded_at: Wed, 11 Jan 2023 16:49:47 GMT
+- request:
+    method: post
+    uri: https://api.ecr.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"repositoryName":"sprawl-detector"}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ecr/1.57.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - AmazonEC2ContainerRegistry_V20150921.GetLifecyclePolicy
+      Host:
+      - api.ecr.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T164947Z
+      X-Amz-Content-Sha256:
+      - 763ca0e39450f000c576349a0ffaf7f3beb5f0a12c6083a8d8fc6713cabf62c1
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '36'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      X-Amzn-Requestid:
+      - b04a12c7-d137-4c52-bf57-2086ebf1640d
+      Date:
+      - Wed, 11 Jan 2023 16:49:47 GMT
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '175'
+    body:
+      encoding: UTF-8
+      string: '{"__type":"LifecyclePolicyNotFoundException","message":"Lifecycle policy
+        does not exist for the repository with name ''sprawl-detector'' in the registry
+        with id ''163788863765''"}'
+  recorded_at: Wed, 11 Jan 2023 16:49:47 GMT
+- request:
+    method: post
+    uri: https://api.ecr.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"repositoryName":"resource-scheduler"}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ecr/1.57.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - AmazonEC2ContainerRegistry_V20150921.GetLifecyclePolicy
+      Host:
+      - api.ecr.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T164947Z
+      X-Amz-Content-Sha256:
+      - 9a29ba16d5a03f783f46495bc02eebcaabb7266e4322d018336caf68e328c5b4
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '39'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      X-Amzn-Requestid:
+      - 5466522d-830b-46ab-9db4-e2d830ec52e3
+      Date:
+      - Wed, 11 Jan 2023 16:49:47 GMT
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '178'
+    body:
+      encoding: UTF-8
+      string: '{"__type":"LifecyclePolicyNotFoundException","message":"Lifecycle policy
+        does not exist for the repository with name ''resource-scheduler'' in the
+        registry with id ''163788863765''"}'
+  recorded_at: Wed, 11 Jan 2023 16:49:47 GMT
+recorded_with: VCR 6.1.0
