@@ -18,7 +18,7 @@ class UnusedSecurityGroupsTest < ActiveSupport::TestCase
     detector = UnusedSecurityGroups.new
 
     test "create resources" do
-      scan = Scan.create(account: Account.first, credentials: Aws::SharedCredentials.new)
+      scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "123"))
       findings = Finding.count
       detector.execute(scan, "us-east-1")
       assert findings < Finding.count
