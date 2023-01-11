@@ -1,4 +1,18 @@
 require "aws-sdk-sts"
+require "detector/cloudwatch/obsolete_dashboards"
+require "detector/cache/unused_elasticache_clusters"
+require "detector/transfer/unused_transfer_servers"
+require "detector/secrets_manager/unused_secrets"
+require "detector/cloudwatchlogs/log_groups_without_log_retention"
+require "detector/support/cloudwatch"
+require "detector/databasemigrationservice/unused_replication_instances"
+require "detector/acm/unused_private_acm_ca"
+require "detector/ec2/obsolete_ebs_snapshots"
+require "detector/ec2/unused_security_groups"
+require "detector/ec2/unused_nat_gateways"
+require "detector/ec2/unused_instances"
+require "detector/ec2/obsolete_key_pairs"
+require "detector/ec2/obsolete_machine_images"
 
 class SprawlDetector2
   attr_accessor :account, :role_session, :skip_update_costs
@@ -25,6 +39,17 @@ class SprawlDetector2
       (service, region) = key
       if cost > 0.01
         logger.info "Finding detector for '#{service}' which incurred #{"%.2f" % cost} of cost this period in #{region}."
+
+        instances = detectors.find_all do |d|
+          d.service_name == service
+        end
+
+        logger.info "Found #{instances&.count} detectors..."
+
+        instances.each do |detector|
+          logger.info "Detecting #{detector}..."
+          detector.execute(@scan, region)
+        end unless instances.nil?
       end
     end
   end
@@ -42,6 +67,7 @@ class SprawlDetector2
       role_session_name: role_session_name
     })
 
+    @scan.credentials = @role_session
     logger.debug "Starting role session as #{role_session_name}"
   end
 
@@ -89,8 +115,26 @@ class SprawlDetector2
     @logger.level = Logger::DEBUG
     @logger.formatter = proc do |severity, datetime, progname, msg|
       date_format = datetime.strftime("%Y-%m-%d %H:%M:%S")
-      "[#{date_format}] #{severity} [account_id: #{@account.account_id}]\t #{msg}\n"
+      "[#{severity}] [account_id: #{@account.account_id}]\t #{msg}\n"
     end
     @logger
+  end
+
+  def detectors
+    [
+      ObsoleteDashboards.new,
+      UnusedElastiCacheClusters.new,
+      UnusedTransferServers.new,
+      UnusedSecrets.new,
+      LogGroupsWithoutLogRetention.new,
+      UnusedReplicationInstances.new,
+      UnusedPrivateAcmCA.new,
+      ObsoleteEbsSnapshots.new,
+      UnusedSecurityGroups.new,
+      UnusedNatGateways.new,
+      UnusedInstances.new,
+      ObsoleteKeyPairs.new,
+      ObsoleteMachineImages.new
+    ]
   end
 end
