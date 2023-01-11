@@ -2,7 +2,7 @@ require "detector/support/cloudwatch"
 require "aws-sdk-ec2"
 
 class UnusedInstances
-  ISSUE_TYPE = "issuetype"
+  ISSUE_TYPE = "aws-ec2-instance-unused"
 
   include AwsSdkOperations
   include Assertions
