@@ -44,4 +44,31 @@ class CostCalculatorTest < BaseAwsIntegrationTest
     ))
     assert_equal 1.26, cost
   end
+
+  test "cost of ecr repository" do
+    cost = decorator.decorate(Resource.new(
+      region: "us-east-1",
+      resource_type: "AWS::ECR::Repository",
+      metadata: {
+        "images" => [
+          {
+            "image_size_in_bytes" => 387686701
+          },
+          {
+            "image_size_in_bytes" => 387686701
+          },
+          {
+            "image_size_in_bytes" => 387686701
+          },
+          {
+            "image_size_in_bytes" => 387686701
+          },
+          {
+            "image_size_in_bytes" => 387686701
+          }
+        ]
+      }
+    ))
+    assert_equal 0.19, cost
+  end
 end
