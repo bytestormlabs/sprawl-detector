@@ -1,0 +1,239 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://rds.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeDBInstances&Version=2014-10-31
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-rds/1.169.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - rds.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T210828Z
+      X-Amz-Content-Sha256:
+      - e6281fe3d540e3e1ccd6bf0cca945a0e0af993d4dd5a6b31ca021f6fc7982b0b
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '45'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - a55144f3-e6d8-443c-9fda-b9cf1f5cda8b
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '6034'
+      Date:
+      - Wed, 11 Jan 2023 21:08:28 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <DescribeDBInstancesResponse xmlns="http://rds.amazonaws.com/doc/2014-10-31/">
+          <DescribeDBInstancesResult>
+            <DBInstances>
+              <DBInstance>
+                <AllocatedStorage>1</AllocatedStorage>
+                <EnabledCloudwatchLogsExports>
+                  <member>audit</member>
+                  <member>error</member>
+                  <member>general</member>
+                  <member>slowquery</member>
+                </EnabledCloudwatchLogsExports>
+                <AssociatedRoles/>
+                <DBParameterGroups>
+                  <DBParameterGroup>
+                    <DBParameterGroupName>default.aurora-mysql8.0</DBParameterGroupName>
+                    <ParameterApplyStatus>in-sync</ParameterApplyStatus>
+                  </DBParameterGroup>
+                </DBParameterGroups>
+                <AvailabilityZone>us-east-2b</AvailabilityZone>
+                <DBSecurityGroups/>
+                <EngineVersion>8.0.mysql_aurora.3.02.0</EngineVersion>
+                <MasterUsername>root</MasterUsername>
+                <CertificateDetails>
+                  <ValidTill>2024-08-22T17:08:50Z</ValidTill>
+                  <CAIdentifier>rds-ca-2019</CAIdentifier>
+                </CertificateDetails>
+                <InstanceCreateTime>2022-01-11T21:04:20.917Z</InstanceCreateTime>
+                <DBInstanceClass>db.r6g.large</DBInstanceClass>
+                <StorageThroughput>0</StorageThroughput>
+                <HttpEndpointEnabled>false</HttpEndpointEnabled>
+                <ReadReplicaDBInstanceIdentifiers/>
+                <CustomerOwnedIpEnabled>false</CustomerOwnedIpEnabled>
+                <MonitoringInterval>0</MonitoringInterval>
+                <DBInstanceStatus>available</DBInstanceStatus>
+                <BackupRetentionPeriod>1</BackupRetentionPeriod>
+                <PromotionTier>1</PromotionTier>
+                <KmsKeyId>arn:aws:kms:us-east-2:163788863765:key/c1921cb5-25d1-47f1-8edc-ce50d67ac9ce</KmsKeyId>
+                <OptionGroupMemberships>
+                  <OptionGroupMembership>
+                    <OptionGroupName>default:aurora-mysql-8-0</OptionGroupName>
+                    <Status>in-sync</Status>
+                  </OptionGroupMembership>
+                </OptionGroupMemberships>
+                <DBClusterIdentifier>byte-storm-labs-staging-database-mysql-dbcluster-clygie576umx</DBClusterIdentifier>
+                <BackupTarget>region</BackupTarget>
+                <CACertificateIdentifier>rds-ca-2019</CACertificateIdentifier>
+                <DbInstancePort>0</DbInstancePort>
+                <DbiResourceId>db-WLULFLMEEK2RGSZPVS2PW75CSQ</DbiResourceId>
+                <PreferredBackupWindow>03:24-03:54</PreferredBackupWindow>
+                <DeletionProtection>false</DeletionProtection>
+                <DBInstanceIdentifier>byte-storm-labs-staging-database-mysql-dbinstance-ryrhogpjvtyq</DBInstanceIdentifier>
+                <DBInstanceArn>arn:aws:rds:us-east-2:163788863765:db:byte-storm-labs-staging-database-mysql-dbinstance-ryrhogpjvtyq</DBInstanceArn>
+                <Endpoint>
+                  <HostedZoneId>Z2XHWR1WZ565X2</HostedZoneId>
+                  <Address>byte-storm-labs-staging-database-mysql-dbinstance-ryrhogpjvtyq.cgq713i7cnmj.us-east-2.rds.amazonaws.com</Address>
+                  <Port>3306</Port>
+                </Endpoint>
+                <Engine>aurora-mysql</Engine>
+                <PubliclyAccessible>false</PubliclyAccessible>
+                <IAMDatabaseAuthenticationEnabled>false</IAMDatabaseAuthenticationEnabled>
+                <NetworkType>IPV4</NetworkType>
+                <PerformanceInsightsEnabled>false</PerformanceInsightsEnabled>
+                <DBName>public</DBName>
+                <MultiAZ>false</MultiAZ>
+                <DomainMemberships/>
+                <StorageEncrypted>true</StorageEncrypted>
+                <DBSubnetGroup>
+                  <VpcId>vpc-05a674355c69e1775</VpcId>
+                  <Subnets>
+                    <Subnet>
+                      <SubnetIdentifier>subnet-0e7f3bc86a1111daa</SubnetIdentifier>
+                      <SubnetStatus>Active</SubnetStatus>
+                      <SubnetOutpost/>
+                      <SubnetAvailabilityZone>
+                        <Name>us-east-2b</Name>
+                      </SubnetAvailabilityZone>
+                    </Subnet>
+                    <Subnet>
+                      <SubnetIdentifier>subnet-04fc2ed84d85c11f1</SubnetIdentifier>
+                      <SubnetStatus>Active</SubnetStatus>
+                      <SubnetOutpost/>
+                      <SubnetAvailabilityZone>
+                        <Name>us-east-2a</Name>
+                      </SubnetAvailabilityZone>
+                    </Subnet>
+                  </Subnets>
+                  <SubnetGroupStatus>Complete</SubnetGroupStatus>
+                  <DBSubnetGroupDescription>The DB SubnetGroup for Staging</DBSubnetGroupDescription>
+                  <DBSubnetGroupName>mysql-dbsubnetgroup-byte-storm-labs-staging-database-mysql</DBSubnetGroupName>
+                </DBSubnetGroup>
+                <VpcSecurityGroups>
+                  <VpcSecurityGroupMembership>
+                    <VpcSecurityGroupId>sg-0d6c4d31662177d03</VpcSecurityGroupId>
+                    <Status>active</Status>
+                  </VpcSecurityGroupMembership>
+                </VpcSecurityGroups>
+                <TagList>
+                  <Tag>
+                    <Value>Shared</Value>
+                    <Key>Tenancy</Key>
+                  </Tag>
+                  <Tag>
+                    <Value>byte-storm-labs-staging-database-mysql</Value>
+                    <Key>aws:cloudformation:stack-name</Key>
+                  </Tag>
+                  <Tag>
+                    <Value>Staging</Value>
+                    <Key>Environment</Key>
+                  </Tag>
+                  <Tag>
+                    <Value>DBInstance</Value>
+                    <Key>aws:cloudformation:logical-id</Key>
+                  </Tag>
+                  <Tag>
+                    <Value>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-database-mysql/9254af50-91f2-11ed-ba1f-0a2f39f1f93c</Value>
+                    <Key>aws:cloudformation:stack-id</Key>
+                  </Tag>
+                  <Tag>
+                    <Value>Database</Value>
+                    <Key>Tier</Key>
+                  </Tag>
+                </TagList>
+                <LicenseModel>general-public-license</LicenseModel>
+                <PendingModifiedValues/>
+                <PreferredMaintenanceWindow>sat:03:57-sat:04:27</PreferredMaintenanceWindow>
+                <StorageType>aurora</StorageType>
+                <AutoMinorVersionUpgrade>true</AutoMinorVersionUpgrade>
+                <CopyTagsToSnapshot>false</CopyTagsToSnapshot>
+              </DBInstance>
+            </DBInstances>
+          </DescribeDBInstancesResult>
+          <ResponseMetadata>
+            <RequestId>a55144f3-e6d8-443c-9fda-b9cf1f5cda8b</RequestId>
+          </ResponseMetadata>
+        </DescribeDBInstancesResponse>
+  recorded_at: Wed, 11 Jan 2023 21:08:28 GMT
+- request:
+    method: post
+    uri: https://monitoring.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=DBInstanceIdentifier&Dimensions.member.1.Value=byte-storm-labs-staging-database-mysql-dbinstance-ryrhogpjvtyq&EndTime=2023-01-11T21%3A08%3A28Z&MetricName=DatabaseConnections&Namespace=AWS%2FRDS&Period=86400&StartTime=2022-12-28T21%3A08%3A28Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T210828Z
+      X-Amz-Content-Sha256:
+      - 9c6664e53f4799550c86276c7b9ccff6d55828f1de033df9a26fc16f30581c78
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '336'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 804dc0e1-840b-4fb2-a508-3438aa9209ce
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '492'
+      Date:
+      - Wed, 11 Jan 2023 21:08:28 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-10T21:08:00Z</Timestamp>
+              </member>
+            </Datapoints>
+            <Label>DatabaseConnections</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>804dc0e1-840b-4fb2-a508-3438aa9209ce</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Wed, 11 Jan 2023 21:08:29 GMT
+recorded_with: VCR 6.1.0
