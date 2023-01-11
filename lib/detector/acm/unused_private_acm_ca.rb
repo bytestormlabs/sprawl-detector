@@ -3,7 +3,7 @@ require "aws-sdk-acm"
 require "date"
 require "detector/support/cloudwatch"
 
-class UnusedAcmPrivateCA
+class UnusedPrivateAcmCA
   ISSUE_TYPE = "aws-private-ca-unused"
 
   include AwsSdkOperations

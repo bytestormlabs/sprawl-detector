@@ -32,7 +32,7 @@ class ObsoleteMachineImages
   end
 
   def service_name
-    "AWS Service Name"
+    "EC2 - Other"
   end
 
   def resource_type

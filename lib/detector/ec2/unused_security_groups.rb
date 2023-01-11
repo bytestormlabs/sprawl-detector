@@ -37,6 +37,7 @@ class UnusedSecurityGroups
       resource.create_finding(ISSUE_TYPE)
     end
   end
+  
   def service_name
     "AWS EC2"
   end

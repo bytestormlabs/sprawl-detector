@@ -27,7 +27,7 @@ class UnusedNatGateways
     end
   end
   def service_name
-    "AWS VPC"
+    "EC2 - Other"
   end
 
   def resource_type
