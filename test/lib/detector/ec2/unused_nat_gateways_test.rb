@@ -5,7 +5,7 @@ class UnusedNatGatewaysTest < ActiveSupport::TestCase
   detector = UnusedNatGateways.new
 
  test "has correct service name" do
-   assert_equal detector.service_name, "AWS VPC"
+   assert_equal detector.service_name, "EC2 - Other"
  end
  test "has correct resource type" do
    assert_equal detector.resource_type, "AWS::EC2::NatGateway"
