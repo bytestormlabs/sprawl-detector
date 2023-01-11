@@ -1,0 +1,176 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://redshift.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeClusters&Version=2012-12-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-redshift/1.87.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - redshift.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T220716Z
+      X-Amz-Content-Sha256:
+      - 481bf18470de185c687e64aab34b0a61a0f51bd0a4f2b2aeeae9a243747a6b18
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '42'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - a475fb5e-db16-4bdd-96c8-93287e8f0420
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '3866'
+      Date:
+      - Wed, 11 Jan 2023 22:07:16 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <DescribeClustersResponse xmlns="http://redshift.amazonaws.com/doc/2012-12-01/">
+          <DescribeClustersResult>
+            <Clusters>
+              <Cluster>
+                <ClusterIdentifier>cluster-nzbbnoxpsdjb</ClusterIdentifier>
+                <ClusterPublicKey>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyVzoyRAOOA/GRt5a/EZTM3Y/MOR+SOKnQ2WEolqQUeqube92aPVH7aiwGDHQOVIkyuNxyUKFVjMXQyEbgLDE3uBO8BuEo08q/4ZQebvZePWdgk9QsysbprbIL/hCr4aZbiViBp8eLdsNB/Y5fUHZJD7XUI/VlGl+D2wv9TofqJ9I8OHTBdlx7NhUtZkor0qbyrVkGGIaephgE5OU6a2yOScXwH8f7RB2CTnGIyN9BpGaGwvf6pGibb6XR3dzWB9pgaJco5i+AlRaVNyP9DenMl6LxZTMWFawPVx8wmzsJOG9DaOuMnv9mhNve2eMFI0eQYExxiwz2JBYgr4UwvJP3 Amazon-Redshift
+        </ClusterPublicKey>
+                <AvailabilityZone>us-east-2b</AvailabilityZone>
+                <ManualSnapshotRetentionPeriod>-1</ManualSnapshotRetentionPeriod>
+                <ClusterAvailabilityStatus>Available</ClusterAvailabilityStatus>
+                <AvailabilityZoneRelocation>disabled</AvailabilityZoneRelocation>
+                <IsMaintenanceWindowActivated>true</IsMaintenanceWindowActivated>
+                <MasterUsername>root</MasterUsername>
+                <IamRoles/>
+                <NodeType>dc2.large</NodeType>
+                <ClusterSubnetGroupName>clustersubnetgroup-csbqgxde1zon</ClusterSubnetGroupName>
+                <Tags/>
+                <TotalStorageCapacityInMegaBytes>400000</TotalStorageCapacityInMegaBytes>
+                <ClusterNodes>
+                  <member>
+                    <PrivateIPAddress>10.0.200.242</PrivateIPAddress>
+                    <NodeRole>SHARED</NodeRole>
+                    <PublicIPAddress>3.134.124.139</PublicIPAddress>
+                  </member>
+                </ClusterNodes>
+                <MaintenanceTrackName>current</MaintenanceTrackName>
+                <AutomatedSnapshotRetentionPeriod>1</AutomatedSnapshotRetentionPeriod>
+                <ClusterStatus>available</ClusterStatus>
+                <AllowVersionUpgrade>true</AllowVersionUpgrade>
+                <ClusterRevisionNumber>44903</ClusterRevisionNumber>
+                <NumberOfNodes>1</NumberOfNodes>
+                <ClusterVersion>1.0</ClusterVersion>
+                <Endpoint>
+                  <Address>cluster-nzbbnoxpsdjb.c8lc5uhvtdxx.us-east-2.redshift.amazonaws.com</Address>
+                  <Port>5439</Port>
+                </Endpoint>
+                <VpcId>vpc-05a674355c69e1775</VpcId>
+                <PubliclyAccessible>true</PubliclyAccessible>
+                <ClusterCreateTime>2022-01-11T21:57:03.596Z</ClusterCreateTime>
+                <DBName>dev</DBName>
+                <MultiAZ>Disabled</MultiAZ>
+                <EnhancedVpcRouting>false</EnhancedVpcRouting>
+                <ClusterNamespaceArn>arn:aws:redshift:us-east-2:163788863765:namespace:93fb1c27-0ab9-4c0e-b4ea-de64de74f051</ClusterNamespaceArn>
+                <ClusterSecurityGroups/>
+                <AvailabilityZoneRelocationStatus>disabled</AvailabilityZoneRelocationStatus>
+                <NextMaintenanceWindowStartTime>2023-01-13T06:00:00Z</NextMaintenanceWindowStartTime>
+                <DeferredMaintenanceWindows/>
+                <VpcSecurityGroups>
+                  <VpcSecurityGroup>
+                    <VpcSecurityGroupId>sg-0ac91fb8033c010c3</VpcSecurityGroupId>
+                    <Status>active</Status>
+                  </VpcSecurityGroup>
+                </VpcSecurityGroups>
+                <ClusterParameterGroups>
+                  <ClusterParameterGroup>
+                    <ParameterGroupName>default.redshift-1.0</ParameterGroupName>
+                    <ParameterApplyStatus>in-sync</ParameterApplyStatus>
+                  </ClusterParameterGroup>
+                </ClusterParameterGroups>
+                <Encrypted>false</Encrypted>
+                <PendingModifiedValues/>
+                <PreferredMaintenanceWindow>fri:06:00-fri:06:30</PreferredMaintenanceWindow>
+                <AquaConfiguration>
+                  <AquaConfigurationStatus>auto</AquaConfigurationStatus>
+                  <AquaStatus>disabled</AquaStatus>
+                </AquaConfiguration>
+                <AzDisasterRecoveryStatus>disabled</AzDisasterRecoveryStatus>
+              </Cluster>
+            </Clusters>
+          </DescribeClustersResult>
+          <ResponseMetadata>
+            <RequestId>a475fb5e-db16-4bdd-96c8-93287e8f0420</RequestId>
+          </ResponseMetadata>
+        </DescribeClustersResponse>
+  recorded_at: Wed, 11 Jan 2023 22:07:17 GMT
+- request:
+    method: post
+    uri: https://monitoring.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=ClusterIdentifier&Dimensions.member.1.Value=cluster-nzbbnoxpsdjb&EndTime=2023-01-11T22%3A07%3A17Z&MetricName=DatabaseConnections&Namespace=AWS%2FRedshift&Period=86400&StartTime=2022-12-28T22%3A07%3A17Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T220717Z
+      X-Amz-Content-Sha256:
+      - 4925e98c18f2dc06a85eb3791788612f9db80f86200f60827484af1bc99a8f3d
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '296'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 7e88f83b-ff33-4d9d-a5e2-f27a74d59cef
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '492'
+      Date:
+      - Wed, 11 Jan 2023 22:07:16 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-10T22:07:00Z</Timestamp>
+              </member>
+            </Datapoints>
+            <Label>DatabaseConnections</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>7e88f83b-ff33-4d9d-a5e2-f27a74d59cef</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Wed, 11 Jan 2023 22:07:17 GMT
+recorded_with: VCR 6.1.0
