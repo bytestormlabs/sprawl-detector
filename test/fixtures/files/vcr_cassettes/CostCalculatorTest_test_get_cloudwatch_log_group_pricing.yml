@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.pricing.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"ServiceCode":"AmazonCloudWatch","Filters":[{"Type":"TERM_MATCH","Field":"productFamily","Value":"Storage
+        Snapshot"},{"Type":"TERM_MATCH","Field":"regionCode","Value":"us-east-1"},{"Type":"TERM_MATCH","Field":"version","Value":"Current"}]}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-pricing/1.41.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - AWSPriceListService.GetProducts
+      Host:
+      - api.pricing.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230111T152008Z
+      X-Amz-Content-Sha256:
+      - 331e512ced0e770cadb58d7434809d8b0159c528030b8f9c681bc0417dfc8a43
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '240'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 11 Jan 2023 15:20:09 GMT
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '1062'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - 7405645d-6c96-4af3-ab21-2eeac843ce34
+    body:
+      encoding: UTF-8
+      string: '{"FormatVersion":"aws_v1","PriceList":["{\"product\":{\"productFamily\":\"Storage
+        Snapshot\",\"attributes\":{\"storageMedia\":\"Amazon S3\",\"regionCode\":\"us-east-1\",\"servicecode\":\"AmazonCloudWatch\",\"usagetype\":\"USE1-TimedStorage-ByteHrs\",\"locationType\":\"AWS
+        Region\",\"location\":\"US East (N. Virginia)\",\"servicename\":\"AmazonCloudWatch\",\"operation\":\"\",\"version\":\"Current\"},\"sku\":\"6K9ADYQAHV5KX9KZ\"},\"serviceCode\":\"AmazonCloudWatch\",\"terms\":{\"OnDemand\":{\"6K9ADYQAHV5KX9KZ.JRTCKXETXF\":{\"priceDimensions\":{\"6K9ADYQAHV5KX9KZ.JRTCKXETXF.6YS6EN2CT7\":{\"unit\":\"GB-Mo\",\"endRange\":\"Inf\",\"description\":\"$0.03
+        per GB-mo of log storage - US East (Northern Virginia)\",\"appliesTo\":[],\"rateCode\":\"6K9ADYQAHV5KX9KZ.JRTCKXETXF.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0300000000\"}}},\"sku\":\"6K9ADYQAHV5KX9KZ\",\"effectiveDate\":\"2022-12-01T00:00:00Z\",\"offerTermCode\":\"JRTCKXETXF\",\"termAttributes\":{}}}},\"version\":\"20221220001608\",\"publicationDate\":\"2022-12-20T00:16:08Z\"}"]}'
+  recorded_at: Wed, 11 Jan 2023 15:20:09 GMT
+recorded_with: VCR 6.1.0
