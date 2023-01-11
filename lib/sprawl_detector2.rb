@@ -14,7 +14,7 @@ class SprawlDetector2
   def setup
     @account = Account.find_by_account_id(ENV.fetch("AWS_ACCOUNT_ID"))
     @scan = Scan.create(account: @account, status: :started)
-    @skip_update_costs = true
+    @skip_update_costs = false
   end
 
   def find_detectors_by_cost_and_usage
@@ -37,7 +37,7 @@ class SprawlDetector2
 
     sts = Aws::STS::Client.new(region: "us-east-1")
     @role_session = sts.assume_role({
-      external_id: "abc-123-def-456", # TODO: Refactor this
+      external_id: @account.external_id,
       role_arn: role_arn,
       role_session_name: role_session_name
     })
