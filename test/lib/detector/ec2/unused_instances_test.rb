@@ -5,7 +5,7 @@ class UnusedInstancesTest < ActiveSupport::TestCase
   detector = UnusedInstances.new
 
  test "has correct service name" do
-   assert_equal detector.service_name, "AWS EC2"
+   assert_equal detector.service_name, "Amazon Elastic Compute Cloud - Compute"
  end
  test "has correct resource type" do
    assert_equal detector.resource_type, "AWS::EC2::Instance"

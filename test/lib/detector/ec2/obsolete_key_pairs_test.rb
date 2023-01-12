@@ -5,7 +5,7 @@ class ObsoleteKeyPairsTest < ActiveSupport::TestCase
   detector = ObsoleteKeyPairs.new
 
   test "has correct service name" do
-    assert detector.service_name == "AWS EC2"
+    assert detector.service_name == "Amazon Elastic Compute Cloud - Compute"
   end
 
   test "has correct resource type" do
