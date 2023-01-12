@@ -41,7 +41,7 @@ class SprawlDetector2
     @account = Account.find_by_account_id(ENV.fetch("AWS_ACCOUNT_ID"))
     @scan = Scan.create(account: @account, status: :started)
     puts "Running scan# #{@scan.id}"
-    @skip_update_costs = false
+    @skip_update_costs = true
   end
 
   def find_detectors_by_cost_and_usage
@@ -65,8 +65,9 @@ class SprawlDetector2
           logger.info "Detecting #{detector}..."
           begin
             detector.execute(@scan, region)
-          rescue => e
-            logger.error "Unhandled exception from #{detector}", e
+          rescue RuntimeError => e
+            logger.error "Unhandled exception from #{detector}"
+            logger.error e
           end
         end unless instances.nil?
       end
@@ -77,20 +78,25 @@ class SprawlDetector2
   end
 
   def assume_role
-    role_arn = "arn:aws:iam::#{ENV.fetch("AWS_ACCOUNT_ID")}:role/BS-SprawlDetector"
-    role_session_name = "byte-storm-labs-sprawl-detector" # TODO: Refactor this
+    if ENV["AWS_PROFILE"]
+      logger.info "Skipping assume role and using AWS profile #{ENV["AWS_PROFILE"]}"
+      @role_session = Aws::SharedCredentials.new
+    else
+      role_arn = "arn:aws:iam::#{ENV.fetch("AWS_ACCOUNT_ID")}:role/BS-SprawlDetector"
+      role_session_name = "byte-storm-labs-sprawl-detector" # TODO: Refactor this
 
-    logger.debug "Attempting to assume role as #{role_arn}"
+      logger.debug "Attempting to assume role as #{role_arn}"
 
-    sts = Aws::STS::Client.new(region: "us-east-1")
-    @role_session = sts.assume_role({
-      external_id: @account.external_id,
-      role_arn: role_arn,
-      role_session_name: role_session_name
-    })
+      sts = Aws::STS::Client.new(region: "us-east-1")
+      @role_session = sts.assume_role({
+        external_id: @account.external_id,
+        role_arn: role_arn,
+        role_session_name: role_session_name
+      })
+      logger.debug "Starting role session as #{role_session_name}"
+    end
 
     @scan.credentials = @role_session
-    logger.debug "Starting role session as #{role_session_name}"
   end
 
   def update_cost_and_usage_patterns
@@ -98,7 +104,7 @@ class SprawlDetector2
     client = Aws::CostExplorer::Client.new(credentials: @role_session)
     params = {
       time_period: {
-        start: (DateTime.now - 60).strftime("%Y-%m-%d"),
+        start: (DateTime.now - 30).strftime("%Y-%m-%d"),
         end: DateTime.now.strftime("%Y-%m-%d")
       },
       granularity: "DAILY",
