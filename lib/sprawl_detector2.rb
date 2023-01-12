@@ -41,7 +41,7 @@ class SprawlDetector2
     @account = Account.find_by_account_id(ENV.fetch("AWS_ACCOUNT_ID"))
     @scan = Scan.create(account: @account, status: :started)
     puts "Running scan# #{@scan.id}"
-    @skip_update_costs = true
+    @skip_update_costs = false
   end
 
   def find_detectors_by_cost_and_usage
