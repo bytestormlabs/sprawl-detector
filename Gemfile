@@ -25,6 +25,7 @@ gem "sekreto"
 gem "aws-sdk-acm"
 gem "aws-sdk-acmpca"
 gem "aws-sdk-cloudformation"
+gem "aws-sdk-cloudtrail"
 gem "aws-sdk-cloudwatch"
 gem "aws-sdk-cloudwatchlogs"
 gem "aws-sdk-costexplorer"
@@ -44,6 +45,7 @@ gem "aws-sdk-pricing"
 gem "aws-sdk-transfer"
 
 gem "nokogiri"
+gem "terminal-table"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

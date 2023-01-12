@@ -157,11 +157,13 @@ class CostDecorator
   end
 
   def translate_engine(engine_code)
-    # puts "entering translate_engine(engine_code = #{engine_code})"
-    {
+    puts "entering translate_engine(engine_code = #{engine_code})"
+    result = {
       "aurora-mysql" => "Aurora MySQL",
       "aurora-postgresql" => "Aurora PostgreSQL"
     }[engine_code]
+    raise "No engine found for #{engine_code}" if result.nil?
+    result
   end
 
   def translate_load_balancer_family(type)

@@ -1,0 +1,12 @@
+resource_type: AWS::RDS::ClusterSnapshot
+service: AmazonRDS
+filters:
+  - key: productFamily
+    value: Storage Snapshot
+  - key: regionCode
+    eval: region
+  - key: databaseEngine
+    eval: translate_engine(metadata["engine"])
+price_components:
+  - metadata["allocated_storage"]   # In GB
+  - price_per_unit

@@ -1,0 +1,12 @@
+service: AmazonEC2
+resource_type: AWS::EC2::NatGateway
+filters:
+  - key: productFamily
+    value: NAT Gateway
+  - key: regionCode
+    eval: region
+  - key: usageType
+    eval: region_prefix(region) + "NatGateway-Hours"
+price_components:
+  - price_per_unit
+  - "720.0"

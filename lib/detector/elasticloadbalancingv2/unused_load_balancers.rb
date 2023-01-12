@@ -2,7 +2,7 @@ require "detector/support/cloudwatch"
 require "aws-sdk-elasticloadbalancingv2"
 
 class UnusedLoadBalancers
-  ISSUE_TYPE = "issuetype"
+  ISSUE_TYPE = "aws-ec2-unused-load-balancer"
 
   include AwsSdkOperations
   include Assertions

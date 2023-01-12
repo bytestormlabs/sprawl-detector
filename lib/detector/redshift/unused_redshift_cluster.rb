@@ -2,7 +2,7 @@ require "detector/support/cloudwatch"
 require "aws-sdk-redshift"
 
 class UnusedRedshiftCluster
-  ISSUE_TYPE = "issuetype"
+  ISSUE_TYPE = "aws-redshift-unused-cluster"
 
   include AwsSdkOperations
   include Assertions
@@ -27,7 +27,7 @@ class UnusedRedshiftCluster
       resource.create_finding(scan, ISSUE_TYPE) if database_connections.indicates_zero_activity? && cluster.cluster_create_time < (DateTime.now - number_of_days)
     end
   end
-  
+
   def service_name
     "Amazon Redshift"
   end

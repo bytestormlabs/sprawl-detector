@@ -2,7 +2,7 @@ require "detector/support/cloudwatch"
 require "aws-sdk-ec2"
 
 class UnusedSecurityGroups
-  ISSUE_TYPE = "issuetype"
+  ISSUE_TYPE = "aws-ec2-unused-security-groups"
 
   include AwsSdkOperations
   include Assertions
@@ -37,7 +37,7 @@ class UnusedSecurityGroups
       resource.create_finding(scan, ISSUE_TYPE)
     end
   end
-  
+
   def service_name
     "AWS EC2"
   end
