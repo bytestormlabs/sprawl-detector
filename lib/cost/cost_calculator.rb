@@ -44,13 +44,19 @@ class CostCalculator
       collect_price_per_unit(r)
     end.filter.uniq
 
+    price_per_unit = prices_per_unit.first
+
     if (prices_per_unit.count != 1)
-      logger.error "Found #{prices_per_unit.count} different price points..."
-      pp result
-      return nil
+      if (descriptor["multiple_price_point_behavior"].present?)
+        price_per_unit = prices_per_unit.reject { |x| x == 0.0 }.min
+      else
+        logger.error "Found #{prices_per_unit.count} different price points..."
+        pp result
+        return nil
+      end
     end
 
-    calculate_price(descriptor["price_components"], prices_per_unit.first, resource.metadata)
+    calculate_price(descriptor["price_components"], price_per_unit, resource.metadata)
   end
 
   private
@@ -99,7 +105,8 @@ class CostCalculator
 
   def translate_cache_engine(engine)
     {
-      "redis" => "Redis"
+      "redis" => "Redis",
+      "memcached" => "memcached"
     }[engine]
   end
 

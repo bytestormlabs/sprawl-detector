@@ -10,6 +10,7 @@ require "detector/ec2/obsolete_machine_images"
 require "detector/ec2/unused_instances"
 require "detector/ec2/unused_nat_gateways"
 require "detector/ec2/unused_security_groups"
+require "detector/ec2/vpc_without_s3_endpoint"
 require "detector/ecr/repositories_without_lifecycle_policy"
 require "detector/elasticloadbalancingv2/unused_load_balancers"
 require "detector/elasticsearchservice/unused_domains"
@@ -48,7 +49,7 @@ class SprawlDetector2
   end
 
   def find_detectors_by_cost_and_usage
-    services_used = AwsCostLineItem.where(account: account).last_30_days.group(:service, :region).sum(:cost)
+    services_used = AwsCostLineItem.where(account: account).last_30_days.group(:service, :region).sum(:cost).sort_by do |key, cost| -cost end
     logger.info "Found #{services_used.count} services used in the last 30 days."
 
     services_used.each do |key, cost|
@@ -182,7 +183,8 @@ class SprawlDetector2
       UnusedSecurityGroups.new,
       UnusedTransferServers.new,
       UnusedVpcEndpoints.new,
-      UnusedWebAcls.new
+      UnusedWebAcls.new,
+      VpcWithoutS3Endpoint.new
     ]
   end
 

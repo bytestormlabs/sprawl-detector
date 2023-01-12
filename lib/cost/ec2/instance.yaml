@@ -9,6 +9,7 @@ filters:
     eval: metadata["instance_type"]
   - key: locationType
     value: AWS Region
+multiple_price_point_behavior: minimum
 price_components:
   - price_per_unit
-  - 720.0
+  - "720.0"

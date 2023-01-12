@@ -24,8 +24,7 @@ class UnusedInstances
             .with_dimension("InstanceId", instance.instance_id)
             .with(scan.credentials)
 
-
-          resource.create_finding(scan, ISSUE_TYPE) if network_in.less_than?(600000)
+          resource.create_finding(scan, ISSUE_TYPE) if instance.launch_time < (DateTime.now - number_of_days) && network_in.less_than?(600000)
         end
       end
     end
