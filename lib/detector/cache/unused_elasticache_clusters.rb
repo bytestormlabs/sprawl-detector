@@ -25,7 +25,7 @@ class UnusedElastiCacheClusters
         .in_last(number_of_days)
         .with_dimension("CacheClusterId", cache_cluster.cache_cluster_id)
 
-      resource.create_finding(ISSUE_TYPE) if network_activity.less_than?(250000)
+      resource.create_finding(scan, ISSUE_TYPE) if network_activity.less_than?(250000)
     end
   end
 

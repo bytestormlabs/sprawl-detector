@@ -18,7 +18,7 @@ class ObsoleteDashboards
         resource = scan.build_resource(region, resource_type, dashboard.dashboard_name, dashboard)
         number_of_days = 180   # TODO: Refactor this
 
-        resource.create_finding(ISSUE_TYPE) if dashboard.last_modified < (DateTime.now - number_of_days)
+        resource.create_finding(scan, ISSUE_TYPE) if dashboard.last_modified < (DateTime.now - number_of_days)
       end
     end
   end

@@ -24,7 +24,7 @@ class UnusedRedshiftCluster
         .with_dimension("ClusterIdentifier", cluster.cluster_identifier)
         .with(scan.credentials)
 
-      resource.create_finding(ISSUE_TYPE) if database_connections.indicates_zero_activity? && cluster.cluster_create_time < (DateTime.now - number_of_days)
+      resource.create_finding(scan, ISSUE_TYPE) if database_connections.indicates_zero_activity? && cluster.cluster_create_time < (DateTime.now - number_of_days)
     end
   end
   

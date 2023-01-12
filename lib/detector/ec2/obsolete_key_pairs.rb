@@ -25,7 +25,7 @@ class ObsoleteKeyPairs
 
     client.describe_key_pairs.key_pairs.each do |key_pair|
       resource = scan.build_resource(region, resource_type, key_pair.key_name, key_pair)
-      resource.create_finding(ISSUE_TYPE) unless key_pairs_in_use.include? key_pair.key_name
+      resource.create_finding(scan, ISSUE_TYPE) unless key_pairs_in_use.include? key_pair.key_name
     end
   end
 

@@ -43,7 +43,7 @@ class UnusedPrivateAcmCA
         .with_dimension("PrivateCAArn", certificate_authority.arn)
         .with(scan.credentials)
 
-      resource.create_finding(ISSUE_TYPE) if cloudwatch_issue_certificate_metrics.indicates_zero_activity?
+      resource.create_finding(scan, ISSUE_TYPE) if cloudwatch_issue_certificate_metrics.indicates_zero_activity?
     end
   end
 

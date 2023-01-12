@@ -24,7 +24,7 @@ class ObsoleteMachineImages
 
     images.each do |image|
       resource = scan.build_resource(region, resource_type, image.image_id, image)
-      resource.create_finding(ISSUE_TYPE) if [
+      resource.create_finding(scan, ISSUE_TYPE) if [
         !image_ids_in_use.include?(image.image_id),
         image.creation_date < (DateTime.now - 180)
       ].all?

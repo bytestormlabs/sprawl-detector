@@ -34,7 +34,7 @@ class UnusedSecurityGroups
 
     security_groups.each do |security_group|
       resource = scan.build_resource(region, resource_type, security_group.group_name, security_group)
-      resource.create_finding(ISSUE_TYPE)
+      resource.create_finding(scan, ISSUE_TYPE)
     end
   end
   

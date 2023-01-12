@@ -22,7 +22,7 @@ class UnusedTransferServers
         files_in = check("AWS/Transfer", "FilesIn").with(scan.credentials).in(region).in_last(90).with_dimension("ServerId", server.server_id)
         files_out = check("AWS/Transfer", "FilesOut").with(scan.credentials).in(region).in_last(90).with_dimension("ServerId", server.server_id)
 
-        resource.create_finding(ISSUE_TYPE) if files_in.indicates_zero_activity? && files_out.indicates_zero_activity?
+        resource.create_finding(scan, ISSUE_TYPE) if files_in.indicates_zero_activity? && files_out.indicates_zero_activity?
       end
     end
   end

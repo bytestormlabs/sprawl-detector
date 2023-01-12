@@ -29,7 +29,7 @@ class UnusedVpcEndpoints
 
       pp connections
 
-      resource.create_finding(ISSUE_TYPE) if connections.indicates_zero_activity?
+      resource.create_finding(scan, ISSUE_TYPE) if connections.indicates_zero_activity?
     end
   end
 

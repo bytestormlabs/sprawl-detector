@@ -1,18 +1,30 @@
 require "aws-sdk-sts"
-require "detector/cloudwatch/obsolete_dashboards"
-require "detector/cache/unused_elasticache_clusters"
-require "detector/transfer/unused_transfer_servers"
-require "detector/secrets_manager/unused_secrets"
-require "detector/cloudwatchlogs/log_groups_without_log_retention"
-require "detector/support/cloudwatch"
-require "detector/databasemigrationservice/unused_replication_instances"
 require "detector/acm/unused_private_acm_ca"
+require "detector/cache/unused_elasticache_clusters"
+require "detector/cloudwatch/obsolete_dashboards"
+require "detector/cloudwatchlogs/log_groups_without_log_retention"
+require "detector/databasemigrationservice/unused_replication_instances"
 require "detector/ec2/obsolete_ebs_snapshots"
-require "detector/ec2/unused_security_groups"
-require "detector/ec2/unused_nat_gateways"
-require "detector/ec2/unused_instances"
 require "detector/ec2/obsolete_key_pairs"
 require "detector/ec2/obsolete_machine_images"
+require "detector/ec2/unused_instances"
+require "detector/ec2/unused_nat_gateways"
+require "detector/ec2/unused_security_groups"
+require "detector/ecr/repositories_without_lifecycle_policy"
+require "detector/elasticloadbalancingv2/unused_load_balancers"
+require "detector/elasticsearchservice/unused_domains"
+require "detector/mq/unused_mq_brokers"
+require "detector/rds/obsolete_snapshots"
+require "detector/rds/unused_db_instances"
+require "detector/redshift/obsolete_cluster_snapshots"
+require "detector/redshift/unused_redshift_cluster"
+require "detector/route53resolver/unused_resolvers"
+require "detector/sagemaker/unused_sagemaker_domains"
+require "detector/sagemaker/unused_sagemaker_notebooks"
+require "detector/secretsmanager/unused_secrets"
+require "detector/support/cloudwatch"
+require "detector/transfer/unused_transfer_servers"
+require "detector/vpc/unused_vpc_endpoints"
 
 class SprawlDetector2
   attr_accessor :account, :role_session, :skip_update_costs
@@ -28,6 +40,7 @@ class SprawlDetector2
   def setup
     @account = Account.find_by_account_id(ENV.fetch("AWS_ACCOUNT_ID"))
     @scan = Scan.create(account: @account, status: :started)
+    puts "Running scan# #{@scan.id}"
     @skip_update_costs = false
   end
 
@@ -40,6 +53,8 @@ class SprawlDetector2
       if cost > 0.01
         logger.info "Finding detector for '#{service}' which incurred #{"%.2f" % cost} of cost this period in #{region}."
 
+        next if region == "global"
+
         instances = detectors.find_all do |d|
           d.service_name == service
         end
@@ -48,10 +63,17 @@ class SprawlDetector2
 
         instances.each do |detector|
           logger.info "Detecting #{detector}..."
-          detector.execute(@scan, region)
+          begin
+            detector.execute(@scan, region)
+          rescue => e
+            logger.error "Unhandled exception from #{detector}", e
+          end
         end unless instances.nil?
       end
     end
+
+    logger.info "Found #{@scan.findings.count} findings."
+    @scan.completed!
   end
 
   def assume_role
@@ -122,19 +144,31 @@ class SprawlDetector2
 
   def detectors
     [
-      ObsoleteDashboards.new,
-      UnusedElastiCacheClusters.new,
-      UnusedTransferServers.new,
-      UnusedSecrets.new,
       LogGroupsWithoutLogRetention.new,
-      UnusedReplicationInstances.new,
-      UnusedPrivateAcmCA.new,
+      ObsoleteClusterSnapshots.new,
+      ObsoleteDashboards.new,
       ObsoleteEbsSnapshots.new,
-      UnusedSecurityGroups.new,
-      UnusedNatGateways.new,
-      UnusedInstances.new,
       ObsoleteKeyPairs.new,
-      ObsoleteMachineImages.new
+      ObsoleteMachineImages.new,
+      ObsoleteSnapshots.new,
+      RepositoriesWithoutLifecyclePolicy.new,
+      UnusedDbInstances.new,
+      UnusedDomains.new,
+      UnusedElastiCacheClusters.new,
+      UnusedInstances.new,
+      UnusedLoadBalancers.new,
+      UnusedMqBrokers.new,
+      UnusedNatGateways.new,
+      UnusedPrivateAcmCA.new,
+      UnusedRedshiftCluster.new,
+      UnusedReplicationInstances.new,
+      UnusedResolvers.new,
+      UnusedSagemakerDomains.new,
+      UnusedSagemakerNotebooks.new,
+      UnusedSecrets.new,
+      UnusedSecurityGroups.new,
+      UnusedTransferServers.new,
+      UnusedVpcEndpoints.new
     ]
   end
 end

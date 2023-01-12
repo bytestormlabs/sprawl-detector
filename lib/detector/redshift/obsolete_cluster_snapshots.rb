@@ -18,7 +18,7 @@ class ObsoleteClusterSnapshots
         resource = scan.build_resource(region, resource_type, snapshot.snapshot_identifier, snapshot)
         number_of_days = 90   # TODO: Refactor this
 
-        resource.create_finding(ISSUE_TYPE) if snapshot.snapshot_create_time < (DateTime.now - number_of_days)
+        resource.create_finding(scan, ISSUE_TYPE) if snapshot.snapshot_create_time < (DateTime.now - number_of_days)
       end
     end
   end

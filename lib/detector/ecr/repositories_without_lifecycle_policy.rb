@@ -20,7 +20,7 @@ class RepositoriesWithoutLifecyclePolicy
           repository: repository.to_h,
           images: images.map(&:to_h)
         })
-        resource.create_finding(ISSUE_TYPE) unless has_lifecycle_policy?(client, repository)
+        resource.create_finding(scan, ISSUE_TYPE) unless has_lifecycle_policy?(client, repository)
       end
     end
   end

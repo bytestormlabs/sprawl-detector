@@ -25,7 +25,7 @@ class UnusedInstances
             .with(scan.credentials)
 
 
-          resource.create_finding(ISSUE_TYPE) if network_in.less_than?(600000)
+          resource.create_finding(scan, ISSUE_TYPE) if network_in.less_than?(600000)
         end
       end
     end

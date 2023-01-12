@@ -25,7 +25,7 @@ class UnusedSecrets
     target_date = DateTime.now - 60   # TODO: Refactor this into some profile/setting
     resource = scan.build_resource(region, resource_type, secret.name, secret)
 
-    resource.create_finding(ISSUE_TYPE) if [
+    resource.create_finding(scan, ISSUE_TYPE) if [
       (secret.created_date < target_date),
       (secret.last_accessed_date.nil? || secret.last_accessed_date < target_date)
     ].all?

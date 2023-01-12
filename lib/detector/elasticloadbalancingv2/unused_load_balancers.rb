@@ -30,7 +30,7 @@ class UnusedLoadBalancers
             .with_dimension("LoadBalancer", load_balancer_name)
             .with(scan.credentials)
 
-          resource.create_finding(ISSUE_TYPE) if load_balancer.created_time < target_date && request_count.indicates_zero_activity?
+          resource.create_finding(scan, ISSUE_TYPE) if load_balancer.created_time < target_date && request_count.indicates_zero_activity?
         elsif type == "network"
           resource = scan.build_resource(region, "AWS::ElasticLoadBalancingV2::LoadBalancer", load_balancer.load_balancer_arn, load_balancer)
           active_flow_count = check("AWS/NetworkELB", "ActiveFlowCount")
@@ -39,7 +39,7 @@ class UnusedLoadBalancers
             .with_dimension("LoadBalancer", load_balancer_name)
             .with(scan.credentials)
 
-          resource.create_finding(ISSUE_TYPE) if load_balancer.created_time < target_date && active_flow_count.indicates_zero_activity?
+          resource.create_finding(scan, ISSUE_TYPE) if load_balancer.created_time < target_date && active_flow_count.indicates_zero_activity?
         elsif type == "classic"
           resource = scan.build_resource(region, "AWS::ElasticLoadBalancing::LoadBalancer", load_balancer.load_balancer_arn, load_balancer)
           request_count_check = check("AWS/ELB", "RequestCount")
@@ -48,7 +48,7 @@ class UnusedLoadBalancers
             .with_dimension("LoadBalancerName", load_balancer_name)
             .with(scan.credentials)
 
-          resource.create_finding(ISSUE_TYPE) if load_balancer.created_time < target_date && request_count_check.indicates_zero_activity?
+          resource.create_finding(scan, ISSUE_TYPE) if load_balancer.created_time < target_date && request_count_check.indicates_zero_activity?
         end
       end
     end

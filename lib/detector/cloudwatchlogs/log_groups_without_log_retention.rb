@@ -19,7 +19,7 @@ class LogGroupsWithoutLogRetention
 
         number_of_days = 30   # TODO: Refactor this
 
-        resource.create_finding(ISSUE_TYPE) if
+        resource.create_finding(scan, ISSUE_TYPE) if
           log_group.retention_in_days.nil? ||
             log_group.retention_in_days > number_of_days
       end

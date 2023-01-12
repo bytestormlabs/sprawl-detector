@@ -25,7 +25,7 @@ class UnusedMqBrokers
         .with_dimension("Broker", broker.broker_name)
         .with(scan.credentials)
 
-      resource.create_finding(ISSUE_TYPE) if broker.created < (DateTime.now - number_of_days) && connection_count.indicates_zero_activity?
+      resource.create_finding(scan, ISSUE_TYPE) if broker.created < (DateTime.now - number_of_days) && connection_count.indicates_zero_activity?
     end
   end
   def service_name

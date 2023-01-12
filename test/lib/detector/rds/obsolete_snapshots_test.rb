@@ -5,7 +5,7 @@ class ObsoleteSnapshotsTest < ActiveSupport::TestCase
   detector = ObsoleteSnapshots.new
 
  test "has correct service name" do
-   assert_equal detector.service_name, "AWS RDS"
+   assert_equal detector.service_name, "Amazon Relational Database Service"
  end
  test "has correct resource type" do
    assert_equal detector.resource_type, "AWS::RDS::ClusterSnapshot"

@@ -25,12 +25,12 @@ class UnusedDbInstances
           .with_dimension("DBInstanceIdentifier", db_instance.db_instance_identifier)
           .with(scan.credentials)
 
-        resource.create_finding(ISSUE_TYPE) if db_instance.instance_create_time < (DateTime.now - number_of_days) && success.indicates_zero_activity?
+        resource.create_finding(scan, ISSUE_TYPE) if db_instance.instance_create_time < (DateTime.now - number_of_days) && success.indicates_zero_activity?
       end
     end
   end
   def service_name
-    "AWS RDS"
+    "Amazon Relational Database Service"
   end
 
   def resource_type

@@ -19,12 +19,12 @@ class ObsoleteSnapshots
         number_of_days = 120   # TODO: Refactor this
         target_date = (DateTime.now - number_of_days)
 
-        resource.create_finding(ISSUE_TYPE) if db_cluster_snapshot.snapshot_create_time < target_date
+        resource.create_finding(scan, ISSUE_TYPE) if db_cluster_snapshot.snapshot_create_time < target_date
       end
     end
   end
   def service_name
-    "AWS RDS"
+    "Amazon Relational Database Service"
   end
 
   def resource_type

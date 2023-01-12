@@ -24,7 +24,7 @@ class UnusedDomains
           .with_dimension("ClientId", scan.account.account_id)
           .with(scan.credentials)
 
-        resource.create_finding(ISSUE_TYPE) if success.indicates_zero_activity?
+        resource.create_finding(scan, ISSUE_TYPE) if success.indicates_zero_activity?
       end
     end
   end

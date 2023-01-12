@@ -30,7 +30,7 @@ class UnusedResolvers
           .with_dimension("EndpointId", resolver_endpoint.id)
           .with(scan.credentials)
 
-        resource.create_finding(ISSUE_TYPE) if
+        resource.create_finding(scan, ISSUE_TYPE) if
           resolver_endpoint.creation_time < (DateTime.now - number_of_days) &&
           inbound_query.indicates_zero_activity? &&
           outbound_query.indicates_zero_activity?

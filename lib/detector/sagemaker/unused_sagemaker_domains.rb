@@ -29,7 +29,7 @@ class UnusedSagemakerDomains
           Time.at(log_stream.last_event_timestamp / 1000).to_datetime
         end&.max
 
-        resource.create_finding(ISSUE_TYPE) if last_activity_date && last_activity_date < (DateTime.now - number_of_days)
+        resource.create_finding(scan, ISSUE_TYPE) if last_activity_date && last_activity_date < (DateTime.now - number_of_days)
       end
     end
   end
