@@ -31,7 +31,7 @@ class UnusedInstances
     end
   end
   def service_name
-    "AWS EC2"
+    "Amazon Elastic Compute Cloud - Compute"
   end
 
   def resource_type

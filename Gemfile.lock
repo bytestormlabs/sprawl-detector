@@ -143,6 +143,9 @@ GEM
     aws-sdk-transfer (1.65.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
+    aws-sdk-wafv2 (1.46.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
     aws-sigv4 (1.5.2)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.18)
@@ -334,6 +337,7 @@ DEPENDENCIES
   aws-sdk-sagemaker
   aws-sdk-secretsmanager
   aws-sdk-transfer
+  aws-sdk-wafv2
   bootsnap
   capybara
   debug

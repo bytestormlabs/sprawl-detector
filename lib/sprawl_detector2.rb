@@ -25,32 +25,35 @@ require "detector/secretsmanager/unused_secrets"
 require "detector/support/cloudwatch"
 require "detector/transfer/unused_transfer_servers"
 require "detector/vpc/unused_vpc_endpoints"
+require "detector/wafv2/unused_web_acls"
+require "report"
 
 class SprawlDetector2
-  attr_accessor :account, :role_session, :skip_update_costs
+  attr_accessor :scan, :account, :role_session, :skip_update_costs
 
   def execute
     setup
     assume_role
     update_cost_and_usage_patterns
     find_detectors_by_cost_and_usage
-    # report_findings
+    finalize
+    report_findings
   end
 
   def setup
     @account = Account.find_by_account_id(ENV.fetch("AWS_ACCOUNT_ID"))
-    @scan = Scan.create(account: @account, status: :started)
-    puts "Running scan# #{@scan.id}"
+    @scan = Scan.create(account: account, status: :started)
+    puts "Running scan# #{scan.id}"
     @skip_update_costs = false
   end
 
   def find_detectors_by_cost_and_usage
-    services_used = AwsCostLineItem.where(account: @account).last_30_days.group(:service, :region).sum(:cost)
+    services_used = AwsCostLineItem.where(account: account).last_30_days.group(:service, :region).sum(:cost)
     logger.info "Found #{services_used.count} services used in the last 30 days."
 
     services_used.each do |key, cost|
       (service, region) = key
-      if cost > 0.01
+      if cost > 1.0
         logger.info "Finding detector for '#{service}' which incurred #{"%.2f" % cost} of cost this period in #{region}."
 
         next if region == "global"
@@ -64,7 +67,7 @@ class SprawlDetector2
         instances.each do |detector|
           logger.info "Detecting #{detector}..."
           begin
-            detector.execute(@scan, region)
+            detector.execute(scan, region)
           rescue RuntimeError => e
             logger.error "Unhandled exception from #{detector}"
             logger.error e
@@ -73,8 +76,12 @@ class SprawlDetector2
       end
     end
 
-    logger.info "Found #{@scan.findings.count} findings."
+    logger.info "Found #{scan.findings.count} findings."
     @scan.completed!
+  end
+
+  def finalize
+    account.findings.where("scan_id <> ?", @scan.id).update_all(status: :closed)
   end
 
   def assume_role
@@ -128,7 +135,7 @@ class SprawlDetector2
         cost = group.metrics.first.last.amount.to_f.round(2)
 
         AwsCostLineItem.create_with(cost: cost).find_or_create_by(
-          account: @account,
+          account: account,
           date: Date.parse(result_by_time.time_period.start),
           service: service,
           region: region
@@ -174,7 +181,12 @@ class SprawlDetector2
       UnusedSecrets.new,
       UnusedSecurityGroups.new,
       UnusedTransferServers.new,
-      UnusedVpcEndpoints.new
+      UnusedVpcEndpoints.new,
+      UnusedWebAcls.new
     ]
+  end
+
+  def report_findings
+    Report.new(account.account_id).execute
   end
 end

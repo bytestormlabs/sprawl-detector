@@ -43,6 +43,7 @@ gem "aws-sdk-sagemaker"
 gem "aws-sdk-secretsmanager"
 gem "aws-sdk-pricing"
 gem "aws-sdk-transfer"
+gem "aws-sdk-wafv2"
 
 gem "nokogiri"
 gem "terminal-table"

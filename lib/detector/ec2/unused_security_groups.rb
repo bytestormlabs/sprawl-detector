@@ -39,7 +39,7 @@ class UnusedSecurityGroups
   end
 
   def service_name
-    "AWS EC2"
+    "Amazon Elastic Compute Cloud - Compute"
   end
 
   def resource_type

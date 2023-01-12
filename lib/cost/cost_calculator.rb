@@ -22,6 +22,7 @@ class CostCalculator
         cache[key] = result
       rescue => e
         puts "Hit an issue processing #{params}"
+        logger.error e
       end
     end
     cache.fetch(key)
