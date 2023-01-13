@@ -4,15 +4,15 @@ require "base_aws_integration_test"
 class ObsoleteSnapshotsTest < ActiveSupport::TestCase
   detector = ObsoleteSnapshots.new
 
- test "has correct service name" do
-   assert_equal detector.service_name, "Amazon Relational Database Service"
- end
- test "has correct resource type" do
-   assert_equal detector.resource_type, "AWS::RDS::ClusterSnapshot"
- end
- test "generates default settings" do
-   assert_equal detector.default_settings.count, 1
- end
+  test "has correct service name" do
+    assert_equal detector.service_name, "Amazon Relational Database Service"
+  end
+  test "has correct resource type" do
+    assert_equal detector.resource_type, "AWS::RDS::ClusterSnapshot"
+  end
+  test "generates default settings" do
+    assert_equal detector.default_settings.count, 1
+  end
 
   class IntegrationTests < BaseAwsIntegrationTest
     detector = ObsoleteSnapshots.new

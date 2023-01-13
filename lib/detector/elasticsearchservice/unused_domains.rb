@@ -28,6 +28,7 @@ class UnusedDomains
       end
     end
   end
+
   def service_name
     "AWS Service Name"
   end

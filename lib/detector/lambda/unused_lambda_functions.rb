@@ -27,6 +27,7 @@ class UnusedLambdaFunctions
       end
     end
   end
+
   def service_name
     "AWS Lambda"
   end

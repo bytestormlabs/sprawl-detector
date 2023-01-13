@@ -2,7 +2,6 @@ require "aws-sdk-cloudtrail"
 require "aws_sdk_operations"
 
 module Cloudtrail
-
   def resource_name(resource_name)
     RequestBuilder.new.resource_name(resource_name)
   end
@@ -72,16 +71,11 @@ module Cloudtrail
 
     def has_any?
       fetch_results if @results.nil?
-      evaluation_result = nil
-      if block_given?
-        evaluation_result = yield(@results.events)
-      else
-        evaluation_result = @results.events.count > 0
-      end
-      evaluation_result
+      block_given? ? yield(@results.events) : @results.events.count > 0
     end
 
     private
+
     def client
       params = {
         region: region

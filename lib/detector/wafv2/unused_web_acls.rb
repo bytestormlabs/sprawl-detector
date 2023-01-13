@@ -28,7 +28,7 @@ class UnusedWebAcls
       resource.create_finding(scan, ISSUE_TYPE) if success.indicates_zero_activity?
     end
   end
-  
+
   def service_name
     "AWS WAF"
   end

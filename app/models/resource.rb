@@ -6,15 +6,6 @@ class Resource < ApplicationRecord
     validates field, presence: true
   end
 
-  def create_finding(issue_type)
-    Finding.create_with(status: :open).find_or_create_by!(
-      resource: self,
-      issue_type: issue_type,
-      account: account,
-      scan: scan
-    )
-  end
-
   def create_finding(scan, issue_type)
     finding = Finding.create_with(status: :open).find_or_create_by!(
       resource: self,

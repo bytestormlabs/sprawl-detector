@@ -29,10 +29,11 @@ class UnusedSagemakerNotebooks
 
         resource.create_finding(scan, ISSUE_TYPE) if
           last_log_stream &&
-          Time.at(last_log_stream.last_event_timestamp / 1000) < (DateTime.now - number_of_days)
+            Time.at(last_log_stream.last_event_timestamp / 1000) < (DateTime.now - number_of_days)
       end
     end
   end
+
   def service_name
     "AWS SageMaker"
   end

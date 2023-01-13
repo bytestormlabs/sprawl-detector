@@ -14,19 +14,19 @@ class Report
     calculator = CostCalculator.new
 
     table = Terminal::Table.new do |t|
-      t << [ "region", "issue_type", "number_of_issues", "monthly_cost" ]
+      t << ["region", "issue_type", "number_of_issues", "monthly_cost"]
       t.add_separator
 
-      results = Account.find_by_account_id(@account_id).findings.where(status: :open).group_by { |f| [ f.issue_type, f.resource.region ]}.map do |key, findings|
+      results = Account.find_by_account_id(@account_id).findings.where(status: :open).group_by { |f| [f.issue_type, f.resource.region] }.map do |key, findings|
         issue_type = key.first
         region = key.last
-        total_cost = findings.map do |finding| (calculator.decorate(finding.resource) || 0) end.sum
+        total_cost = findings.map { |finding| (calculator.decorate(finding.resource) || 0) }.sum
         LineItem.new(region, issue_type, findings.count, total_cost)
       end
 
       results.sort_by(&:total_cost).each do |line|
         t << [
-          line.region, line.issue_type, line.count, "$#{sprintf('%.2f', line.total_cost || 0.0)}",
+          line.region, line.issue_type, line.count, "$#{sprintf("%.2f", line.total_cost || 0.0)}"
         ]
       end
     end

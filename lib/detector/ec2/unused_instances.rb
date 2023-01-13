@@ -29,6 +29,7 @@ class UnusedInstances
       end
     end
   end
+
   def service_name
     "Amazon Elastic Compute Cloud - Compute"
   end

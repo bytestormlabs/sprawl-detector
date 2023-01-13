@@ -15,7 +15,6 @@ class UnusedLoadBalancers
     client = Aws::ElasticLoadBalancingV2::Client.new(region: region, credentials: scan.credentials)
     loop_until_finished(client, :describe_load_balancers) do |response|
       response.load_balancers.each do |load_balancer|
-
         number_of_days = 14   # TODO: Refactor this
         type = load_balancer["type"]
         load_balancer_name = load_balancer.load_balancer_arn.split(":").last.gsub("loadbalancer/", "")
@@ -53,6 +52,7 @@ class UnusedLoadBalancers
       end
     end
   end
+
   def service_name
     "Amazon Elastic Load Balancing"
   end

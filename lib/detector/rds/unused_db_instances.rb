@@ -29,6 +29,7 @@ class UnusedDbInstances
       end
     end
   end
+
   def service_name
     "Amazon Relational Database Service"
   end

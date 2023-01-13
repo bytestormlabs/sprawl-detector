@@ -32,11 +32,12 @@ class UnusedResolvers
 
         resource.create_finding(scan, ISSUE_TYPE) if
           resolver_endpoint.creation_time < (DateTime.now - number_of_days) &&
-          inbound_query.indicates_zero_activity? &&
-          outbound_query.indicates_zero_activity?
+            inbound_query.indicates_zero_activity? &&
+            outbound_query.indicates_zero_activity?
       end
     end
   end
+
   def service_name
     "Amazon Route 53"
   end

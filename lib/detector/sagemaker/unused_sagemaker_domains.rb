@@ -33,6 +33,7 @@ class UnusedSagemakerDomains
       end
     end
   end
+
   def service_name
     "Amazon SageMaker"
   end

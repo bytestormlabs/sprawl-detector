@@ -14,9 +14,8 @@ class VpcWithoutS3Endpoint
 
     client = Aws::EC2::Client.new(region: region, credentials: scan.credentials)
     client.describe_vpcs.vpcs.each do |vpc|
-
       resource = scan.build_resource(region, resource_type, vpc.vpc_id, vpc)
-      vpc_endpoints = client.describe_vpc_endpoints(filters: [ {name: "vpc-id", values: [vpc.vpc_id]}]).vpc_endpoints
+      vpc_endpoints = client.describe_vpc_endpoints(filters: [{name: "vpc-id", values: [vpc.vpc_id]}]).vpc_endpoints
 
       # Look for the service name 'com.amazonaws.#{region}.s3'
 
@@ -27,6 +26,7 @@ class VpcWithoutS3Endpoint
       resource.create_finding(scan, ISSUE_TYPE) unless has_s3_endpoint
     end
   end
+
   def service_name
     "EC2 - Other"
   end

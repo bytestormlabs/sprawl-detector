@@ -50,7 +50,7 @@ class SprawlDetector2
   end
 
   def find_detectors_by_cost_and_usage
-    services_used = AwsCostLineItem.where(account: account).last_30_days.group(:service, :region).sum(:cost).sort_by do |key, cost| -cost end
+    services_used = AwsCostLineItem.where(account: account).last_30_days.group(:service, :region).sum(:cost).sort_by { |key, cost| -cost }
     logger.info "Found #{services_used.count} services used in the last 30 days."
 
     services_used.each do |key, cost|
@@ -66,7 +66,7 @@ class SprawlDetector2
 
         logger.info "Found #{instances&.count} detectors..."
 
-        instances.each do |detector|
+        instances&.each do |detector|
           logger.info "Detecting #{detector}..."
           begin
             detector.execute(scan, region)
@@ -74,7 +74,7 @@ class SprawlDetector2
             logger.error "Unhandled exception from #{detector}"
             logger.error e
           end
-        end unless instances.nil?
+        end
       end
     end
 
@@ -151,7 +151,6 @@ class SprawlDetector2
     @logger ||= Logger.new($stdout)
     @logger.level = Logger::DEBUG
     @logger.formatter = proc do |severity, datetime, progname, msg|
-      date_format = datetime.strftime("%Y-%m-%d %H:%M:%S")
       "[#{severity}] [account_id: #{@account.account_id}]\t #{msg}\n"
     end
     @logger

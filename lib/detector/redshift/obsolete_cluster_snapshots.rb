@@ -22,6 +22,7 @@ class ObsoleteClusterSnapshots
       end
     end
   end
+
   def service_name
     "AWS Redshift"
   end

@@ -1,6 +1,6 @@
 module Cloudwatch
   def check(namespace, metric)
-    builder = RequestBuilder.new(namespace, metric)
+    RequestBuilder.new(namespace, metric)
   end
 
   # b = check("AWS/ACMPrivateCA", "Success").in_last(60).days
@@ -92,9 +92,10 @@ module Cloudwatch
     end
 
     def hourly
-      @request[:period] = (60*60)
+      @request[:period] = (60 * 60)
       self
     end
+
     private
 
     def fetch_results

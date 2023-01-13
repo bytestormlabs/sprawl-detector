@@ -26,12 +26,10 @@ class RepositoriesWithoutLifecyclePolicy
   end
 
   def has_lifecycle_policy?(client, repository)
-    begin
-      client.get_lifecycle_policy(repository.to_h.slice(:repository_name, :registry_id))
-      return true
-    rescue Aws::ECR::Errors::LifecyclePolicyNotFoundException
-      return false
-    end
+    client.get_lifecycle_policy(repository.to_h.slice(:repository_name, :registry_id))
+    true
+  rescue Aws::ECR::Errors::LifecyclePolicyNotFoundException
+    false
   end
 
   def service_name

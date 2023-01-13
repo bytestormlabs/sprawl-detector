@@ -46,9 +46,9 @@ class CostCalculator
 
     price_per_unit = prices_per_unit.first
 
-    if (prices_per_unit.count != 1)
-      if (descriptor["multiple_price_point_behavior"].present?)
-        price_per_unit = prices_per_unit.reject { |x| x == 0.0 }.min
+    if prices_per_unit.count != 1
+      if descriptor["multiple_price_point_behavior"].present?
+        price_per_unit = prices_per_unit.reject { |x| x <= 0.01 }.min
       else
         logger.error "Found #{prices_per_unit.count} different price points..."
         pp result
@@ -60,9 +60,10 @@ class CostCalculator
   end
 
   private
+
   def build_filters(resource, filters)
-    metadata = resource["metadata"]
-    region = resource.region
+    metadata = resource["metadata"] # standard:disable Lint/UselessAssignment
+    region = resource.region  # standard:disable Lint/UselessAssignment
 
     filters.map do |filter|
       value = filter["value"] || eval(filter["eval"])
@@ -87,11 +88,11 @@ class CostCalculator
     return nil if terms["OnDemand"].nil?
 
     dimension = terms.values.first
-    (sku, terms) = dimension.first
+    (_sku, terms) = dimension.first
     price_dimensions = terms["priceDimensions"]
     return if price_dimensions.size != 1
     units = price_dimensions.values.first
-    price_per_unit = units["pricePerUnit"]["USD"].to_d
+    units["pricePerUnit"]["USD"].to_d
   end
 
   def calculate_price(price_components, price_per_unit, metadata)

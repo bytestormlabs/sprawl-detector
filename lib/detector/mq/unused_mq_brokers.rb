@@ -28,6 +28,7 @@ class UnusedMqBrokers
       resource.create_finding(scan, ISSUE_TYPE) if broker.created < (DateTime.now - number_of_days) && connection_count.indicates_zero_activity?
     end
   end
+
   def service_name
     "Amazon MQ"
   end

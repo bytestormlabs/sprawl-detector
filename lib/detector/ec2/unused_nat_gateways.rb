@@ -26,6 +26,7 @@ class UnusedNatGateways
       resource.create_finding(scan, ISSUE_TYPE) if success.indicates_zero_activity?
     end
   end
+
   def service_name
     "EC2 - Other"
   end

@@ -17,7 +17,7 @@ class ObsoleteMachineImagesTest < ActiveSupport::TestCase
   class IntegrationTests < BaseAwsIntegrationTest
     detector = ObsoleteMachineImages.new
     fixtures(:accounts)
-    
+
     test "create resources" do
       scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
       findings = Finding.count

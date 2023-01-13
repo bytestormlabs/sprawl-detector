@@ -4,13 +4,13 @@ require "base_aws_integration_test"
 class UnusedLoadBalancersTest < ActiveSupport::TestCase
   detector = UnusedLoadBalancers.new
 
- test "has correct service name" do
-   assert_equal detector.service_name, "Amazon Elastic Load Balancing"
- end
+  test "has correct service name" do
+    assert_equal detector.service_name, "Amazon Elastic Load Balancing"
+  end
 
- test "generates default settings" do
-   assert_equal detector.default_settings.count, 1
- end
+  test "generates default settings" do
+    assert_equal detector.default_settings.count, 1
+  end
 
   class IntegrationTests < BaseAwsIntegrationTest
     detector = UnusedLoadBalancers.new

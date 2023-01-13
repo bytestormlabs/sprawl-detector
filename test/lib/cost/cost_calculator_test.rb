@@ -16,7 +16,7 @@ class CostCalculatorTest < BaseAwsIntegrationTest
           },
           {
             "subnet_id" => "subnet-5678"
-          },
+          }
         ]
       }
     ))

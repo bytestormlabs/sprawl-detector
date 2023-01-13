@@ -1,4 +1,3 @@
-
 if ENV["USE_SECRETS"] == "true"
   Sekreto.setup do |setup|
     setup.secrets_manager = Aws::SecretsManager::Client.new
