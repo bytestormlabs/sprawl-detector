@@ -1,0 +1,14 @@
+resource_type: AWS::RDS::DBInstance
+service: AmazonRDS
+filters:
+  - key: productFamily
+    value: Database Instance
+  - key: regionCode
+    eval: region
+  - key: databaseEngine
+    eval: translate_engine(metadata["engine"])
+  - key: instanceType
+    eval: metadata["db_instance_class"]
+price_components:
+  - "720.0"
+  - price_per_unit

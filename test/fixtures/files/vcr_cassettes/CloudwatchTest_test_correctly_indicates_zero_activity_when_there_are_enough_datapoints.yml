@@ -1,0 +1,125 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://monitoring.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=DBInstanceIdentifier&Dimensions.member.1.Value=byte-storm-labs-test-database-mysql-dbinstance-eke8ouwvjk1c&EndTime=2023-01-08T18%3A56%3A58Z&MetricName=Queries&Namespace=AWS%2FRDS&Period=86400&StartTime=2022-12-25T18%3A56%3A58Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230108T185658Z
+      X-Amz-Content-Sha256:
+      - '02041950436a40ea402f0bfe973df5bf34221cb9d90087023acb9877862df07e'
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '321'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - f94a5c60-1f88-40aa-805d-8445ffcc182c
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '501'
+      Date:
+      - Sun, 08 Jan 2023 18:56:58 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2022-12-27T18:56:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2022-12-28T18:56:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>0</Sum>
+                <Timestamp>2022-12-29T18:56:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>0</Sum>
+                <Timestamp>2022-12-29T18:56:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>0</Sum>
+                <Timestamp>2022-12-29T18:56:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>0</Sum>
+                <Timestamp>2022-12-29T18:56:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>0</Sum>
+                <Timestamp>2022-12-29T18:56:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>0</Sum>
+                <Timestamp>2022-12-29T18:56:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>0</Sum>
+                <Timestamp>2022-12-29T18:56:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>0</Sum>
+                <Timestamp>2022-12-29T18:56:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>0</Sum>
+                <Timestamp>2022-12-29T18:56:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>0</Sum>
+                <Timestamp>2022-12-29T18:56:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>0</Sum>
+                <Timestamp>2022-12-29T18:56:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count/Second</Unit>
+                <Sum>0</Sum>
+                <Timestamp>2022-12-29T18:56:00Z</Timestamp>
+              </member>
+            </Datapoints>
+            <Label>Queries</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>f94a5c60-1f88-40aa-805d-8445ffcc182c</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Sun, 08 Jan 2023 18:56:58 GMT
+recorded_with: VCR 6.1.0

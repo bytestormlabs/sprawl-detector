@@ -1,0 +1,108 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://mq.us-east-2.amazonaws.com/v1/brokers
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-mq/1.48.0
+      Host:
+      - mq.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T191042Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - SecretToken
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 11 Jan 2023 19:10:43 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '393'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - d4522dd4-3f32-49f7-8f09-96f9dfcb9c4b
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Amz-Apigw-Id:
+      - el50BFzFiYcFe3A=
+      Cache-Control:
+      - no-cache; no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Access-Control-Expose-Headers:
+      - x-amzn-errortype,x-amzn-requestid,x-amzn-errormessage,x-amzn-trace-id,x-amz-apigw-id,date
+      X-Amzn-Trace-Id:
+      - Root=1-63bf09b3-36fb07624eb06227021e6009
+      Pragma:
+      - no-cache
+    body:
+      encoding: UTF-8
+      string: '{"nextToken":null,"brokerSummaries":[{"brokerId":"b-39e9060d-91cf-47bf-bd8e-2f9d77c91bdc","brokerArn":"arn:aws:mq:us-east-2:163788863765:broker:DeleteMe:b-39e9060d-91cf-47bf-bd8e-2f9d77c91bdc","brokerState":"CREATION_IN_PROGRESS","brokerName":"DeleteMe","deploymentMode":"ACTIVE_STANDBY_MULTI_AZ","hostInstanceType":"mq.m5.large","engineType":"ActiveMQ","created":"2022-01-11T19:05:32.585Z"}]}'
+  recorded_at: Wed, 11 Jan 2023 19:10:43 GMT
+- request:
+    method: post
+    uri: https://monitoring.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=Broker&Dimensions.member.1.Value=DeleteMe&EndTime=2023-01-11T19%3A10%3A43Z&MetricName=ConnectionCount&Namespace=AWS%2FAmazonMQ&Period=86400&StartTime=2022-10-13T19%3A10%3A43Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T191043Z
+      X-Amz-Content-Sha256:
+      - cdd5c4b7c92ae09de0c18cf1d287b659c7a19c0d2a71ab46a62d4588026a4dc9
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '269'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - '04979801-f39f-4369-b31d-5f893fd3b8aa'
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '338'
+      Date:
+      - Wed, 11 Jan 2023 19:10:42 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints/>
+            <Label>ConnectionCount</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>04979801-f39f-4369-b31d-5f893fd3b8aa</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Wed, 11 Jan 2023 19:10:43 GMT
+recorded_with: VCR 6.1.0

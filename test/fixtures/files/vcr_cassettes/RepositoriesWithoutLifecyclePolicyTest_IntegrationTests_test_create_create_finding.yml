@@ -1,0 +1,227 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.ecr.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ecr/1.57.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - AmazonEC2ContainerRegistry_V20150921.DescribeRepositories
+      Host:
+      - api.ecr.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T174126Z
+      X-Amz-Content-Sha256:
+      - 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '2'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 22ece613-5e54-4eb0-9245-ad71545b636a
+      Date:
+      - Wed, 11 Jan 2023 17:41:26 GMT
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '797'
+    body:
+      encoding: UTF-8
+      string: '{"repositories":[{"createdAt":1.672952688E9,"encryptionConfiguration":{"encryptionType":"AES256"},"imageScanningConfiguration":{"scanOnPush":false},"imageTagMutability":"MUTABLE","registryId":"163788863765","repositoryArn":"arn:aws:ecr:us-east-2:163788863765:repository/sprawl-detector","repositoryName":"sprawl-detector","repositoryUri":"163788863765.dkr.ecr.us-east-2.amazonaws.com/sprawl-detector"},{"createdAt":1.672931895E9,"encryptionConfiguration":{"encryptionType":"AES256"},"imageScanningConfiguration":{"scanOnPush":false},"imageTagMutability":"MUTABLE","registryId":"163788863765","repositoryArn":"arn:aws:ecr:us-east-2:163788863765:repository/resource-scheduler","repositoryName":"resource-scheduler","repositoryUri":"163788863765.dkr.ecr.us-east-2.amazonaws.com/resource-scheduler"}]}'
+  recorded_at: Wed, 11 Jan 2023 17:41:26 GMT
+- request:
+    method: post
+    uri: https://api.ecr.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"repositoryName":"sprawl-detector","registryId":"163788863765"}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ecr/1.57.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - AmazonEC2ContainerRegistry_V20150921.DescribeImages
+      Host:
+      - api.ecr.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T174126Z
+      X-Amz-Content-Sha256:
+      - 431dc1e0a36e15abb19bda7654b987835e506c0e02a9c5a736dc144c0fa15b5a
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '64'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - e4eca357-4e73-48c3-a4df-cffee1617ed1
+      Date:
+      - Wed, 11 Jan 2023 17:41:26 GMT
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '5893'
+    body:
+      encoding: UTF-8
+      string: '{"imageDetails":[{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:f4df64f578312a3ce9478cbe582ef8dee6d4841394bf5035ceb2d1ed8162a983","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.673407586E9,"imageSizeInBytes":530573152,"registryId":"163788863765","repositoryName":"sprawl-detector"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:46d74530da4a00879db990abc1579dd71d0adc6518bccd26a0a8f24ba75768b3","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.673406232E9,"imageSizeInBytes":530360365,"lastRecordedPullTime":1.673406259175E9,"registryId":"163788863765","repositoryName":"sprawl-detector"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:fbfb2f95b62e2b3e896ca6a533066f458ac29634d2d4ac383b1354fb0872b35a","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.673110021E9,"imageSizeInBytes":441026394,"lastRecordedPullTime":1.673110061667E9,"registryId":"163788863765","repositoryName":"sprawl-detector"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:4db5b8fbed6a2368148a5cc7f5eacb7ca5e18acbd41b5225339c1720a3ebeebe","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.672953394E9,"imageSizeInBytes":383897935,"lastRecordedPullTime":1.673109650312E9,"registryId":"163788863765","repositoryName":"sprawl-detector"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:35c554d18891bf24c569964c4ac24aa1072daa6d71d853c4f903d4e3347cd98f","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.673406451E9,"imageSizeInBytes":530360587,"registryId":"163788863765","repositoryName":"sprawl-detector"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:1048565d7564c4843b3f9022c81f215e2edb8e682406816763dfa0de4429e072","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.673110798E9,"imageSizeInBytes":441026076,"lastRecordedPullTime":1.673110863547E9,"registryId":"163788863765","repositoryName":"sprawl-detector"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:e8cfaabe778b28652f811e304b11e47bc734b2fa9561e0398025ba69abe2340b","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.673406498E9,"imageSizeInBytes":530360388,"lastRecordedPullTime":1.673406568615E9,"registryId":"163788863765","repositoryName":"sprawl-detector"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:1fec3e3fd58970bf86a74e165abc342e59d485c50235778f0fb6b9ad8bd2d161","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.673109674E9,"imageSizeInBytes":421074663,"registryId":"163788863765","repositoryName":"sprawl-detector"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:0f3aa1dd1074babb3ed9d4b755bed504ca9e4dbb6f6a0689753225f1cebd4d63","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.673405971E9,"imageSizeInBytes":530233804,"lastRecordedPullTime":1.673406032957E9,"registryId":"163788863765","repositoryName":"sprawl-detector"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:7d5a1b1f6668e4abafb1d4cfea2a34b4155fb31aaae146bda772177f63f2a2db","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.673112288E9,"imageSizeInBytes":441028895,"lastRecordedPullTime":1.67311237358E9,"registryId":"163788863765","repositoryName":"sprawl-detector"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:e77bbb4a17c8a186ec798c84696f825c4aa329a06f23785959d46dc8f12222bf","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.67340742E9,"imageSizeInBytes":530573180,"lastRecordedPullTime":1.67340745348E9,"registryId":"163788863765","repositoryName":"sprawl-detector"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:272780cf2c554dce33fcb07b3c3408a702e68bcffb1f6107605c5fcdf909b14c","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.673118542E9,"imageSizeInBytes":441236079,"registryId":"163788863765","repositoryName":"sprawl-detector"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:e54a3b359a47acc25d1f1a651eb8cbc3b6058bcc2ce9fb6a50935059a66f0fe2","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.673407776E9,"imageSizeInBytes":530573197,"imageTags":["latest"],"lastRecordedPullTime":1.673407797503E9,"registryId":"163788863765","repositoryName":"sprawl-detector"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:94d571416733342adadb91707c7016750d78a5c8f3a66d99888816edccc65c69","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.673116198E9,"imageSizeInBytes":441030223,"lastRecordedPullTime":1.673116792101E9,"registryId":"163788863765","repositoryName":"sprawl-detector"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:2d4a5f2fda682b658de4cb3dafa22f54ac264c217e659e037993cb845ce1c920","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.673407629E9,"imageSizeInBytes":530573160,"lastRecordedPullTime":1.673407644537E9,"registryId":"163788863765","repositoryName":"sprawl-detector"}]}'
+  recorded_at: Wed, 11 Jan 2023 17:41:26 GMT
+- request:
+    method: post
+    uri: https://api.ecr.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"repositoryName":"sprawl-detector","registryId":"163788863765"}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ecr/1.57.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - AmazonEC2ContainerRegistry_V20150921.GetLifecyclePolicy
+      Host:
+      - api.ecr.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T174126Z
+      X-Amz-Content-Sha256:
+      - 431dc1e0a36e15abb19bda7654b987835e506c0e02a9c5a736dc144c0fa15b5a
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '64'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      X-Amzn-Requestid:
+      - c9dc64b7-38c9-402e-89ad-7327d42af777
+      Date:
+      - Wed, 11 Jan 2023 17:41:26 GMT
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '175'
+    body:
+      encoding: UTF-8
+      string: '{"__type":"LifecyclePolicyNotFoundException","message":"Lifecycle policy
+        does not exist for the repository with name ''sprawl-detector'' in the registry
+        with id ''163788863765''"}'
+  recorded_at: Wed, 11 Jan 2023 17:41:26 GMT
+- request:
+    method: post
+    uri: https://api.ecr.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"repositoryName":"resource-scheduler","registryId":"163788863765"}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ecr/1.57.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - AmazonEC2ContainerRegistry_V20150921.DescribeImages
+      Host:
+      - api.ecr.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T174126Z
+      X-Amz-Content-Sha256:
+      - 96ee8d6100120d52101d83a5cab6077ab4001a7618c4ca999f20e8d1cba42542
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '67'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 695b731d-874f-46f7-9dcd-71e9b23a28fa
+      Date:
+      - Wed, 11 Jan 2023 17:41:26 GMT
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '2385'
+    body:
+      encoding: UTF-8
+      string: '{"imageDetails":[{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:ebf0e7f3d89bed950874f30c266ecc616aa30888a54eb5f8a88176233a02a436","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.672951807E9,"imageSizeInBytes":386648061,"imageTags":["latest"],"registryId":"163788863765","repositoryName":"resource-scheduler"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:7a6381220b5a5670c4ad1a9d49130037c187601e39c64188fe63a0fc2f14376f","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.672932541E9,"imageSizeInBytes":379109243,"lastRecordedPullTime":1.672932901292E9,"registryId":"163788863765","repositoryName":"resource-scheduler"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:fafba0a960427cbb111336b134e0368eca3b6908453edc0db8003eaf175078fe","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.672932243E9,"imageSizeInBytes":379108560,"registryId":"163788863765","repositoryName":"resource-scheduler"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:f3117169efb119989f0bd4c5ea6a0c4ae724cb90204cf4614ac40a3f932c36fe","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.672933254E9,"imageSizeInBytes":379111362,"lastRecordedPullTime":1.672933259948E9,"registryId":"163788863765","repositoryName":"resource-scheduler"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:20d48b46ba545fc142293ae353eee8b7d71e5e087203c4b0409d0bdf68ef91d5","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.672934097E9,"imageSizeInBytes":387686632,"lastRecordedPullTime":1.672934100739E9,"registryId":"163788863765","repositoryName":"resource-scheduler"},{"artifactMediaType":"application/vnd.docker.container.image.v1+json","imageDigest":"sha256:6d8847abe86b3605968881dd30a645c0ed0220577b747aa00ae458f7c4485f8f","imageManifestMediaType":"application/vnd.docker.distribution.manifest.v2+json","imagePushedAt":1.672934653E9,"imageSizeInBytes":387686701,"lastRecordedPullTime":1.672935502841E9,"registryId":"163788863765","repositoryName":"resource-scheduler"}]}'
+  recorded_at: Wed, 11 Jan 2023 17:41:26 GMT
+- request:
+    method: post
+    uri: https://api.ecr.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"repositoryName":"resource-scheduler","registryId":"163788863765"}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ecr/1.57.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - AmazonEC2ContainerRegistry_V20150921.GetLifecyclePolicy
+      Host:
+      - api.ecr.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T174126Z
+      X-Amz-Content-Sha256:
+      - 96ee8d6100120d52101d83a5cab6077ab4001a7618c4ca999f20e8d1cba42542
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '67'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      X-Amzn-Requestid:
+      - 88c441b2-7d88-4ce5-827e-bddee6209e3e
+      Date:
+      - Wed, 11 Jan 2023 17:41:26 GMT
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '178'
+    body:
+      encoding: UTF-8
+      string: '{"__type":"LifecyclePolicyNotFoundException","message":"Lifecycle policy
+        does not exist for the repository with name ''resource-scheduler'' in the
+        registry with id ''163788863765''"}'
+  recorded_at: Wed, 11 Jan 2023 17:41:27 GMT
+recorded_with: VCR 6.1.0

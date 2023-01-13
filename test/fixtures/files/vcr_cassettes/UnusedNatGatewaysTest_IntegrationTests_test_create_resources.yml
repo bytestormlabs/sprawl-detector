@@ -1,0 +1,196 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://ec2.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeNatGateways&Version=2016-11-15
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ec2/1.356.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - ec2.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230110T221334Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - e7ec967fa2c793722904d240f14ecdbf1bca55f6139f7bf13347f046870b9432
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '45'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 5dd82c86-c290-4c36-9548-3cc1a8c875ec
+      Cache-Control:
+      - no-cache, no-store
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Vary:
+      - accept-encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 10 Jan 2023 22:13:34 GMT
+      Server:
+      - AmazonEC2
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <DescribeNatGatewaysResponse xmlns="http://ec2.amazonaws.com/doc/2016-11-15/">
+            <requestId>5dd82c86-c290-4c36-9548-3cc1a8c875ec</requestId>
+            <natGatewaySet>
+                <item>
+                    <createTime>2021-06-08T19:30:01.000Z</createTime>
+                    <natGatewayAddressSet>
+                        <item>
+                            <allocationId>eipalloc-0casdfaf0sfadffd</allocationId>
+                            <networkInterfaceId>eni-04ad410484b2d6e8e</networkInterfaceId>
+                        </item>
+                    </natGatewayAddressSet>
+                    <natGatewayId>nat-94928bc9ajf092fja</natGatewayId>
+                    <state>available</state>
+                </item>
+            </natGatewaySet>
+        </DescribeNatGatewaysResponse>
+  recorded_at: Tue, 10 Jan 2023 22:13:35 GMT
+- request:
+    method: post
+    uri: https://monitoring.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=NatGatewayId&Dimensions.member.1.Value=nat-94928bc9ajf092fja&EndTime=2023-01-10T22%3A13%3A35Z&MetricName=ConnectionEstablishedCount&Namespace=AWS%2FNATGateway&Period=86400&StartTime=2022-12-27T22%3A13%3A35Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230110T221335Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - ec83a0d9d721154ad623be76377d735e1b9d3af813c11f9dad246d475cf24960
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '301'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 80aecae2-71b7-4517-9ade-8a61275f82af
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '2228'
+      Date:
+      - Tue, 10 Jan 2023 22:13:36 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2022-12-27T22:13:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-02T22:13:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-08T22:13:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-03T22:13:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-09T22:13:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-07T22:13:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-01T22:13:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2022-12-30T22:13:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-05T22:13:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2022-12-31T22:13:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-06T22:13:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2022-12-28T22:13:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2022-12-29T22:13:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-04T22:13:00Z</Timestamp>
+              </member>
+            </Datapoints>
+            <Label>ConnectionEstablishedCount</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>80aecae2-71b7-4517-9ade-8a61275f82af</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Tue, 10 Jan 2023 22:13:36 GMT
+recorded_with: VCR 6.1.0

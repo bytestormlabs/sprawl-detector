@@ -1,0 +1,35 @@
+name: Ruby
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
+        with:
+          ruby-version: '3.1.0'
+      - name: Create AWS Profile
+        run: |
+          mkdir -p ~/.aws
+          echo "[default]" >> ~/.aws/credentials
+          echo "aws_access_key_id = abcdefghijklmnop" >> ~/.aws/credentials
+          echo "aws_secret_access_key = abcdefghijklmnop" >> ~/.aws/credentials
+          echo "aws_region = us-east-2" >> ~/.aws/credentials
+      - name: Install dependencies
+        run: bundle install
+      - name: Create database
+        run: bundle exec rake db:migrate
+        env:
+          AWS_REGION: us-east-2
+          RAILS_ENV: test
+      - name: Seed database
+        run: bundle exec rake db:seed
+        env:
+          AWS_REGION: us-east-2
+          RAILS_ENV: test
+      - name: Run tests
+        run: bundle exec rake test
+        env:
+          AWS_REGION: us-east-2
+          RAILS_ENV: test

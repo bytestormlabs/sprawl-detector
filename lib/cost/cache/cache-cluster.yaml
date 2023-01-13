@@ -1,0 +1,16 @@
+service: AmazonElastiCache
+resource_type: AWS::ElastiCache::CacheCluster
+filters:
+  - key: productFamily
+    value: Cache Instance
+  - key: regionCode
+    eval: region
+  - key: instanceType
+    eval: metadata["cache_node_type"]
+  - key: cacheEngine
+    eval: translate_cache_engine(metadata["engine"])
+  - key: locationType
+    value: AWS Region
+price_components:
+  - price_per_unit
+  - "720.0"

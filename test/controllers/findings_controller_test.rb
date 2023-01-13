@@ -13,7 +13,7 @@ class FindingsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "filter by status" do
-      get findings_url, params: { status: "Closed" }, headers: {Authorization: "Bearer: abc-123-def-456"}
+      get findings_url, params: {status: "closed"}, headers: {Authorization: "Bearer: abc-123-def-456"}
       assert_response 200
       assert_equal 20, JSON.parse(@response.body)["data"].count
     end

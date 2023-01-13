@@ -1,0 +1,15 @@
+service: AmazonEC2
+resource_type: AWS::EC2::Instance
+filters:
+  - key: productFamily
+    value: Compute Instance
+  - key: regionCode
+    eval: region
+  - key: instanceType
+    eval: metadata["instance_type"]
+  - key: locationType
+    value: AWS Region
+multiple_price_point_behavior: minimum
+price_components:
+  - price_per_unit
+  - "720.0"

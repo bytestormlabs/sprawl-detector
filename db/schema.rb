@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_07_125620) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_09_015310) do
   create_table "accounts", force: :cascade do |t|
     t.string "account_id"
     t.string "external_id"
@@ -20,33 +20,33 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_125620) do
     t.index ["tenant_id"], name: "index_accounts_on_tenant_id"
   end
 
-  create_table "feature_configurations", force: :cascade do |t|
-    t.string "tenant_id"
-    t.string "key"
-    t.string "value"
+  create_table "aws_cost_line_items", force: :cascade do |t|
+    t.date "date"
+    t.string "service"
+    t.string "region"
+    t.decimal "cost"
+    t.integer "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_aws_cost_line_items_on_account_id"
   end
 
   create_table "findings", force: :cascade do |t|
     t.string "category"
-    t.string "aws_account_id"
-    t.string "resource_id"
     t.string "issue_type"
-    t.string "region"
-    t.string "message"
-    t.json "metadata"
-    t.integer "status_id"
+    t.string "status"
+    t.decimal "estimated_cost", precision: 64, scale: 12
+    t.json "params"
+    t.integer "resource_id"
+    t.integer "account_id"
     t.integer "resolution_id"
+    t.integer "scan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "scan_id"
-    t.float "cost"
-    t.integer "account_id"
     t.index ["account_id"], name: "index_findings_on_account_id"
     t.index ["resolution_id"], name: "index_findings_on_resolution_id"
+    t.index ["resource_id"], name: "index_findings_on_resource_id"
     t.index ["scan_id"], name: "index_findings_on_scan_id"
-    t.index ["status_id"], name: "index_findings_on_status_id"
   end
 
   create_table "resolutions", force: :cascade do |t|
@@ -55,15 +55,38 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_125620) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "scans", force: :cascade do |t|
+  create_table "resources", force: :cascade do |t|
+    t.string "resource_id"
+    t.string "resource_type"
+    t.string "region"
+    t.json "metadata"
+    t.integer "account_id"
+    t.integer "scan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_resources_on_account_id"
+    t.index ["scan_id"], name: "index_resources_on_scan_id"
   end
 
-  create_table "statuses", force: :cascade do |t|
-    t.string "name"
+  create_table "scans", force: :cascade do |t|
+    t.integer "account_id"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_scans_on_account_id"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string "data_type", default: "integer"
+    t.string "name"
+    t.text "description"
+    t.string "value"
+    t.integer "account_id"
+    t.integer "tenant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_settings_on_account_id"
+    t.index ["tenant_id"], name: "index_settings_on_tenant_id"
   end
 
   create_table "tenants", force: :cascade do |t|
@@ -104,6 +127,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_125620) do
   end
 
   add_foreign_key "accounts", "tenants"
+  add_foreign_key "aws_cost_line_items", "accounts"
+  add_foreign_key "findings", "accounts"
   add_foreign_key "findings", "resolutions"
-  add_foreign_key "findings", "statuses"
+  add_foreign_key "findings", "resources"
+  add_foreign_key "findings", "scans"
+  add_foreign_key "resources", "accounts"
+  add_foreign_key "resources", "scans"
+  add_foreign_key "scans", "accounts"
+  add_foreign_key "settings", "accounts"
+  add_foreign_key "settings", "tenants"
 end

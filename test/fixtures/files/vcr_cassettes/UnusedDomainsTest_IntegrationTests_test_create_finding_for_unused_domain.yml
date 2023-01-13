@@ -1,0 +1,167 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://es.us-east-1.amazonaws.com/2015-01-01/domain
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-elasticsearchservice/1.68.0
+      Host:
+      - es.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230111T185336Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - SecretToken
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 55538696-aa48-4f07-9fe1-abd8ce903c55
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '83'
+      Date:
+      - Wed, 11 Jan 2023 18:53:35 GMT
+    body:
+      encoding: UTF-8
+      string: '{"DomainNames":[{"DomainName":"bytestorm-opensearch","EngineType":"Elasticsearch"}]}'
+  recorded_at: Wed, 11 Jan 2023 18:53:36 GMT
+- request:
+    method: post
+    uri: https://monitoring.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=DomainName&Dimensions.member.1.Value=bytestorm-opensearch&Dimensions.member.2.Name=ClientId&Dimensions.member.2.Value=123456789012&EndTime=2023-01-11T18%3A53%3A36Z&MetricName=2xx&Namespace=AWS%2FES&Period=86400&StartTime=2022-12-28T18%3A53%3A36Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230111T185336Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - c934e57fcd0ba9201eb6e8cb59abb95cb89a5e8b23757c5222172b4efc725848
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '339'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - eeff082c-51ad-4ec7-a228-728bda9ec02c
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '2264'
+      Date:
+      - Wed, 11 Jan 2023 18:53:37 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2022-12-29T18:53:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-04T18:53:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2022-12-30T18:53:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-05T18:53:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-03T18:53:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-09T18:53:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-10T18:53:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2022-12-28T18:53:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-01T18:53:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-02T18:53:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-08T18:53:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2022-12-31T18:53:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-06T18:53:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-07T18:53:00Z</Timestamp>
+              </member>
+            </Datapoints>
+            <Label>2xx</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>eeff082c-51ad-4ec7-a228-728bda9ec02c</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Wed, 11 Jan 2023 18:53:37 GMT
+recorded_with: VCR 6.1.0

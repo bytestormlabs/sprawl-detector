@@ -1,0 +1,8 @@
+resource_type: AWS::CloudWatch::Dashboard
+service: AmazonCloudwatch
+filters:
+  - key: operation
+    value: DashboardHour
+price_components:
+  - "720.0"
+  - price_per_unit

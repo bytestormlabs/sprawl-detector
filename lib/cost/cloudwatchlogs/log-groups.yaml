@@ -1,0 +1,15 @@
+service: AmazonCloudWatch
+resource_type: AWS::Logs::LogGroup
+filters:
+  - key: productFamily
+    value: Storage Snapshot
+  - key: regionCode
+    eval: region
+  - key: version
+    value: Current
+price_components:
+  - price_per_unit
+  - metadata["stored_bytes"]
+  - (1/1024.0)   # Convert to KB
+  - (1/1024.0)   # Convert to MB
+  - (1/1024.0)   # Convert to Gigabytes

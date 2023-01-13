@@ -1,0 +1,84 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://redshift.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeClusterSnapshots&Version=2012-12-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-redshift/1.87.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - redshift.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230111T211651Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - c0ca1b49e8b12e5b0fdce23d0a53e85e105ae1ea40452339c576a6a17589be10
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '50'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 79ff5fac-a44e-4928-8651-79fecc0390df
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '48679'
+      Date:
+      - Wed, 11 Jan 2023 21:16:51 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <DescribeClusterSnapshotsResponse xmlns="http://redshift.amazonaws.com/doc/2012-12-01/">
+          <DescribeClusterSnapshotsResult>
+            <Snapshots>
+              <Snapshot>
+                <SnapshotRetentionStartTime>2022-01-11T20:35:29.853Z</SnapshotRetentionStartTime>
+                <ClusterIdentifier>bytestorm-labs-redshift-cluster-01</ClusterIdentifier>
+                <EncryptedWithHSM>false</EncryptedWithHSM>
+                <NumberOfNodes>2</NumberOfNodes>
+                <OwnerAccount>123456789012</OwnerAccount>
+                <AvailabilityZone>us-east-1a</AvailabilityZone>
+                <ClusterVersion>1.0</ClusterVersion>
+                <TotalBackupSizeInMegaBytes>4634.0</TotalBackupSizeInMegaBytes>
+                <ClusterCreateTime>2023-01-01T12:00:00.000Z</ClusterCreateTime>
+                <ElapsedTimeInSeconds>16</ElapsedTimeInSeconds>
+                <MasterUsername>bytestormlabs</MasterUsername>
+                <DBName>defaultdb</DBName>
+                <SnapshotType>manual</SnapshotType>
+                <EnhancedVpcRouting>false</EnhancedVpcRouting>
+                <SnapshotIdentifier>rs:bytestormlabs-redshift-cluster-01-backup</SnapshotIdentifier>
+                <NodeType>ra3.4xlarge</NodeType>
+                <Tags/>
+                <RestorableNodeTypes>
+                  <NodeType>ra3.4xlarge</NodeType>
+                </RestorableNodeTypes>
+                <Encrypted>true</Encrypted>
+                <EstimatedSecondsToCompletion>-1</EstimatedSecondsToCompletion>
+                <Port>5439</Port>
+                <SnapshotCreateTime>2022-01-11T12:00:00.000Z</SnapshotCreateTime>
+                <MaintenanceTrackName>current</MaintenanceTrackName>
+                <Status>available</Status>
+              </Snapshot>
+            </Snapshots>
+          </DescribeClusterSnapshotsResult>
+          <ResponseMetadata>
+            <RequestId>79ff5fac-a44e-4928-8651-79fecc0390df</RequestId>
+          </ResponseMetadata>
+        </DescribeClusterSnapshotsResponse>
+  recorded_at: Wed, 11 Jan 2023 21:16:52 GMT
+recorded_with: VCR 6.1.0

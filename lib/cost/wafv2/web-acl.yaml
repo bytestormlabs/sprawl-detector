@@ -1,0 +1,7 @@
+resource_type: AWS::WAFv2::WebAcl
+service: AWSWaf
+filters:
+  - key: usageType
+    eval: transfer_region_prefix(region) + "WebACLV2"
+price_components:
+  - price_per_unit

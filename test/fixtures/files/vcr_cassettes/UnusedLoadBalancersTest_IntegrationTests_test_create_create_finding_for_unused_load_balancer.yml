@@ -1,0 +1,134 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://elasticloadbalancing.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeLoadBalancers&Version=2015-12-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-elasticloadbalancingv2/1.82.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - elasticloadbalancing.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T180933Z
+      X-Amz-Content-Sha256:
+      - 291737628a8822c591d69bcc8ab0023e2d91be3e5358172d89f534bec412a356
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '47'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - f76c5bd2-68c1-4738-b2c4-c50106cd2d70
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '1546'
+      Date:
+      - Wed, 11 Jan 2023 18:09:33 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <DescribeLoadBalancersResponse xmlns="http://elasticloadbalancing.amazonaws.com/doc/2015-12-01/">
+          <DescribeLoadBalancersResult>
+            <LoadBalancers>
+              <member>
+                <LoadBalancerArn>arn:aws:elasticloadbalancing:us-east-2:163788863765:loadbalancer/app/Staging-LoadBalancer/c96c199edae60805</LoadBalancerArn>
+                <Scheme>internet-facing</Scheme>
+                <AvailabilityZones>
+                  <member>
+                    <SubnetId>subnet-058ae39ccb1cfe8d2</SubnetId>
+                    <ZoneName>us-east-2a</ZoneName>
+                    <LoadBalancerAddresses/>
+                  </member>
+                  <member>
+                    <SubnetId>subnet-0f93308ca27be8001</SubnetId>
+                    <ZoneName>us-east-2b</ZoneName>
+                    <LoadBalancerAddresses/>
+                  </member>
+                </AvailabilityZones>
+                <DNSName>Staging-LoadBalancer-2015420987.us-east-2.elb.amazonaws.com</DNSName>
+                <Type>application</Type>
+                <IpAddressType>ipv4</IpAddressType>
+                <LoadBalancerName>Staging-LoadBalancer</LoadBalancerName>
+                <VpcId>vpc-0cbc356f2fb6bae46</VpcId>
+                <CanonicalHostedZoneId>Z3AADJGX6KTTL2</CanonicalHostedZoneId>
+                <CreatedTime>2022-01-11T18:05:31.620Z</CreatedTime>
+                <SecurityGroups>
+                  <member>sg-0d940c6ad31a11afc</member>
+                </SecurityGroups>
+                <State>
+                  <Code>active</Code>
+                </State>
+              </member>
+            </LoadBalancers>
+          </DescribeLoadBalancersResult>
+          <ResponseMetadata>
+            <RequestId>f76c5bd2-68c1-4738-b2c4-c50106cd2d70</RequestId>
+          </ResponseMetadata>
+        </DescribeLoadBalancersResponse>
+  recorded_at: Wed, 11 Jan 2023 18:09:33 GMT
+- request:
+    method: post
+    uri: https://monitoring.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=LoadBalancer&Dimensions.member.1.Value=app%2FStaging-LoadBalancer%2Fc96c199edae60805&EndTime=2023-01-11T18%3A09%3A33Z&MetricName=RequestCount&Namespace=AWS%2FApplicationELB&Period=86400&StartTime=2022-12-28T18%3A09%3A33Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T180933Z
+      X-Amz-Content-Sha256:
+      - 7d156e4458d94ca538bc8e65bdc7565e622c2c618d78cbcd8bdf42a0ff876499
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '315'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - e21857f8-90ed-41f3-87cd-8d19a67df01d
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '335'
+      Date:
+      - Wed, 11 Jan 2023 18:09:33 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints/>
+            <Label>RequestCount</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>e21857f8-90ed-41f3-87cd-8d19a67df01d</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Wed, 11 Jan 2023 18:09:34 GMT
+recorded_with: VCR 6.1.0

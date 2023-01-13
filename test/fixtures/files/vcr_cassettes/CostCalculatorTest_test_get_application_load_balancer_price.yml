@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.pricing.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"ServiceCode":"AWSELB","Filters":[{"Type":"TERM_MATCH","Field":"regionCode","Value":"us-east-1"},{"Type":"TERM_MATCH","Field":"usageType","Value":"LoadBalancerUsage"},{"Type":"TERM_MATCH","Field":"productFamily","Value":"Load
+        Balancer-Application"}]}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-pricing/1.41.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - AWSPriceListService.GetProducts
+      Host:
+      - api.pricing.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230111T152008Z
+      X-Amz-Content-Sha256:
+      - 8f1c478435ee796db8436726730459628d6a2fc47980bd8c57842c5ec7b7947c
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '251'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 11 Jan 2023 15:20:09 GMT
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '1124'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - aea028ac-3e12-4a3c-882a-d698f736692c
+    body:
+      encoding: UTF-8
+      string: '{"FormatVersion":"aws_v1","PriceList":["{\"product\":{\"productFamily\":\"Load
+        Balancer-Application\",\"attributes\":{\"regionCode\":\"us-east-1\",\"servicecode\":\"AWSELB\",\"groupDescription\":\"LoadBalancer
+        hourly usage by Application Load Balancer\",\"usagetype\":\"LoadBalancerUsage\",\"locationType\":\"AWS
+        Region\",\"location\":\"US East (N. Virginia)\",\"servicename\":\"Elastic
+        Load Balancing\",\"operation\":\"LoadBalancing:Application\",\"group\":\"ELB:Balancing\"},\"sku\":\"37CUWUT8GSNQEPUV\"},\"serviceCode\":\"AWSELB\",\"terms\":{\"OnDemand\":{\"37CUWUT8GSNQEPUV.JRTCKXETXF\":{\"priceDimensions\":{\"37CUWUT8GSNQEPUV.JRTCKXETXF.6YS6EN2CT7\":{\"unit\":\"Hrs\",\"endRange\":\"Inf\",\"description\":\"$0.0225
+        per Application LoadBalancer-hour (or partial hour)\",\"appliesTo\":[],\"rateCode\":\"37CUWUT8GSNQEPUV.JRTCKXETXF.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0225000000\"}}},\"sku\":\"37CUWUT8GSNQEPUV\",\"effectiveDate\":\"2022-12-01T00:00:00Z\",\"offerTermCode\":\"JRTCKXETXF\",\"termAttributes\":{}}}},\"version\":\"20221215071250\",\"publicationDate\":\"2022-12-15T07:12:50Z\"}"]}'
+  recorded_at: Wed, 11 Jan 2023 15:20:09 GMT
+recorded_with: VCR 6.1.0

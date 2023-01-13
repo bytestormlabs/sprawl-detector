@@ -84,6 +84,9 @@ GEM
     aws-sdk-cloudformation (1.73.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
+    aws-sdk-cloudtrail (1.55.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
     aws-sdk-cloudwatch (1.70.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
@@ -116,6 +119,9 @@ GEM
     aws-sdk-elasticsearchservice (1.68.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
+    aws-sdk-lambda (1.89.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
     aws-sdk-mq (1.48.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
@@ -140,6 +146,9 @@ GEM
     aws-sdk-transfer (1.65.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
+    aws-sdk-wafv2 (1.46.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
     aws-sigv4 (1.5.2)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.18)
@@ -159,6 +168,8 @@ GEM
     case_transform (0.2)
       activesupport
     concurrent-ruby (1.1.10)
+    crack (0.4.5)
+      rexml
     crass (1.0.6)
     date (3.3.3)
     debug (1.7.1)
@@ -175,6 +186,7 @@ GEM
       i18n (>= 1.8.11, < 2)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    hashdiff (1.0.1)
     hashie (5.0.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
@@ -196,6 +208,8 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.17.0)
+    minitest-around (0.5.0)
+      minitest (~> 5.0)
     msgpack (1.6.0)
     multi_json (1.15.0)
     mysql2 (0.5.4)
@@ -269,10 +283,14 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     sqlite3 (1.5.4-arm64-darwin)
+    terminal-table (3.0.2)
+      unicode-display_width (>= 1.1.1, < 3)
     thor (1.2.1)
     timeout (0.3.1)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.4.2)
+    vcr (6.1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -284,6 +302,10 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (~> 4.0)
+    webmock (3.18.1)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     websocket (1.2.9)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
@@ -300,6 +322,7 @@ DEPENDENCIES
   aws-sdk-acm
   aws-sdk-acmpca
   aws-sdk-cloudformation
+  aws-sdk-cloudtrail
   aws-sdk-cloudwatch
   aws-sdk-cloudwatchlogs
   aws-sdk-costexplorer
@@ -309,6 +332,7 @@ DEPENDENCIES
   aws-sdk-elasticache
   aws-sdk-elasticloadbalancingv2
   aws-sdk-elasticsearchservice
+  aws-sdk-lambda
   aws-sdk-mq
   aws-sdk-pricing
   aws-sdk-rds
@@ -317,12 +341,15 @@ DEPENDENCIES
   aws-sdk-sagemaker
   aws-sdk-secretsmanager
   aws-sdk-transfer
+  aws-sdk-wafv2
   bootsnap
   capybara
   debug
   devise
   faker
+  minitest-around
   mysql2
+  nokogiri
   omniauth
   ox
   puma (~> 5.0)
@@ -330,9 +357,12 @@ DEPENDENCIES
   sekreto
   selenium-webdriver
   sqlite3 (~> 1.4)
+  terminal-table
   tzinfo-data
+  vcr
   web-console
   webdrivers
+  webmock
 
 RUBY VERSION
    ruby 3.1.0p0

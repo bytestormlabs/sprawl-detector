@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.pricing.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"ServiceCode":"AmazonECR","Filters":[{"Type":"TERM_MATCH","Field":"regionCode","Value":"us-east-1"}]}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-pricing/1.41.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - AWSPriceListService.GetProducts
+      Host:
+      - api.pricing.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230111T170324Z
+      X-Amz-Content-Sha256:
+      - e9d40ef55670271b851b4d373b07ee47a1d98a17ddcbfbb1e22faa7b068989f6
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '102'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 11 Jan 2023 17:03:24 GMT
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '1010'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - 286a124d-ea52-4d4a-80c4-5683461681e1
+    body:
+      encoding: UTF-8
+      string: '{"FormatVersion":"aws_v1","PriceList":["{\"product\":{\"productFamily\":\"EC2
+        Container Registry\",\"attributes\":{\"regionCode\":\"us-east-1\",\"servicecode\":\"AmazonECR\",\"usagetype\":\"TimedStorage-ByteHrs\",\"locationType\":\"AWS
+        Region\",\"storageType\":\"S3\",\"location\":\"US East (N. Virginia)\",\"servicename\":\"Amazon
+        EC2 Container Registry (ECR)\",\"operation\":\"\"},\"sku\":\"KJC988R4J65BDMTQ\"},\"serviceCode\":\"AmazonECR\",\"terms\":{\"OnDemand\":{\"KJC988R4J65BDMTQ.JRTCKXETXF\":{\"priceDimensions\":{\"KJC988R4J65BDMTQ.JRTCKXETXF.6YS6EN2CT7\":{\"unit\":\"GB-Mo\",\"endRange\":\"Inf\",\"description\":\"$0.10
+        per GB-month of data storage\",\"appliesTo\":[],\"rateCode\":\"KJC988R4J65BDMTQ.JRTCKXETXF.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.1000000000\"}}},\"sku\":\"KJC988R4J65BDMTQ\",\"effectiveDate\":\"2022-12-01T00:00:00Z\",\"offerTermCode\":\"JRTCKXETXF\",\"termAttributes\":{}}}},\"version\":\"20221210000851\",\"publicationDate\":\"2022-12-10T00:08:51Z\"}"]}'
+  recorded_at: Wed, 11 Jan 2023 17:03:24 GMT
+recorded_with: VCR 6.1.0

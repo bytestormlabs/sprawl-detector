@@ -1,0 +1,11 @@
+service: AmazonRedshift
+resource_type: AWS::Redshift::RMSBackup
+filters:
+  - key: productFamily
+    value: Redshift Managed Storage
+  - key: regionCode
+    eval: region
+price_components:
+  - metadata["total_backup_size_in_mega_bytes"]
+  - (1.0 / 1024)      # Convert to GB
+  - price_per_unit    # Multiply by price

@@ -1,0 +1,12 @@
+service: AWSTransfer
+resource_type: AWS::Transfer::Server
+filters:
+  - key: productFamily
+    value: AWS Transfer Family
+  - key: regionCode
+    eval: region
+  - key: usageType
+    eval: transfer_region_prefix(region) + "ProtocolHours"
+price_components:
+  - price_per_unit
+  - "720.0"

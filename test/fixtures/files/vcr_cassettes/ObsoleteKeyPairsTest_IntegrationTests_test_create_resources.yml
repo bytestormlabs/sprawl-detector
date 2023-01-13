@@ -1,0 +1,118 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://ec2.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeInstances&Version=2016-11-15
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ec2/1.356.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - ec2.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230110T180621Z
+      X-Amz-Content-Sha256:
+      - 6171eb09865e32b0602af0f7957e26573a51f53caaedff02ff88883cb0275885
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '43'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 7adc6921-e601-43e4-a6ce-1dacbdbad316
+      Cache-Control:
+      - no-cache, no-store
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '230'
+      Date:
+      - Tue, 10 Jan 2023 18:06:21 GMT
+      Server:
+      - AmazonEC2
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <DescribeInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2016-11-15/">
+            <requestId>7adc6921-e601-43e4-a6ce-1dacbdbad316</requestId>
+            <reservationSet/>
+        </DescribeInstancesResponse>
+  recorded_at: Tue, 10 Jan 2023 18:06:22 GMT
+- request:
+    method: post
+    uri: https://ec2.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeKeyPairs&Version=2016-11-15
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ec2/1.356.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - ec2.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230110T180622Z
+      X-Amz-Content-Sha256:
+      - e7326d4766918579e6d040a9c8d2243cefc0ab1aaa37cd7a9dab76d8c3538b59
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '42'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - c762f839-d4d6-408b-bc49-31af802320a8
+      Cache-Control:
+      - no-cache, no-store
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '591'
+      Date:
+      - Tue, 10 Jan 2023 18:06:21 GMT
+      Server:
+      - AmazonEC2
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <DescribeKeyPairsResponse xmlns="http://ec2.amazonaws.com/doc/2016-11-15/">
+            <requestId>c762f839-d4d6-408b-bc49-31af802320a8</requestId>
+            <keySet>
+                <item>
+                    <keyName>FranksKeyPair</keyName>
+                    <keyPairId>key-01fcff199b10af8e9</keyPairId>
+                    <keyFingerprint>34:c1:89:a7:47:68:b9:83:8a:85:43:6a:fc:aa:66:6e:d7:5a:9b:68</keyFingerprint>
+                    <keyType>rsa</keyType>
+                    <createTime>2023-01-02T03:07:17.000Z</createTime>
+                    <tagSet/>
+                </item>
+            </keySet>
+        </DescribeKeyPairsResponse>
+  recorded_at: Tue, 10 Jan 2023 18:06:22 GMT
+recorded_with: VCR 6.1.0

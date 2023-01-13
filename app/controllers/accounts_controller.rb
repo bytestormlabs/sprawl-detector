@@ -35,6 +35,7 @@ class AccountsController < ApplicationController
   end
 
   private
+
   def create_params
     params.require(:account).permit(:name, :account_id)
   end

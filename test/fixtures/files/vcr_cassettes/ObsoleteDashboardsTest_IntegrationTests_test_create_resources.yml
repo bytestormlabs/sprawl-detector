@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://monitoring.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=ListDashboards&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230110T141345Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - 82bb0d2aa9e70d386eb2ca93b8117b87d41c21e1ddb25e98bd7eab32cc38f84c
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '40'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - a7b4eb10-ae9b-41b0-ae38-e293d1cf56de
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '868'
+      Date:
+      - Tue, 10 Jan 2023 14:13:45 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <ListDashboardsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <ListDashboardsResult>
+            <DashboardEntries>
+              <member>
+                <DashboardArn>arn:aws:cloudwatch::012345678912:dashboard/Super_Neat_Dashboard01</DashboardArn>
+                <LastModified>2020-07-06T15:48:40Z</LastModified>
+                <Size>14</Size>
+                <DashboardName>Super_Neat_Dashboard01</DashboardName>
+              </member>
+              <member>
+                <DashboardArn>arn:aws:cloudwatch::012345678912:dashboard/Super_Neat_Dashboard02</DashboardArn>
+                <LastModified><%= (DateTime.now - 7).to_s %></LastModified>
+                <Size>4745</Size>
+                <DashboardName>Super_Neat_Dashboard02</DashboardName>
+              </member>
+            </DashboardEntries>
+          </ListDashboardsResult>
+          <ResponseMetadata>
+            <RequestId>a7b4eb10-ae9b-41b0-ae38-e293d1cf56de</RequestId>
+          </ResponseMetadata>
+        </ListDashboardsResponse>
+  recorded_at: Tue, 10 Jan 2023 14:13:45 GMT
+recorded_with: VCR 6.1.0

@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.pricing.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"ServiceCode":"AmazonRedshift","Filters":[{"Type":"TERM_MATCH","Field":"productFamily","Value":"Redshift
+        Managed Storage"},{"Type":"TERM_MATCH","Field":"regionCode","Value":"us-east-1"}]}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-pricing/1.41.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - AWSPriceListService.GetProducts
+      Host:
+      - api.pricing.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230111T152046Z
+      X-Amz-Content-Sha256:
+      - a417c7f3bd2c642dbbb5b7f520c351ff84a3d0f655d56f349efeb59b9dd1e110
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '188'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 11 Jan 2023 15:20:46 GMT
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '4357'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - 1d896560-d553-44f8-ba61-ee298e8bfe9a
+    body:
+      encoding: UTF-8
+      string: '{"FormatVersion":"aws_v1","PriceList":["{\"product\":{\"productFamily\":\"Redshift
+        Managed Storage\",\"attributes\":{\"regionCode\":\"us-east-1\",\"servicecode\":\"AmazonRedshift\",\"pricingUnit\":\"GB-Mo\",\"instanceType\":\"ra3.xlplus\",\"currentGeneration\":\"Yes\",\"usagetype\":\"RMS:ra3.xlplus\",\"usageFamily\":\"RA3\",\"description\":\"Storage
+        charges with Redshift managed storage\",\"locationType\":\"AWS Region\",\"location\":\"US
+        East (N. Virginia)\",\"servicename\":\"Amazon Redshift\",\"operation\":\"\"},\"sku\":\"2XP6TDB4ZYZUSN2D\"},\"serviceCode\":\"AmazonRedshift\",\"terms\":{\"OnDemand\":{\"2XP6TDB4ZYZUSN2D.JRTCKXETXF\":{\"priceDimensions\":{\"2XP6TDB4ZYZUSN2D.JRTCKXETXF.6YS6EN2CT7\":{\"unit\":\"GB-Mo\",\"endRange\":\"Inf\",\"description\":\"Storage
+        charges with Redshift managed storage\",\"appliesTo\":[],\"rateCode\":\"2XP6TDB4ZYZUSN2D.JRTCKXETXF.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0240000000\"}}},\"sku\":\"2XP6TDB4ZYZUSN2D\",\"effectiveDate\":\"2023-01-01T00:00:00Z\",\"offerTermCode\":\"JRTCKXETXF\",\"termAttributes\":{}}}},\"version\":\"20230104013742\",\"publicationDate\":\"2023-01-04T01:37:42Z\"}","{\"product\":{\"productFamily\":\"Redshift
+        Managed Storage\",\"attributes\":{\"storageMedia\":\"Amazon S3\",\"regionCode\":\"us-east-1\",\"servicecode\":\"AmazonRedshift\",\"usagetype\":\"USE1-RMS:Serverless\",\"locationType\":\"AWS
+        Region\",\"location\":\"US East (N. Virginia)\",\"servicename\":\"Amazon Redshift\",\"operation\":\"\"},\"sku\":\"4D22YRE9BB4PNBSA\"},\"serviceCode\":\"AmazonRedshift\",\"terms\":{\"OnDemand\":{\"4D22YRE9BB4PNBSA.JRTCKXETXF\":{\"priceDimensions\":{\"4D22YRE9BB4PNBSA.JRTCKXETXF.6YS6EN2CT7\":{\"unit\":\"GB-Mo\",\"endRange\":\"Inf\",\"description\":\"Storage
+        charges with Redshift managed storage\",\"appliesTo\":[],\"rateCode\":\"4D22YRE9BB4PNBSA.JRTCKXETXF.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0240000000\"}}},\"sku\":\"4D22YRE9BB4PNBSA\",\"effectiveDate\":\"2023-01-01T00:00:00Z\",\"offerTermCode\":\"JRTCKXETXF\",\"termAttributes\":{}}}},\"version\":\"20230104013742\",\"publicationDate\":\"2023-01-04T01:37:42Z\"}","{\"product\":{\"productFamily\":\"Redshift
+        Managed Storage\",\"attributes\":{\"regionCode\":\"us-east-1\",\"servicecode\":\"AmazonRedshift\",\"instanceType\":\"ra3.4xlarge\",\"currentGeneration\":\"Yes\",\"usagetype\":\"RMS:ra3.4xlarge\",\"usageFamily\":\"RA3\",\"description\":\"Storage
+        charges with Redshift managed storage\",\"locationType\":\"AWS Region\",\"location\":\"US
+        East (N. Virginia)\",\"servicename\":\"Amazon Redshift\",\"operation\":\"\"},\"sku\":\"HP6QE56YKTDKGWCM\"},\"serviceCode\":\"AmazonRedshift\",\"terms\":{\"OnDemand\":{\"HP6QE56YKTDKGWCM.JRTCKXETXF\":{\"priceDimensions\":{\"HP6QE56YKTDKGWCM.JRTCKXETXF.6YS6EN2CT7\":{\"unit\":\"GB-Mo\",\"endRange\":\"Inf\",\"description\":\"Storage
+        charges with Redshift managed storage\",\"appliesTo\":[],\"rateCode\":\"HP6QE56YKTDKGWCM.JRTCKXETXF.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0240000000\"}}},\"sku\":\"HP6QE56YKTDKGWCM\",\"effectiveDate\":\"2023-01-01T00:00:00Z\",\"offerTermCode\":\"JRTCKXETXF\",\"termAttributes\":{}}}},\"version\":\"20230104013742\",\"publicationDate\":\"2023-01-04T01:37:42Z\"}","{\"product\":{\"productFamily\":\"Redshift
+        Managed Storage\",\"attributes\":{\"regionCode\":\"us-east-1\",\"servicecode\":\"AmazonRedshift\",\"instanceType\":\"ra3.16xlarge\",\"currentGeneration\":\"Yes\",\"usagetype\":\"RMS:ra3.16xlarge\",\"usageFamily\":\"RA3\",\"description\":\"Storage
+        charges with Redshift managed storage\",\"locationType\":\"AWS Region\",\"location\":\"US
+        East (N. Virginia)\",\"servicename\":\"Amazon Redshift\",\"operation\":\"\"},\"sku\":\"X7VUXVP7NERMPM9U\"},\"serviceCode\":\"AmazonRedshift\",\"terms\":{\"OnDemand\":{\"X7VUXVP7NERMPM9U.JRTCKXETXF\":{\"priceDimensions\":{\"X7VUXVP7NERMPM9U.JRTCKXETXF.6YS6EN2CT7\":{\"unit\":\"GB-Mo\",\"endRange\":\"Inf\",\"description\":\"$0.024
+        per GB-Mo for RMS:ra3.16xlarge in US East (N. Virginia)\",\"appliesTo\":[],\"rateCode\":\"X7VUXVP7NERMPM9U.JRTCKXETXF.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0240000000\"}}},\"sku\":\"X7VUXVP7NERMPM9U\",\"effectiveDate\":\"2023-01-01T00:00:00Z\",\"offerTermCode\":\"JRTCKXETXF\",\"termAttributes\":{}}}},\"version\":\"20230104013742\",\"publicationDate\":\"2023-01-04T01:37:42Z\"}"]}'
+  recorded_at: Wed, 11 Jan 2023 15:20:46 GMT
+recorded_with: VCR 6.1.0

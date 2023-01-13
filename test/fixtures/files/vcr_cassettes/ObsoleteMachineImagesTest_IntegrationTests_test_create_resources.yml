@@ -1,0 +1,148 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://ec2.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeInstances&Version=2016-11-15
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ec2/1.356.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - ec2.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230110T185726Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - 6171eb09865e32b0602af0f7957e26573a51f53caaedff02ff88883cb0275885
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '43'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 60874d36-3d3d-4181-8734-5e8e1e83e084
+      Cache-Control:
+      - no-cache, no-store
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Vary:
+      - accept-encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 10 Jan 2023 18:57:26 GMT
+      Server:
+      - AmazonEC2
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <DescribeInstancesResponse xmlns="http://ec2.amazonaws.com/doc/2016-11-15/">
+            <requestId>60874d36-3d3d-4181-8734-5e8e1e83e084</requestId>
+        </DescribeInstancesResponse>
+  recorded_at: Tue, 10 Jan 2023 18:57:27 GMT
+- request:
+    method: post
+    uri: https://ec2.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeImages&Owner.1=012345678912&Version=2016-11-15
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ec2/1.356.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - ec2.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230110T185727Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - d492e706f7f8c65a3b8342dc15a7292f0acb2bc93d28244f5b2082f339959ce7
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '61'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - cb650599-1202-4a5a-8236-612b16bc9d95
+      Cache-Control:
+      - no-cache, no-store
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Vary:
+      - accept-encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 10 Jan 2023 18:57:27 GMT
+      Server:
+      - AmazonEC2
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <DescribeImagesResponse xmlns="http://ec2.amazonaws.com/doc/2016-11-15/">
+            <requestId>cb650599-1202-4a5a-8236-612b16bc9d95</requestId>
+            <imagesSet>
+                <item>
+                    <imageId>ami-03ec7a88a2e498fce</imageId>
+                    <imageLocation>012345678912/bytestorm-labs-aws-backup-image</imageLocation>
+                    <imageState>available</imageState>
+                    <imageOwnerId>012345678912</imageOwnerId>
+                    <creationDate>2020-07-04T05:19:21.000Z</creationDate>
+                    <isPublic>false</isPublic>
+                    <architecture>x86_64</architecture>
+                    <imageType>machine</imageType>
+                    <sriovNetSupport>simple</sriovNetSupport>
+                    <name>bytestorm-labs-aws-backup-image</name>
+                    <rootDeviceType>ebs</rootDeviceType>
+                    <rootDeviceName>/dev/xvda</rootDeviceName>
+                    <blockDeviceMapping>
+                        <item>
+                            <deviceName>/dev/xvda</deviceName>
+                            <ebs>
+                                <snapshotId>snap-98asdfas08as9faf</snapshotId>
+                                <volumeSize>8</volumeSize>
+                                <deleteOnTermination>true</deleteOnTermination>
+                                <volumeType>gp2</volumeType>
+                                <encrypted>true</encrypted>
+                            </ebs>
+                        </item>
+                    </blockDeviceMapping>
+                    <virtualizationType>hvm</virtualizationType>
+                    <hypervisor>xen</hypervisor>
+                    <enaSupport>true</enaSupport>
+                    <platformDetails>Linux/UNIX</platformDetails>
+                    <usageOperation>RunInstances</usageOperation>
+                </item>
+            </imagesSet>
+        </DescribeImagesResponse>
+  recorded_at: Tue, 10 Jan 2023 18:57:27 GMT
+recorded_with: VCR 6.1.0
