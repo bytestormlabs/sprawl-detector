@@ -14,6 +14,7 @@ require "detector/ec2/vpc_without_s3_endpoint"
 require "detector/ecr/repositories_without_lifecycle_policy"
 require "detector/elasticloadbalancingv2/unused_load_balancers"
 require "detector/elasticsearchservice/unused_domains"
+require "detector/lambda/unused_lambda_functions"
 require "detector/mq/unused_mq_brokers"
 require "detector/rds/obsolete_snapshots"
 require "detector/rds/unused_db_instances"
@@ -170,6 +171,7 @@ class SprawlDetector2
       UnusedDomains.new,
       UnusedElastiCacheClusters.new,
       UnusedInstances.new,
+      UnusedLambdaFunctions.new,
       UnusedLoadBalancers.new,
       UnusedMqBrokers.new,
       UnusedNatGateways.new,

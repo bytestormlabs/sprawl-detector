@@ -17,7 +17,7 @@ class UnusedInstancesTest < ActiveSupport::TestCase
   # class IntegrationTests < BaseAwsIntegrationTest
   #   detector = UnusedInstances.new
   #
-  #   test "create resources" do
+  #   test "create finding" do
   #     scan = Scan.create(account: Account.first, credentials: Aws::SharedCredentials.new)
   #     findings = Finding.count
   #     detector.execute(scan, "us-east-1")
