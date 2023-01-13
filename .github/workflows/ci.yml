@@ -1,6 +1,22 @@
 name: Ruby
 on: [push]
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
+        with:
+          ruby-version: '3.1.0'
+      - name: Build and test with Rake
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+      - name: standardrb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: amoeba/standardrb-action@v2
   test:
     runs-on: ubuntu-latest
     steps:
@@ -33,5 +49,3 @@ jobs:
         env:
           AWS_REGION: us-east-2
           RAILS_ENV: test
-      - name: Run standardrb
-        run: bundle exec standardrb
