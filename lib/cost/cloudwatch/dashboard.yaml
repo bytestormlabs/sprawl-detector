@@ -3,6 +3,7 @@ service: AmazonCloudwatch
 filters:
   - key: operation
     value: DashboardHour
+  - key: usageType
+    value: DashboardsUsageHour-Basic
 price_components:
-  - "720.0"
   - price_per_unit

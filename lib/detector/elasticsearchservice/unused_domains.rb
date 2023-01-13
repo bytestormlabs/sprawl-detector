@@ -30,7 +30,7 @@ class UnusedDomains
   end
 
   def service_name
-    "AWS Service Name"
+    "Amazon OpenSearch Service"
   end
 
   def resource_type

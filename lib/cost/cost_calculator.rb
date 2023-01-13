@@ -120,7 +120,6 @@ class CostCalculator
   end
 
   def translate_engine(engine_code)
-    puts "entering translate_engine(engine_code = #{engine_code})"
     {
       "aurora" => "Aurora",
       "aurora-mysql" => "Aurora MySQL",

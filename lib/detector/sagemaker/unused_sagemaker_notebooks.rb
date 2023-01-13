@@ -35,7 +35,7 @@ class UnusedSagemakerNotebooks
   end
 
   def service_name
-    "AWS SageMaker"
+    "Amazon SageMaker"
   end
 
   def resource_type

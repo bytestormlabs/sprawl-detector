@@ -4,9 +4,11 @@ require "detector/cache/unused_elasticache_clusters"
 require "detector/cloudwatch/obsolete_dashboards"
 require "detector/cloudwatchlogs/log_groups_without_log_retention"
 require "detector/databasemigrationservice/unused_replication_instances"
+require "detector/directoryservice/unused_directories"
 require "detector/ec2/obsolete_ebs_snapshots"
 require "detector/ec2/obsolete_key_pairs"
 require "detector/ec2/obsolete_machine_images"
+require "detector/ec2/unused_client_vpn"
 require "detector/ec2/unused_instances"
 require "detector/ec2/unused_nat_gateways"
 require "detector/ec2/unused_security_groups"
@@ -50,26 +52,28 @@ class SprawlDetector2
   end
 
   def find_detectors_by_cost_and_usage
-    services_used = AwsCostLineItem.where(account: account).last_30_days.group(:service, :region).sum(:cost).sort_by { |key, cost| -cost }
+    services_used = AwsCostLineItem.where(account: account).last_7_days.group(:service, :region).sum(:cost).sort_by { |key, cost| -cost }
     logger.info "Found #{services_used.count} services used in the last 30 days."
 
     services_used.each do |key, cost|
       (service, region) = key
-      if cost > 1.0
-        logger.info "Finding detector for '#{service}' which incurred #{"%.2f" % cost} of cost this period in #{region}."
+      next if [ "global", "NoRegion" ].include?(region)
+      next if service == "Tax"
 
-        next if region == "global"
+      if cost > 1.0
+        logger.info "Investigating #{service} in #{region} which incurred $#{"%.2f" % cost} of costs this period."
 
         instances = detectors.find_all do |d|
           d.service_name == service
         end
 
-        logger.info "Found #{instances&.count} detectors..."
-
         instances&.each do |detector|
-          logger.info "Detecting #{detector}..."
           begin
+            before = scan.findings.count
+            logger.info "  Running #{detector.class}"
             detector.execute(scan, region)
+            after = scan.findings.count
+            logger.info "    Found #{(after-before)} issues." if before < after
           rescue RuntimeError => e
             logger.error "Unhandled exception from #{detector}"
             logger.error e
@@ -166,8 +170,10 @@ class SprawlDetector2
       ObsoleteMachineImages.new,
       ObsoleteSnapshots.new,
       RepositoriesWithoutLifecyclePolicy.new,
+      UnusedClientVpn.new,
       UnusedDbInstances.new,
       UnusedDomains.new,
+      UnusedDirectories.new,
       UnusedElastiCacheClusters.new,
       UnusedInstances.new,
       UnusedLambdaFunctions.new,

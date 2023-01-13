@@ -27,8 +27,6 @@ class UnusedVpcEndpoints
         .with(scan.credentials)
         .average.hourly
 
-      pp connections
-
       resource.create_finding(scan, ISSUE_TYPE) if connections.indicates_zero_activity?
     end
   end

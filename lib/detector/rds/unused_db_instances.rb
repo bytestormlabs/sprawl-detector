@@ -16,7 +16,7 @@ class UnusedDbInstances
     loop_until_finished(client, :describe_db_instances) do |response|
       response.db_instances.each do |db_instance|
         resource = scan.build_resource(region, resource_type, db_instance.db_instance_identifier, db_instance)
-        # next if db_instance.db_instance_status != "available"
+        next if db_instance.db_instance_status != "available"
 
         number_of_days = 14   # TODO: Refactor this
         success = check("AWS/RDS", "DatabaseConnections")
