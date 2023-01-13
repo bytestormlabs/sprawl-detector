@@ -27,6 +27,7 @@ class UnusedClientVpn
       end
     end
   end
+
   def service_name
     "Amazon Virtual Private Cloud"
   end

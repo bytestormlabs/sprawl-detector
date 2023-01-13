@@ -57,7 +57,7 @@ class SprawlDetector2
 
     services_used.each do |key, cost|
       (service, region) = key
-      next if [ "global", "NoRegion" ].include?(region)
+      next if ["global", "NoRegion"].include?(region)
       next if service == "Tax"
 
       if cost > 1.0
@@ -68,16 +68,14 @@ class SprawlDetector2
         end
 
         instances&.each do |detector|
-          begin
-            before = scan.findings.count
-            logger.info "  Running #{detector.class}"
-            detector.execute(scan, region)
-            after = scan.findings.count
-            logger.info "    Found #{(after-before)} issues." if before < after
-          rescue RuntimeError => e
-            logger.error "Unhandled exception from #{detector}"
-            logger.error e
-          end
+          before = scan.findings.count
+          logger.info "  Running #{detector.class}"
+          detector.execute(scan, region)
+          after = scan.findings.count
+          logger.info "    Found #{after - before} issues." if before < after
+        rescue RuntimeError => e
+          logger.error "Unhandled exception from #{detector}"
+          logger.error e
         end
       end
     end

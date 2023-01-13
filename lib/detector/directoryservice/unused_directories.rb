@@ -42,6 +42,7 @@ class UnusedDirectories
       end
     end
   end
+
   def service_name
     "AWS Directory Service"
   end
