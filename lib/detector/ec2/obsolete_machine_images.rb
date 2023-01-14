@@ -36,7 +36,7 @@ class ObsoleteMachineImages
   end
 
   def resource_type
-    "AWS::Service::ResourceType"
+    "AWS::EC2::Ami"
   end
 
   def default_settings

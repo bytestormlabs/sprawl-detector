@@ -2,7 +2,7 @@ require "yaml"
 require "aws-sdk-pricing"
 
 class CostCalculator
-  attr_accessor :descriptors, :logger, :cache, :client
+  attr_accessor :descriptors, :logger, :cache, :client, :warnings
 
   def initialize
     pattern = "#{File.expand_path(__dir__)}/**/*.yaml"
@@ -12,6 +12,7 @@ class CostCalculator
     @logger = Logger.new($stdout)
     @client = Aws::Pricing::Client.new(region: "us-east-1")
     @cache = {}
+    @warnings = []
   end
 
   def retrieve_from_cache(params)
@@ -30,7 +31,12 @@ class CostCalculator
 
   def decorate(resource)
     descriptor = find_descriptor_by(resource.resource_type)
-    logger.warn "Unable to find cost descriptor for '#{resource.resource_type}'" if descriptor.nil?
+    if descriptor.nil?
+      logger.warn "Unable to find cost descriptor for '#{resource.resource_type}'" if !warnings.include? resource.resource_type
+      warnings << resource.resource_type
+      return
+    end
+
     return if descriptor.nil?
 
     result = retrieve_from_cache({
@@ -53,7 +59,7 @@ class CostCalculator
       if descriptor["multiple_price_point_behavior"].present?
         price_per_unit = prices_per_unit.reject { |x| x <= 0.01 }.min
       else
-        logger.error "Found #{prices_per_unit.count} different price points..."
+        logger.error "Found #{prices_per_unit.count} different price points for #{resource.resource_type}"
         result.each do |r|
           logger.error JSON.pretty_generate(JSON.parse(r))
         end
@@ -71,12 +77,14 @@ class CostCalculator
     region = resource.region  # standard:disable Lint/UselessAssignment
 
     filters.map do |filter|
-      value = filter["value"] || eval(filter["eval"])
-      {
-        type: "TERM_MATCH",
-        field: filter["key"],
-        value: value
-      }
+      unless filter["condition"].present? && eval(filter["condition"])
+        value = filter["value"] || eval(filter["eval"])
+        {
+          type: "TERM_MATCH",
+          field: filter["key"],
+          value: value
+        }
+      end
     end
   end
 
@@ -128,23 +136,32 @@ class CostCalculator
     {
       "aurora" => "Aurora",
       "aurora-mysql" => "Aurora MySQL",
-      "aurora-postgresql" => "Aurora (PostgreSQL)",
+      "aurora-postgresql" => "Aurora PostgreSQL",
       "custom-sqlserver-ee" => "Microsoft SQL Server Enterprise Edition for custom RDS",
       "custom-sqlserver-se" => "Microsoft SQL Server Standard Edition for custom RDS",
       "custom-sqlserver-web" => "Microsoft SQL Server Web Edition for custom RDS",
       "docdb" => "Amazon DocumentDB (with MongoDB compatibility)",
-      "mariadb" => "MariaDb Community Edition",
+      "mariadb" => "MariaDB",
       "mysql" => "MySQL Community Edition",
       "neptune" => "neptune",
-      "oracle-ee" => "Oracle Database Enterprise Edition",
-      "oracle-ee-cdb" => "Oracle Database Enterprise Edition (CDB)",
-      "oracle-se2" => "Oracle Database Standard Edition Two",
-      "oracle-se2-cdb" => "Oracle Database Standard Edition Two (CDB)",
+      "oracle-ee" => "Oracle",
+      "oracle-ee-cdb" => "Oracle",
+      "oracle-se2" => "Oracle",
+      "oracle-se2-cdb" => "Oracle",
       "postgres" => "PostgreSQL",
-      "sqlserver-ee" => "MicrosoftSQLServerEnterpriseEdition",
-      "sqlserver-ex" => "Microsoft SQLServer Express Edition",
-      "sqlserver-se" => "MicrosoftSQLServer Standard Edition",
-      "sqlserver-web" => "MicrosoftSQL Server Web Edition"
+      "sqlserver-ee" => "SQL Server",
+      "sqlserver-ex" => "SQL Server",
+      "sqlserver-se" => "SQL Server",
+      "sqlserver-web" => "SQL Server"
+    }[engine_code]
+  end
+
+  def translate_edition(engine_code)
+    puts "entering translate_edition(engine_code = #{engine_code})"
+    {
+      "sqlserver-ee" => "Express",
+      "sqlserver-ex" => "Express",
+      "sqlserver-web" => "Web"
     }[engine_code]
   end
 

@@ -1,5 +1,6 @@
 class Scan < ApplicationRecord
   has_many :findings
+  has_many :resources
   belongs_to :account
 
   attr_accessor :credentials
