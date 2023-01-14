@@ -1,0 +1,12 @@
+service: AWSELB
+resource_type: AWS::ElasticLoadBalancing::LoadBalancer
+filters:
+  - key: regionCode
+    eval: region
+  - key: usageType
+    value: LoadBalancerUsage
+  - key: productFamily
+    value: Load Balancer
+price_components:
+  - "720.0"
+  - price_per_unit

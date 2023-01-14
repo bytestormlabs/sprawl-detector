@@ -14,6 +14,7 @@ require "detector/ec2/unused_nat_gateways"
 require "detector/ec2/unused_security_groups"
 require "detector/ec2/vpc_without_s3_endpoint"
 require "detector/ecr/repositories_without_lifecycle_policy"
+require "detector/elasticloadbalancing/unused_classic_load_balancers"
 require "detector/elasticloadbalancingv2/unused_load_balancers"
 require "detector/elasticsearchservice/unused_domains"
 require "detector/lambda/unused_lambda_functions"
@@ -32,8 +33,13 @@ require "detector/vpc/unused_vpc_endpoints"
 require "detector/wafv2/unused_web_acls"
 require "report"
 
-class SprawlDetector2
-  attr_accessor :scan, :account, :role_session, :skip_update_costs
+class SprawlDetectorJob
+  attr_accessor :scan, :account, :role_session, :skip_update_costs, :account_id
+
+  def self.perform_now
+    job = SprawlDetectorJob.new
+    job.execute
+  end
 
   def execute
     setup
@@ -45,10 +51,15 @@ class SprawlDetector2
   end
 
   def setup
-    @account = Account.find_by_account_id(ENV.fetch("AWS_ACCOUNT_ID"))
+    @account_id = ENV.fetch("AWS_ACCOUNT_ID")
+    @account = Account.find_by_account_id(account_id)
+    if @account.nil?
+      logger.error "Unable to find an account with id '#{account_id}'"
+      raise "Account #{account_id} not found."
+    end
+
     @scan = Scan.create(account: account, status: :started)
-    puts "Running scan# #{scan.id}"
-    @skip_update_costs = false
+    logger.info "Starting scan ##{scan.id}"
   end
 
   def find_detectors_by_cost_and_usage
@@ -93,7 +104,7 @@ class SprawlDetector2
       logger.info "Skipping assume role and using AWS profile #{ENV["AWS_PROFILE"]}"
       @role_session = Aws::SharedCredentials.new
     else
-      role_arn = "arn:aws:iam::#{ENV.fetch("AWS_ACCOUNT_ID")}:role/BS-SprawlDetector"
+      role_arn = "arn:aws:iam::#{account_id}:role/BS-SprawlDetector"
       role_session_name = "byte-storm-labs-sprawl-detector" # TODO: Refactor this
 
       logger.debug "Attempting to assume role as #{role_arn}"
@@ -111,7 +122,7 @@ class SprawlDetector2
   end
 
   def update_cost_and_usage_patterns
-    return if skip_update_costs
+    return if ENV["SKIP_CE_COST_USAGE"].present?
     client = Aws::CostExplorer::Client.new(credentials: @role_session)
     params = {
       time_period: {
@@ -168,6 +179,7 @@ class SprawlDetector2
       ObsoleteMachineImages.new,
       ObsoleteSnapshots.new,
       RepositoriesWithoutLifecyclePolicy.new,
+      UnusedClassicLoadBalancers.new,
       UnusedClientVpn.new,
       UnusedDbInstances.new,
       UnusedDomains.new,

@@ -30,7 +30,7 @@ class CostCalculator
 
   def decorate(resource)
     descriptor = find_descriptor_by(resource.resource_type)
-    # raise "No descriptors found for #{resource.resource_type}" if descriptor.nil?
+    logger.warn "Unable to find cost descriptor for '#{resource.resource_type}'" if descriptor.nil?
     return if descriptor.nil?
 
     result = retrieve_from_cache({
@@ -38,7 +38,10 @@ class CostCalculator
       filters: build_filters(resource, descriptor["filters"])
     }).price_list
 
-    return if result&.empty?
+    if result&.empty?
+      logger.warn "Didn't find any results for #{build_filters(resource, descriptor["filters"])}"
+      return
+    end
 
     prices_per_unit = result.map do |r|
       collect_price_per_unit(r)
@@ -51,7 +54,9 @@ class CostCalculator
         price_per_unit = prices_per_unit.reject { |x| x <= 0.01 }.min
       else
         logger.error "Found #{prices_per_unit.count} different price points..."
-        pp result
+        result.each do |r|
+          logger.error JSON.pretty_generate(JSON.parse(r))
+        end
         return nil
       end
     end

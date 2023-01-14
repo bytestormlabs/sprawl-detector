@@ -117,6 +117,9 @@ GEM
     aws-sdk-elasticache (1.83.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
+    aws-sdk-elasticloadbalancing (1.41.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
     aws-sdk-elasticloadbalancingv2 (1.82.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
@@ -361,6 +364,7 @@ DEPENDENCIES
   aws-sdk-ec2
   aws-sdk-ecr
   aws-sdk-elasticache
+  aws-sdk-elasticloadbalancing
   aws-sdk-elasticloadbalancingv2
   aws-sdk-elasticsearchservice
   aws-sdk-lambda

@@ -2,7 +2,9 @@ require "cost/cost_calculator"
 require "base_aws_integration_test"
 
 class CostCalculatorTest < BaseAwsIntegrationTest
-  decorator = CostCalculator.new
+  def decorator
+    CostCalculator.new
+  end
 
   test "get application load balancer price" do
     cost = decorator.decorate(Resource.new(
@@ -70,5 +72,13 @@ class CostCalculatorTest < BaseAwsIntegrationTest
       }
     ))
     assert_equal 0.19, cost
+  end
+
+  test "cost of classic load balancer" do
+    cost = decorator.decorate(Resource.new(
+      region: "us-east-1",
+      resource_type: "AWS::ElasticLoadBalancing::LoadBalancer"
+    ))
+    assert_equal 18, cost
   end
 end
