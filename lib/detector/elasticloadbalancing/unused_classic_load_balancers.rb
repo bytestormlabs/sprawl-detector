@@ -18,13 +18,18 @@ class UnusedClassicLoadBalancers
       target_date = (DateTime.now - number_of_days)
       response.load_balancer_descriptions.each do |load_balancer|
         resource = scan.build_resource(region, "AWS::ElasticLoadBalancing::LoadBalancer", load_balancer.load_balancer_name, load_balancer)
-        request_count_check = check("AWS/ELB", "RequestCount")
+        request_count = check("AWS/ELB", "RequestCount")
           .in(region)
           .in_last(number_of_days)
           .with_dimension("LoadBalancerName", load_balancer.load_balancer_name)
           .with(scan.credentials)
 
-        resource.create_finding(scan, ISSUE_TYPE) if load_balancer.created_time < target_date && request_count_check.indicates_zero_activity?
+        resource.create_finding(scan, ISSUE_TYPE) if
+          load_balancer.created_time < target_date &&
+            [
+              load_balancer.instances.empty?,
+              request_count.indicates_zero_activity?
+            ].any?
       end
     end
   end
@@ -39,7 +44,7 @@ class UnusedClassicLoadBalancers
 
   def default_settings
     [
-      Setting.create_int(ISSUE_TYPE, "number_of_days_since_last_accessed", "The number of days (since today) to check for this certificate authority issuing a certificate.", 90)
+      Setting.create_int(ISSUE_TYPE, "number_of_days", "The number of days (since today) to check for activity.", 90)
     ]
   end
 end

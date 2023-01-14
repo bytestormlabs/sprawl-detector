@@ -1,0 +1,285 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://elasticloadbalancing.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeLoadBalancers&Version=2012-06-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-elasticloadbalancing/1.41.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - elasticloadbalancing.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230114T114152Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - 236069f72bf74f0c7ddff0a34b0defa8a21d1d6a897e588764e1b2ff6319f94a
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '47'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - c6b72343-64ad-40be-a860-bae7f0b39c5a
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '7058'
+      Date:
+      - Sat, 14 Jan 2023 11:41:52 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <DescribeLoadBalancersResponse xmlns="http://elasticloadbalancing.amazonaws.com/doc/2012-06-01/">
+          <DescribeLoadBalancersResult>
+            <LoadBalancerDescriptions>
+              <member>
+                <Scheme>internet-facing</Scheme>
+                <Instances/>
+                <AvailabilityZones>
+                  <member>us-east-1d</member>
+                  <member>us-east-1c</member>
+                  <member>us-east-1b</member>
+                  <member>us-east-1a</member>
+                </AvailabilityZones>
+                <DNSName>abc123defgjhaofja9ma9fm2hfofhdkf-090123032.us-east-1.elb.amazonaws.com</DNSName>
+                <BackendServerDescriptions/>
+                <LoadBalancerName>abc123defgjhaofja9ma9fm2hfofhdkf</LoadBalancerName>
+                <CreatedTime>2022-07-28T13:57:16.750Z</CreatedTime>
+                <Subnets>
+                  <member>subnet-00b0855s5cc808bc6</member>
+                  <member>subnet-0213c84b002bde94b</member>
+                  <member>subnet-0291c022be472846b</member>
+                  <member>subnet-03e572b1d7ab21f34</member>
+                </Subnets>
+              </member>
+              <member>
+                <Scheme>internet-facing</Scheme>
+                <Instances>
+                  <member>
+                    <InstanceId>i-0063cfa6d9be8a24e</InstanceId>
+                  </member>
+                  <member>
+                    <InstanceId>i-068e4c3ba33efbb03</InstanceId>
+                  </member>
+                  <member>
+                    <InstanceId>i-0f81af67fd2ba9ea1</InstanceId>
+                  </member>
+                  <member>
+                    <InstanceId>i-02e95a9c0ada44001</InstanceId>
+                  </member>
+                  <member>
+                    <InstanceId>i-0e7f01d805b982f96</InstanceId>
+                  </member>
+                  <member>
+                    <InstanceId>i-0a2654f3d4a6cdfd8</InstanceId>
+                  </member>
+                </Instances>
+                <BackendServerDescriptions/>
+                <LoadBalancerName>a38236f0be6974fb1963af393ac0293b</LoadBalancerName>
+                <CreatedTime>2022-07-28T13:57:16.750Z</CreatedTime>
+                <Subnets>
+                  <member>subnet-00b0855f5dc808bc6</member>
+                  <member>subnet-0213c84b002bde94b</member>
+                  <member>subnet-0291c022be472846b</member>
+                  <member>subnet-03e572b1d7ab21f34</member>
+                </Subnets>
+              </member>
+            </LoadBalancerDescriptions>
+          </DescribeLoadBalancersResult>
+          <ResponseMetadata>
+            <RequestId>c6b72343-64ad-40be-a860-bae7f0b39c5a</RequestId>
+          </ResponseMetadata>
+        </DescribeLoadBalancersResponse>
+  recorded_at: Sat, 14 Jan 2023 11:41:53 GMT
+- request:
+    method: post
+    uri: https://monitoring.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=LoadBalancerName&Dimensions.member.1.Value=abc123defgjhaofja9ma9fm2hfofhdkf&EndTime=2023-01-14T11%3A41%3A53Z&MetricName=RequestCount&Namespace=AWS%2FELB&Period=86400&StartTime=2022-12-31T11%3A41%3A53Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230114T114153Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - c4aa3fe46e28c4bcc36d82edfab2784650bf39268e630eff84f9be91f9c92931
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '295'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 3a5c1b26-709f-441a-9df1-0679febcbc36
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '335'
+      Date:
+      - Sat, 14 Jan 2023 11:41:53 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints/>
+            <Label>RequestCount</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>3a5c1b26-709f-441a-9df1-0679febcbc36</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Sat, 14 Jan 2023 11:41:53 GMT
+- request:
+    method: post
+    uri: https://monitoring.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=LoadBalancerName&Dimensions.member.1.Value=a38236f0be6974fb1963af393ac0293b&EndTime=2023-01-14T11%3A41%3A53Z&MetricName=RequestCount&Namespace=AWS%2FELB&Period=86400&StartTime=2022-12-31T11%3A41%3A53Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230114T114153Z
+      X-Amz-Security-Token:
+      - SecretAmzSecurityToken
+      X-Amz-Content-Sha256:
+      - 2f4c6efd3e385e001c91eecbdcb7621c1fbb5760914bd31ac52cb93677c2bee7
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '295'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - '0994e9d3-c309-41fe-b82a-d373e4d28f2b'
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '2284'
+      Date:
+      - Sat, 14 Jan 2023 11:41:53 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>115987.0</Sum>
+                <Timestamp>2023-01-05T11:41:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>103805.0</Sum>
+                <Timestamp>2022-12-31T11:41:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>112354.0</Sum>
+                <Timestamp>2023-01-06T11:41:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>110305.0</Sum>
+                <Timestamp>2023-01-12T11:41:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>111752.0</Sum>
+                <Timestamp>2023-01-04T11:41:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>123006.0</Sum>
+                <Timestamp>2023-01-10T11:41:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>109103.0</Sum>
+                <Timestamp>2023-01-11T11:41:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>107426.0</Sum>
+                <Timestamp>2023-01-02T11:41:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>116623.0</Sum>
+                <Timestamp>2023-01-03T11:41:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>114949.0</Sum>
+                <Timestamp>2023-01-09T11:41:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>103781.0</Sum>
+                <Timestamp>2023-01-01T11:41:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>104650.0</Sum>
+                <Timestamp>2023-01-07T11:41:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>113585.0</Sum>
+                <Timestamp>2023-01-13T11:41:00Z</Timestamp>
+              </member>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>104507.0</Sum>
+                <Timestamp>2023-01-08T11:41:00Z</Timestamp>
+              </member>
+            </Datapoints>
+            <Label>RequestCount</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>0994e9d3-c309-41fe-b82a-d373e4d28f2b</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Sat, 14 Jan 2023 11:41:54 GMT
+recorded_with: VCR 6.1.0
