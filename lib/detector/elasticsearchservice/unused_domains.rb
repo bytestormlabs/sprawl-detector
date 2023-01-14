@@ -24,7 +24,17 @@ class UnusedDomains
           .with_dimension("ClientId", scan.account.account_id)
           .with(scan.credentials)
 
-        resource.create_finding(scan, ISSUE_TYPE) if success.indicates_zero_activity?
+        searchable_documents = check("AWS/ES", "SearchableDocuments")
+          .in(region)
+          .in_last(number_of_days)
+          .with_dimension("DomainName", domain_name.domain_name)
+          .with_dimension("ClientId", scan.account.account_id)
+          .with(scan.credentials)
+
+        resource.create_finding(scan, ISSUE_TYPE) if [
+          success.indicates_zero_activity?,
+          searchable_documents.indicates_zero_activity?
+        ].any?
       end
     end
   end
