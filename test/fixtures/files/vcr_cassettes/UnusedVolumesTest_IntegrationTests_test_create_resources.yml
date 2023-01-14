@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://ec2.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeVolumes&Version=2016-11-15
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ec2/1.356.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - ec2.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230114T165322Z
+      X-Amz-Content-Sha256:
+      - 925be3c8fc6870a890a6670574a88c988b51f13d9ea74f458ce9b6972534f164
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '41'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 4b299260-5354-4352-92c7-8d7ffbbda63b
+      Cache-Control:
+      - no-cache, no-store
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '846'
+      Date:
+      - Sat, 14 Jan 2023 16:53:22 GMT
+      Server:
+      - AmazonEC2
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <DescribeVolumesResponse xmlns="http://ec2.amazonaws.com/doc/2016-11-15/">
+            <requestId>4b299260-5354-4352-92c7-8d7ffbbda63b</requestId>
+            <volumeSet>
+                <item>
+                    <volumeId>vol-0a8c92d02ab96c19d</volumeId>
+                    <size>100</size>
+                    <snapshotId/>
+                    <availabilityZone>us-east-2a</availabilityZone>
+                    <status>available</status>
+                    <createTime>2023-01-14T16:51:42.343Z</createTime>
+                    <attachmentSet/>
+                    <volumeType>gp2</volumeType>
+                    <iops>300</iops>
+                    <encrypted>true</encrypted>
+                    <kmsKeyId>arn:aws:kms:us-east-2:163788863765:key/da267385-feea-49d4-bf26-d48c432e446c</kmsKeyId>
+                    <multiAttachEnabled>false</multiAttachEnabled>
+                </item>
+            </volumeSet>
+        </DescribeVolumesResponse>
+  recorded_at: Sat, 14 Jan 2023 16:53:22 GMT
+recorded_with: VCR 6.1.0
