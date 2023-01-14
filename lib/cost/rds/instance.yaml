@@ -7,9 +7,9 @@ filters:
     eval: region
   - key: databaseEngine
     eval: translate_engine(metadata["engine"])
-  - key: databaseEdition
-    eval: translate_edition(metadata["engine"])
-    condition: metadata["engine"].include?('sql-server')
+  # - key: databaseEdition
+  #   eval: translate_edition(metadata["engine"])
+  #   condition: 'metadata["engine"].include?("sql-server")'
   - key: instanceType
     eval: metadata["db_instance_class"]
 price_components:

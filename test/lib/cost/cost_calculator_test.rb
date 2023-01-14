@@ -81,4 +81,18 @@ class CostCalculatorTest < BaseAwsIntegrationTest
     ))
     assert_equal 18, cost
   end
+
+  test "cost of elasticsearch cluster" do
+    cost = decorator.decorate(Resource.new(
+      region: "us-east-1",
+      resource_type: "AWS::Elasticsearch::Domain",
+      metadata: {
+        elasticsearch_cluster_config: {
+          instance_type: "t3.medium.search"
+        }
+      }
+    ))
+    puts "cost: #{cost}"
+    assert_equal 52.56, cost
+  end
 end

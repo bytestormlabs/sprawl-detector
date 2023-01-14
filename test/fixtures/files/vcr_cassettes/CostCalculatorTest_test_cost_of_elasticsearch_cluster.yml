@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.pricing.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"ServiceCode":"AmazonES","Filters":[{"Type":"TERM_MATCH","Field":"regionCode","Value":"us-east-1"},{"Type":"TERM_MATCH","Field":"instanceType","Value":"t3.medium.search"}]}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-pricing/1.41.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - AWSPriceListService.GetProducts
+      Host:
+      - api.pricing.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230114T180113Z
+      X-Amz-Content-Sha256:
+      - 12ee067c3d407ede405632a9ae697d878cb1349e209957fbb2f31b3078df16dd
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '173'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 14 Jan 2023 18:01:13 GMT
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '5591'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - 8bdeb7d9-00e4-4c89-af42-5e3dd11edf3b
+    body:
+      encoding: UTF-8
+      string: '{"FormatVersion":"aws_v1","PriceList":["{\"product\":{\"productFamily\":\"Amazon
+        OpenSearch Service Instance\",\"attributes\":{\"vcpu\":\"2\",\"instanceType\":\"t3.medium.search\",\"usagetype\":\"ESInstance:t3.medium\",\"locationType\":\"AWS
+        Region\",\"storage\":\"EBS Only\",\"instanceFamily\":\"General purpose\",\"regionCode\":\"us-east-1\",\"servicecode\":\"AmazonES\",\"ecu\":\"variable\",\"memoryGib\":\"4\",\"currentGeneration\":\"Yes\",\"location\":\"US
+        East (N. Virginia)\",\"servicename\":\"Amazon OpenSearch Service\",\"operation\":\"ESDomain\"},\"sku\":\"MXHDYJ455JFCZR3H\"},\"serviceCode\":\"AmazonES\",\"terms\":{\"OnDemand\":{\"MXHDYJ455JFCZR3H.JRTCKXETXF\":{\"priceDimensions\":{\"MXHDYJ455JFCZR3H.JRTCKXETXF.6YS6EN2CT7\":{\"unit\":\"Hrs\",\"endRange\":\"Inf\",\"description\":\"$
+        0.073 per t3.medium.search instance hour (or partial hour)\",\"appliesTo\":[],\"rateCode\":\"MXHDYJ455JFCZR3H.JRTCKXETXF.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0730000000\"}}},\"sku\":\"MXHDYJ455JFCZR3H\",\"effectiveDate\":\"2022-12-01T00:00:00Z\",\"offerTermCode\":\"JRTCKXETXF\",\"termAttributes\":{}}},\"Reserved\":{\"MXHDYJ455JFCZR3H.6QCMYABX3D\":{\"priceDimensions\":{\"MXHDYJ455JFCZR3H.6QCMYABX3D.2TG2D8R56U\":{\"unit\":\"Quantity\",\"description\":\"Upfront
+        Fee\",\"appliesTo\":[],\"rateCode\":\"MXHDYJ455JFCZR3H.6QCMYABX3D.2TG2D8R56U\",\"pricePerUnit\":{\"USD\":\"499\"}},\"MXHDYJ455JFCZR3H.6QCMYABX3D.6YS6EN2CT7\":{\"unit\":\"Hrs\",\"endRange\":\"Inf\",\"description\":\"AmazonOpenSearchService,
+        t3.medium.search reserved instance applied\",\"appliesTo\":[],\"rateCode\":\"MXHDYJ455JFCZR3H.6QCMYABX3D.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0000000000\"}}},\"sku\":\"MXHDYJ455JFCZR3H\",\"effectiveDate\":\"2021-09-01T00:00:00Z\",\"offerTermCode\":\"6QCMYABX3D\",\"termAttributes\":{\"LeaseContractLength\":\"1yr\",\"OfferingClass\":\"standard\",\"PurchaseOption\":\"All
+        Upfront\"}},\"MXHDYJ455JFCZR3H.38NPMPTW36\":{\"priceDimensions\":{\"MXHDYJ455JFCZR3H.38NPMPTW36.2TG2D8R56U\":{\"unit\":\"Quantity\",\"description\":\"Upfront
+        Fee\",\"appliesTo\":[],\"rateCode\":\"MXHDYJ455JFCZR3H.38NPMPTW36.2TG2D8R56U\",\"pricePerUnit\":{\"USD\":\"671\"}},\"MXHDYJ455JFCZR3H.38NPMPTW36.6YS6EN2CT7\":{\"unit\":\"Hrs\",\"endRange\":\"Inf\",\"description\":\"AmazonOpenSearchService,
+        t3.medium.search reserved instance applied\",\"appliesTo\":[],\"rateCode\":\"MXHDYJ455JFCZR3H.38NPMPTW36.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0260000000\"}}},\"sku\":\"MXHDYJ455JFCZR3H\",\"effectiveDate\":\"2021-09-01T00:00:00Z\",\"offerTermCode\":\"38NPMPTW36\",\"termAttributes\":{\"LeaseContractLength\":\"3yr\",\"OfferingClass\":\"standard\",\"PurchaseOption\":\"Partial
+        Upfront\"}},\"MXHDYJ455JFCZR3H.NQ3QZPMQV9\":{\"priceDimensions\":{\"MXHDYJ455JFCZR3H.NQ3QZPMQV9.2TG2D8R56U\":{\"unit\":\"Quantity\",\"description\":\"Upfront
+        Fee\",\"appliesTo\":[],\"rateCode\":\"MXHDYJ455JFCZR3H.NQ3QZPMQV9.2TG2D8R56U\",\"pricePerUnit\":{\"USD\":\"1305\"}},\"MXHDYJ455JFCZR3H.NQ3QZPMQV9.6YS6EN2CT7\":{\"unit\":\"Hrs\",\"endRange\":\"Inf\",\"description\":\"AmazonOpenSearchService,
+        t3.medium.search reserved instance applied\",\"appliesTo\":[],\"rateCode\":\"MXHDYJ455JFCZR3H.NQ3QZPMQV9.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0000000000\"}}},\"sku\":\"MXHDYJ455JFCZR3H\",\"effectiveDate\":\"2021-09-01T00:00:00Z\",\"offerTermCode\":\"NQ3QZPMQV9\",\"termAttributes\":{\"LeaseContractLength\":\"3yr\",\"OfferingClass\":\"standard\",\"PurchaseOption\":\"All
+        Upfront\"}},\"MXHDYJ455JFCZR3H.4NA7Y494T4\":{\"priceDimensions\":{\"MXHDYJ455JFCZR3H.4NA7Y494T4.6YS6EN2CT7\":{\"unit\":\"Hrs\",\"endRange\":\"Inf\",\"description\":\"AmazonOpenSearchService,
+        t3.medium.search reserved instance applied\",\"appliesTo\":[],\"rateCode\":\"MXHDYJ455JFCZR3H.4NA7Y494T4.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0600000000\"}}},\"sku\":\"MXHDYJ455JFCZR3H\",\"effectiveDate\":\"2022-03-01T00:00:00Z\",\"offerTermCode\":\"4NA7Y494T4\",\"termAttributes\":{\"LeaseContractLength\":\"1yr\",\"OfferingClass\":\"standard\",\"PurchaseOption\":\"No
+        Upfront\"}},\"MXHDYJ455JFCZR3H.HU7G6KETJZ\":{\"priceDimensions\":{\"MXHDYJ455JFCZR3H.HU7G6KETJZ.2TG2D8R56U\":{\"unit\":\"Quantity\",\"description\":\"Upfront
+        Fee\",\"appliesTo\":[],\"rateCode\":\"MXHDYJ455JFCZR3H.HU7G6KETJZ.2TG2D8R56U\",\"pricePerUnit\":{\"USD\":\"256\"}},\"MXHDYJ455JFCZR3H.HU7G6KETJZ.6YS6EN2CT7\":{\"unit\":\"Hrs\",\"endRange\":\"Inf\",\"description\":\"AmazonOpenSearchService,
+        t3.medium.search reserved instance applied\",\"appliesTo\":[],\"rateCode\":\"MXHDYJ455JFCZR3H.HU7G6KETJZ.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0290000000\"}}},\"sku\":\"MXHDYJ455JFCZR3H\",\"effectiveDate\":\"2021-09-01T00:00:00Z\",\"offerTermCode\":\"HU7G6KETJZ\",\"termAttributes\":{\"LeaseContractLength\":\"1yr\",\"OfferingClass\":\"standard\",\"PurchaseOption\":\"Partial
+        Upfront\"}},\"MXHDYJ455JFCZR3H.BPH4J8HBKS\":{\"priceDimensions\":{\"MXHDYJ455JFCZR3H.BPH4J8HBKS.6YS6EN2CT7\":{\"unit\":\"Hrs\",\"endRange\":\"Inf\",\"description\":\"AmazonOpenSearchService,
+        t3.medium.search reserved instance applied\",\"appliesTo\":[],\"rateCode\":\"MXHDYJ455JFCZR3H.BPH4J8HBKS.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0520000000\"}}},\"sku\":\"MXHDYJ455JFCZR3H\",\"effectiveDate\":\"2022-03-01T00:00:00Z\",\"offerTermCode\":\"BPH4J8HBKS\",\"termAttributes\":{\"LeaseContractLength\":\"3yr\",\"OfferingClass\":\"standard\",\"PurchaseOption\":\"No
+        Upfront\"}}}},\"version\":\"20221219064144\",\"publicationDate\":\"2022-12-19T06:41:44Z\"}"]}'
+  recorded_at: Sat, 14 Jan 2023 18:01:13 GMT
+recorded_with: VCR 6.1.0

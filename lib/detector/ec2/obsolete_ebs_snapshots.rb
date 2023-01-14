@@ -28,7 +28,7 @@ class ObsoleteEbsSnapshots
   end
 
   def resource_type
-    "AWS::EBS::Volume"
+    "AWS::EBS::Snapshot"
   end
 
   def default_settings

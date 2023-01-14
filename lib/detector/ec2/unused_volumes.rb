@@ -29,7 +29,7 @@ class UnusedVolumes
   def is_attached_only_to_terminated_instances?(client, volume)
     # make sure it's attached to a running Ec2 instance.
     instance_ids = volume.attachments.map(&:instance_id)
-    reservations = ec2_client.describe_instances(instance_ids: instance_ids).reservations
+    reservations = client.describe_instances(instance_ids: instance_ids).reservations
 
     has_atleast_one_running_instance = reservations.map(&:instances).flatten.any? do |instance|
       instance.state.name == "running"

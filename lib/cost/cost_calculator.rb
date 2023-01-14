@@ -98,7 +98,10 @@ class CostCalculator
     price_component = JSON.parse(result)
     terms = price_component["terms"]
 
-    return nil if terms["OnDemand"].nil?
+    if terms["OnDemand"].nil?
+      logger.warn "Didn't find OnDemand terms..."
+      return nil
+    end
 
     dimension = terms.values.first
     (_sku, terms) = dimension.first

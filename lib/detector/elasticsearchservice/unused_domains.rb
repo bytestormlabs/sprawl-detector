@@ -15,7 +15,8 @@ class UnusedDomains
     client = Aws::ElasticsearchService::Client.new(region: region, credentials: scan.credentials)
     loop_until_finished(client, :list_domain_names) do |response|
       response.domain_names.each do |domain_name|
-        resource = scan.build_resource(region, resource_type, domain_name.domain_name, domain_name)
+        domain = client.describe_elasticsearch_domain(domain_name.to_h.slice(:domain_name)).domain_status
+        resource = scan.build_resource(region, resource_type, domain_name.domain_name, domain)
         number_of_days = 14   # TODO: Refactor this
         success = check("AWS/ES", "2xx")
           .in(region)
@@ -44,7 +45,7 @@ class UnusedDomains
   end
 
   def resource_type
-    "AWS::Service::ResourceType"
+    "AWS::Elasticsearch::Domain"
   end
 
   def default_settings

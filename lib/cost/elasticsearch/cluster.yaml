@@ -1,0 +1,10 @@
+service: AmazonES
+resource_type: AWS::Elasticsearch::Domain
+filters:
+  - key: regionCode
+    eval: region
+  - key: instanceType
+    eval: metadata["elasticsearch_cluster_config"]["instance_type"]
+price_components:
+  - price_per_unit
+  - "720.0"

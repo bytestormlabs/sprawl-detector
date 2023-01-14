@@ -1,0 +1,12 @@
+service: AmazonEC2
+resource_type: AWS::EC2::Volume
+filters:
+  - key: productFamily
+    value: Storage Snapshot
+  - key: regionCode
+    eval: region
+  - key: usageType
+    eval: region_prefix(region) + "EBS:SnapshotUsage"
+price_components:
+  - metadata["size"]
+  - price_per_unit
