@@ -48,12 +48,12 @@ class UnusedDirectories
   end
 
   def resource_type
-    "AWS::Service::ResourceType"
+    "AWS::DirectoryService::MicrosoftAD"
   end
 
   def default_settings
     [
-      Setting.create_int(ISSUE_TYPE, "number_of_days_since_last_accessed", "The number of days (since today) to check for this certificate authority issuing a certificate.", 90)
+      Setting.create_int(ISSUE_TYPE, "number_of_days", "The number of days (since today) to check for activity.", 30)
     ]
   end
 end

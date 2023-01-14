@@ -91,7 +91,7 @@ class SprawlDetectorJob
       end
     end
 
-    logger.info "Found #{scan.findings.count} findings."
+    logger.info "Found #{scan.resources.count} resources and #{scan.findings.count} findings."
     @scan.completed!
   end
 

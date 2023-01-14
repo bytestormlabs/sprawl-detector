@@ -20,6 +20,10 @@ class Scan < ApplicationRecord
       resource_type: resource_type,
       resource_id: resource_id,
       region: region
-    )
+    ).tap do |r|
+      r.scan = self
+      r.metadata = resource.to_h
+      r.save
+    end
   end
 end

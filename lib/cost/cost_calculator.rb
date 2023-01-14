@@ -159,7 +159,8 @@ class CostCalculator
   def translate_edition(engine_code)
     puts "entering translate_edition(engine_code = #{engine_code})"
     {
-      "sqlserver-ee" => "Express",
+      "sqlserver-ee" => "Enterprise",
+      "sqlserver-se" => "Standard",
       "sqlserver-ex" => "Express",
       "sqlserver-web" => "Web"
     }[engine_code]
