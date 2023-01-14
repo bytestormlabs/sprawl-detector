@@ -1,0 +1,162 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://ec2.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeVpcs&Version=2016-11-15
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ec2/1.356.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - ec2.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230112T192556Z
+      X-Amz-Content-Sha256:
+      - d821ac2c2958664a08eb0f0b183ebf80201e8a50da5d9e98eca9bc36ef648656
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '38'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 9d7e0043-630e-4664-925c-58eb5090aeac
+      Cache-Control:
+      - no-cache, no-store
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Vary:
+      - accept-encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '2126'
+      Date:
+      - Thu, 12 Jan 2023 19:25:56 GMT
+      Server:
+      - AmazonEC2
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <DescribeVpcsResponse xmlns="http://ec2.amazonaws.com/doc/2016-11-15/">
+            <requestId>9d7e0043-630e-4664-925c-58eb5090aeac</requestId>
+            <vpcSet>
+                <item>
+                    <vpcId>vpc-00d67dd4099764318</vpcId>
+                    <ownerId>163788863765</ownerId>
+                    <state>available</state>
+                    <cidrBlock>10.0.0.0/16</cidrBlock>
+                    <cidrBlockAssociationSet>
+                        <item>
+                            <cidrBlock>10.0.0.0/16</cidrBlock>
+                            <associationId>vpc-cidr-assoc-02f18b820d1c21eaf</associationId>
+                            <cidrBlockState>
+                                <state>associated</state>
+                            </cidrBlockState>
+                        </item>
+                    </cidrBlockAssociationSet>
+                    <dhcpOptionsId>dopt-b58924de</dhcpOptionsId>
+                    <tagSet>
+                        <item>
+                            <key>Tier</key>
+                            <value>Network</value>
+                        </item>
+                        <item>
+                            <key>Tenancy</key>
+                            <value>Shared</value>
+                        </item>
+                        <item>
+                            <key>Name</key>
+                            <value>Staging-VPC</value>
+                        </item>
+                        <item>
+                            <key>aws:cloudformation:logical-id</key>
+                            <value>VPC</value>
+                        </item>
+                        <item>
+                            <key>aws:cloudformation:stack-id</key>
+                            <value>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/65a7bd50-92ae-11ed-8ccf-0a1e82350eea</value>
+                        </item>
+                        <item>
+                            <key>Environment</key>
+                            <value>Staging</value>
+                        </item>
+                        <item>
+                            <key>aws:cloudformation:stack-name</key>
+                            <value>byte-storm-labs-staging-network-vpc</value>
+                        </item>
+                    </tagSet>
+                    <instanceTenancy>default</instanceTenancy>
+                    <isDefault>false</isDefault>
+                </item>
+            </vpcSet>
+        </DescribeVpcsResponse>
+  recorded_at: Thu, 12 Jan 2023 19:25:57 GMT
+- request:
+    method: post
+    uri: https://ec2.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeVpcEndpoints&Filter.1.Name=vpc-id&Filter.1.Value.1=vpc-00d67dd4099764318&Version=2016-11-15
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-ec2/1.356.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - ec2.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230112T192557Z
+      X-Amz-Content-Sha256:
+      - d217bec43c29bf286008397d78ee43530f50d02f78a8a469d779f950dc7c27fb
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '106'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - bd9becce-27b5-4914-ae95-7674a3bd31dd
+      Cache-Control:
+      - no-cache, no-store
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Vary:
+      - accept-encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Thu, 12 Jan 2023 19:25:56 GMT
+      Server:
+      - AmazonEC2
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <DescribeVpcEndpointsResponse xmlns="http://ec2.amazonaws.com/doc/2016-11-15/">
+            <requestId>bd9becce-27b5-4914-ae95-7674a3bd31dd</requestId>
+            <vpcEndpointSet/>
+        </DescribeVpcEndpointsResponse>
+  recorded_at: Thu, 12 Jan 2023 19:25:57 GMT
+recorded_with: VCR 6.1.0
