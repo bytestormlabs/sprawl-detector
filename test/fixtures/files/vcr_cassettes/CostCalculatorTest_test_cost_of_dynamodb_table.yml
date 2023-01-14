@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.pricing.us-east-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"ServiceCode":"AmazonDynamoDB","Filters":[{"Type":"TERM_MATCH","Field":"regionCode","Value":"us-east-1"},{"Type":"TERM_MATCH","Field":"usageType","Value":"ReadCapacityUnit-Hrs"}]}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-pricing/1.41.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - AWSPriceListService.GetProducts
+      Host:
+      - api.pricing.us-east-1.amazonaws.com
+      X-Amz-Date:
+      - 20230114T194254Z
+      X-Amz-Content-Sha256:
+      - c749a18e2b09c88ce148d6e712bb6b876b731c2de1de012a4bc1a269648a61c9
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '180'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 14 Jan 2023 19:42:54 GMT
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '3084'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - 9e91dfd6-9cba-48d0-938b-44087bf1af0d
+    body:
+      encoding: UTF-8
+      string: '{"FormatVersion":"aws_v1","PriceList":["{\"product\":{\"productFamily\":\"Provisioned
+        IOPS\",\"attributes\":{\"regionCode\":\"us-east-1\",\"servicecode\":\"AmazonDynamoDB\",\"groupDescription\":\"DynamoDB
+        Provisioned Read Units\",\"usagetype\":\"ReadCapacityUnit-Hrs\",\"locationType\":\"AWS
+        Region\",\"location\":\"US East (N. Virginia)\",\"servicename\":\"Amazon DynamoDB\",\"operation\":\"CommittedThroughput\",\"group\":\"DDB-ReadUnits\"},\"sku\":\"4V475Q49DCKGXQZ2\"},\"serviceCode\":\"AmazonDynamoDB\",\"terms\":{\"OnDemand\":{\"4V475Q49DCKGXQZ2.JRTCKXETXF\":{\"priceDimensions\":{\"4V475Q49DCKGXQZ2.JRTCKXETXF.HBHVWY47CM\":{\"unit\":\"ReadCapacityUnit-Hrs\",\"endRange\":\"18600\",\"description\":\"$0.00
+        per hour for 25 units of read capacity for a month (free tier)\",\"appliesTo\":[],\"rateCode\":\"4V475Q49DCKGXQZ2.JRTCKXETXF.HBHVWY47CM\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0000000000\"}},\"4V475Q49DCKGXQZ2.JRTCKXETXF.E63J5HTPNN\":{\"unit\":\"ReadCapacityUnit-Hrs\",\"endRange\":\"Inf\",\"description\":\"$0.00013
+        per hour for units of read capacity beyond the free tier\",\"appliesTo\":[],\"rateCode\":\"4V475Q49DCKGXQZ2.JRTCKXETXF.E63J5HTPNN\",\"beginRange\":\"18600\",\"pricePerUnit\":{\"USD\":\"0.0001300000\"}}},\"sku\":\"4V475Q49DCKGXQZ2\",\"effectiveDate\":\"2022-12-01T00:00:00Z\",\"offerTermCode\":\"JRTCKXETXF\",\"termAttributes\":{}}},\"Reserved\":{\"4V475Q49DCKGXQZ2.YTVHEVGPBZ\":{\"priceDimensions\":{\"4V475Q49DCKGXQZ2.YTVHEVGPBZ.6YS6EN2CT7\":{\"unit\":\"ReadCapacityUnit-Hrs\",\"endRange\":\"Inf\",\"description\":\"Amazon
+        DynamoDB, Reserved Read Capacity used this month\",\"appliesTo\":[],\"rateCode\":\"4V475Q49DCKGXQZ2.YTVHEVGPBZ.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0000250000\"}},\"4V475Q49DCKGXQZ2.YTVHEVGPBZ.2TG2D8R56U\":{\"unit\":\"Quantity\",\"description\":\"Upfront
+        Fee\",\"appliesTo\":[],\"rateCode\":\"4V475Q49DCKGXQZ2.YTVHEVGPBZ.2TG2D8R56U\",\"pricePerUnit\":{\"USD\":\"0.3\"}}},\"sku\":\"4V475Q49DCKGXQZ2\",\"effectiveDate\":\"2015-10-31T23:59:59Z\",\"offerTermCode\":\"YTVHEVGPBZ\",\"termAttributes\":{\"LeaseContractLength\":\"1yr\",\"OfferingClass\":\"standard\",\"PurchaseOption\":\"Heavy
+        Utilization\"}},\"4V475Q49DCKGXQZ2.VG8YD49WWM\":{\"priceDimensions\":{\"4V475Q49DCKGXQZ2.VG8YD49WWM.2TG2D8R56U\":{\"unit\":\"Quantity\",\"description\":\"Upfront
+        Fee\",\"appliesTo\":[],\"rateCode\":\"4V475Q49DCKGXQZ2.VG8YD49WWM.2TG2D8R56U\",\"pricePerUnit\":{\"USD\":\"0.36\"}},\"4V475Q49DCKGXQZ2.VG8YD49WWM.6YS6EN2CT7\":{\"unit\":\"ReadCapacityUnit-Hrs\",\"endRange\":\"Inf\",\"description\":\"Amazon
+        DynamoDB, Reserved Read Capacity used this month\",\"appliesTo\":[],\"rateCode\":\"4V475Q49DCKGXQZ2.VG8YD49WWM.6YS6EN2CT7\",\"beginRange\":\"0\",\"pricePerUnit\":{\"USD\":\"0.0000160000\"}}},\"sku\":\"4V475Q49DCKGXQZ2\",\"effectiveDate\":\"2015-10-31T23:59:59Z\",\"offerTermCode\":\"VG8YD49WWM\",\"termAttributes\":{\"LeaseContractLength\":\"3yr\",\"OfferingClass\":\"standard\",\"PurchaseOption\":\"Heavy
+        Utilization\"}}}},\"version\":\"20230109221948\",\"publicationDate\":\"2023-01-09T22:19:48Z\"}"]}'
+  recorded_at: Sat, 14 Jan 2023 19:42:54 GMT
+recorded_with: VCR 6.1.0

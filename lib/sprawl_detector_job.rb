@@ -8,6 +8,7 @@ require "detector/ecr/repositories_without_lifecycle_policy"
 require "detector/elasticloadbalancing/unused_classic_load_balancers"
 require "detector/cloudwatchlogs/log_groups_without_log_retention"
 require "detector/directoryservice/unused_directories"
+require "detector/dynamodb/over_provisioned_tables"
 require "detector/route53resolver/unused_resolvers"
 require "detector/elasticsearchservice/unused_domains"
 require "detector/elasticloadbalancingv2/unused_load_balancers"
@@ -192,6 +193,7 @@ class SprawlDetectorJob
       UnusedReplicationInstances.new,
       UnusedVpcEndpoints.new,
       ObsoleteSnapshots.new,
+      OverProvisionedTables.new,
       UnusedDbInstances.new,
       UnusedSagemakerNotebooks.new,
       UnusedSagemakerDomains.new,

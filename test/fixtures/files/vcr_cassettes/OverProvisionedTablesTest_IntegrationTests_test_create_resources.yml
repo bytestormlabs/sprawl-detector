@@ -1,0 +1,205 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://dynamodb.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-dynamodb/1.80.0
+      Content-Type:
+      - application/x-amz-json-1.0
+      X-Amz-Target:
+      - DynamoDB_20120810.ListTables
+      Host:
+      - dynamodb.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230114T210038Z
+      X-Amz-Content-Sha256:
+      - 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '2'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Sat, 14 Jan 2023 21:00:38 GMT
+      Content-Type:
+      - application/x-amz-json-1.0
+      Content-Length:
+      - '28'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - L88QEB2QILV9NUASVP2CCVP78NVV4KQNSO5AEMVJF66Q9ASUAAJG
+      X-Amz-Crc32:
+      - '2475141595'
+    body:
+      encoding: UTF-8
+      string: '{"TableNames":["TestTable"]}'
+  recorded_at: Sat, 14 Jan 2023 21:00:38 GMT
+- request:
+    method: post
+    uri: https://dynamodb.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"TableName":"TestTable"}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-dynamodb/1.80.0
+      Content-Type:
+      - application/x-amz-json-1.0
+      X-Amz-Target:
+      - DynamoDB_20120810.DescribeTable
+      Host:
+      - dynamodb.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230114T210038Z
+      X-Amz-Content-Sha256:
+      - 1aec530df9660a2cdf96ecfbb8bd9d0acc555f345036c05cada1dd0cfe948452
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '25'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Sat, 14 Jan 2023 21:00:38 GMT
+      Content-Type:
+      - application/x-amz-json-1.0
+      Content-Length:
+      - '465'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - NR64CJ2D19ULNLFLGFINEC8G9FVV4KQNSO5AEMVJF66Q9ASUAAJG
+      X-Amz-Crc32:
+      - '3986050912'
+    body:
+      encoding: UTF-8
+      string: '{"Table":{"AttributeDefinitions":[{"AttributeName":"id","AttributeType":"S"}],"CreationDateTime":1.673730010835E9,"ItemCount":0,"KeySchema":[{"AttributeName":"id","KeyType":"HASH"}],"ProvisionedThroughput":{"NumberOfDecreasesToday":0,"ReadCapacityUnits":5,"WriteCapacityUnits":5},"TableArn":"arn:aws:dynamodb:us-east-2:163788863765:table/TestTable","TableId":"4ed018f2-8269-45fa-bb0d-dcbb01aa1d36","TableName":"TestTable","TableSizeBytes":0,"TableStatus":"ACTIVE"}}'
+  recorded_at: Sat, 14 Jan 2023 21:00:38 GMT
+- request:
+    method: post
+    uri: https://monitoring.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=TableName&Dimensions.member.1.Value=TestTable&EndTime=2023-01-14T21%3A00%3A38Z&MetricName=ConsumedWriteCapacityUnits&Namespace=AWS%2FDynamoDB&Period=86400&StartTime=2022-12-15T21%3A00%3A38Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230114T210038Z
+      X-Amz-Content-Sha256:
+      - 212f7855762e4097a6b1ce63aa9f2e571cef4cf6973cddb05d6936a648f2c221
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '284'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - e8409f94-640b-47f3-9f0d-b1876d5d9147
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '349'
+      Date:
+      - Sat, 14 Jan 2023 21:00:38 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints/>
+            <Label>ConsumedWriteCapacityUnits</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>e8409f94-640b-47f3-9f0d-b1876d5d9147</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Sat, 14 Jan 2023 21:00:39 GMT
+- request:
+    method: post
+    uri: https://monitoring.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=TableName&Dimensions.member.1.Value=TestTable&EndTime=2023-01-14T21%3A00%3A38Z&MetricName=ConsumedReadCapacityUnits&Namespace=AWS%2FDynamoDB&Period=86400&StartTime=2022-12-15T21%3A00%3A38Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230114T210039Z
+      X-Amz-Content-Sha256:
+      - f477cb104fd3a2d96c4ae65f45b7ca431fc8789dae492b59ddda8a6eee668aa8
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '283'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - e7bcb6db-9211-4a3d-adb1-8a03aa1a6f4d
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '348'
+      Date:
+      - Sat, 14 Jan 2023 21:00:38 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints/>
+            <Label>ConsumedReadCapacityUnits</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>e7bcb6db-9211-4a3d-adb1-8a03aa1a6f4d</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Sat, 14 Jan 2023 21:00:39 GMT
+recorded_with: VCR 6.1.0

@@ -108,6 +108,9 @@ GEM
     aws-sdk-directoryservice (1.52.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
+    aws-sdk-dynamodb (1.80.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
     aws-sdk-ec2 (1.356.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
@@ -361,6 +364,7 @@ DEPENDENCIES
   aws-sdk-costexplorer
   aws-sdk-databasemigrationservice
   aws-sdk-directoryservice
+  aws-sdk-dynamodb
   aws-sdk-ec2
   aws-sdk-ecr
   aws-sdk-elasticache

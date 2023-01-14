@@ -92,7 +92,20 @@ class CostCalculatorTest < BaseAwsIntegrationTest
         }
       }
     ))
-    puts "cost: #{cost}"
     assert_equal 52.56, cost
+  end
+
+  test "cost of dynamodb table" do
+    cost = decorator.decorate(Resource.new(
+      region: "us-east-1",
+      resource_type: "AWS::DynamoDB::Table",
+      metadata: {
+        provisioned_throughput: {
+          read_capacity_units: 10,
+          write_capacity_units: 10
+        }
+      }
+    ))
+    assert_equal 5.90, cost
   end
 end

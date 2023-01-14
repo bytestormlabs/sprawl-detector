@@ -1,0 +1,10 @@
+service: AmazonDynamoDB
+resource_type: AWS::DynamoDB::Table
+filters:
+  - key: regionCode
+    eval: region
+  - key: usageType
+    value: ReadCapacityUnit-Hrs
+price_components:
+  - (metadata["provisioned_throughput"]["write_capacity_units"] + metadata["provisioned_throughput"]["read_capacity_units"])
+  - "0.295"     # The first 'term' is the free tier, haven't figured out a way to get past this.
