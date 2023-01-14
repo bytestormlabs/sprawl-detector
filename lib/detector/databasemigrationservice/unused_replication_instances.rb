@@ -25,7 +25,9 @@ class UnusedReplicationInstances
           .with_dimension("ReplicationInstanceIdentifier", replication_instance.replication_instance_identifier)
           .with(scan.credentials)
 
-        resource.create_finding(scan, ISSUE_TYPE) if network_transmit_throughput.less_than?(20000)
+        resource.create_finding(scan, ISSUE_TYPE) if
+          replication_instance.instance_create_time < (DateTime.now - number_of_days) &&
+            network_transmit_throughput.less_than?(20000)
       end
     end
   end

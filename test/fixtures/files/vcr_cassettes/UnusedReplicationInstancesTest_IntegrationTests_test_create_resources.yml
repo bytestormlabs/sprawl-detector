@@ -1,0 +1,171 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://dms.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-databasemigrationservice/1.74.0
+      Content-Type:
+      - application/x-amz-json-1.1
+      X-Amz-Target:
+      - AmazonDMSv20160101.DescribeReplicationInstances
+      Host:
+      - dms.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230114T163800Z
+      X-Amz-Content-Sha256:
+      - 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '2'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - c03c9034-3b97-4397-ba8d-a75aeaec3b6b
+      Content-Type:
+      - application/x-amz-json-1.1
+      Content-Length:
+      - '1773'
+      Date:
+      - Sat, 14 Jan 2023 16:37:59 GMT
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "ReplicationInstances": [
+            {
+              "AllocatedStorage": 100,
+              "AutoMinorVersionUpgrade": true,
+              "AvailabilityZone": "us-east-2a",
+              "EngineVersion": "3.4.6",
+              "InstanceCreateTime": 1473714050.723,
+              "KmsKeyId": "arn:aws:kms:us-east-2:163788863765:key/d87cb056-a6e8-4759-a487-2f672d02eec1",
+              "MultiAZ": false,
+              "NetworkType": "IPV4",
+              "PatchingPrecedence": 0,
+              "PendingModifiedValues": {
+              },
+              "PreferredMaintenanceWindow": "tue:08:54-tue:09:24",
+              "PubliclyAccessible": true,
+              "ReplicationInstanceArn": "arn:aws:dms:us-east-2:163788863765:rep:7BSVUCIVN2NDOATJA47BKJBYX24I3HM7PEGB7UI",
+              "ReplicationInstanceClass": "dms.c4.large",
+              "ReplicationInstanceEniId": "eni-063e71ad9ce7d27bb",
+              "ReplicationInstanceEniIds": [
+                "eni-063e71ad9ce7d27bb"
+              ],
+              "ReplicationInstanceIdentifier": "replicationinstance-gb3nxoz8fulxw9dd",
+              "ReplicationInstanceIpv6Addresses": [
+
+              ],
+              "ReplicationInstancePrivateIpAddress": "10.0.100.46",
+              "ReplicationInstancePrivateIpAddresses": [
+                "10.0.100.46"
+              ],
+              "ReplicationInstancePublicIpAddress": "3.18.144.111",
+              "ReplicationInstancePublicIpAddresses": [
+                "3.18.144.111"
+              ],
+              "ReplicationInstanceStatus": "available",
+              "ReplicationSubnetGroup": {
+                "ReplicationSubnetGroupArn": "arn:aws:dms:us-east-2:163788863765:subgrp:replicationsubnetgroup-xr1vh9dhh5d0yquv",
+                "ReplicationSubnetGroupDescription": "The subnet group for byte-storm-labs-staging-sample-replication-instance",
+                "ReplicationSubnetGroupIdentifier": "replicationsubnetgroup-xr1vh9dhh5d0yquv",
+                "SubnetGroupStatus": "Complete",
+                "Subnets": [
+                  {
+                    "SubnetAvailabilityZone": {
+                      "Name": "us-east-2a"
+                    },
+                    "SubnetIdentifier": "subnet-01dc8d82dd199b719",
+                    "SubnetStatus": "Active"
+                  },
+                  {
+                    "SubnetAvailabilityZone": {
+                      "Name": "us-east-2b"
+                    },
+                    "SubnetIdentifier": "subnet-026d7af34c49539a9",
+                    "SubnetStatus": "Active"
+                  }
+                ],
+                "VpcId": "vpc-08e4113e93996d64f"
+              },
+              "VpcSecurityGroups": [
+                {
+                  "Status": "active",
+                  "VpcSecurityGroupId": "sg-0bf0be98ca32a1c53"
+                }
+              ]
+            }
+          ]
+        }
+  recorded_at: Sat, 14 Jan 2023 16:38:00 GMT
+- request:
+    method: post
+    uri: https://monitoring.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=ReplicationInstanceIdentifier&Dimensions.member.1.Value=replicationinstance-gb3nxoz8fulxw9dd&EndTime=2023-01-14T16%3A38%3A00Z&MetricName=NetworkTransmitThroughput&Namespace=AWS%2FDMS&Period=86400&StartTime=2022-10-16T16%3A38%3A00Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230114T163800Z
+      X-Amz-Content-Sha256:
+      - ba975dcaad4a4893c7d1897d957f59423fd9029d54107449146bbdc305422597
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '325'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - '002889da-7eac-4271-80a0-8cedf56c6382'
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '519'
+      Date:
+      - Sat, 14 Jan 2023 16:38:00 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints>
+              <member>
+                <Unit>Bytes/Second</Unit>
+                <Sum>72.84707743138104</Sum>
+                <Timestamp>2023-01-14T16:00:00Z</Timestamp>
+              </member>
+            </Datapoints>
+            <Label>NetworkTransmitThroughput</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>002889da-7eac-4271-80a0-8cedf56c6382</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Sat, 14 Jan 2023 16:38:01 GMT
+recorded_with: VCR 6.1.0

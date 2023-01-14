@@ -14,15 +14,15 @@ class UnusedReplicationInstancesTest < ActiveSupport::TestCase
     assert_equal detector.default_settings.count, 1
   end
 
-  # class IntegrationTests < BaseAwsIntegrationTest
-  #   detector = UnusedReplicationInstances.new
-  #
-  #   scan = Scan.create(account: Account.first, credentials: Aws::Credentials.new("abc", "1234"))
-  #
-  #   test "create resources" do
-  #     findings = Finding.count
-  #     detector.execute(scan, "us-east-1")
-  #     assert findings < Finding.count
-  #   end
-  # end
+  class IntegrationTests < BaseAwsIntegrationTest
+    test "create resources" do
+      detector = UnusedReplicationInstances.new
+
+      scan = Scan.create(account: Account.first, credentials: Aws::SharedCredentials.new)
+
+      findings = Finding.count
+      detector.execute(scan, "us-east-2")
+      assert findings < Finding.count
+    end
+  end
 end
