@@ -129,6 +129,9 @@ GEM
     aws-sdk-elasticsearchservice (1.68.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
+    aws-sdk-kms (1.61.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
     aws-sdk-lambda (1.89.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
@@ -148,6 +151,9 @@ GEM
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-sagemaker (1.159.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-scheduler (1.1.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-secretsmanager (1.70.0)
@@ -371,6 +377,7 @@ DEPENDENCIES
   aws-sdk-elasticloadbalancing
   aws-sdk-elasticloadbalancingv2
   aws-sdk-elasticsearchservice
+  aws-sdk-kms
   aws-sdk-lambda
   aws-sdk-mq
   aws-sdk-pricing
@@ -378,6 +385,7 @@ DEPENDENCIES
   aws-sdk-redshift
   aws-sdk-route53resolver
   aws-sdk-sagemaker
+  aws-sdk-scheduler
   aws-sdk-secretsmanager
   aws-sdk-transfer
   aws-sdk-wafv2

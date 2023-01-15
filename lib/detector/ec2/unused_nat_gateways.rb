@@ -23,7 +23,10 @@ class UnusedNatGateways
         .with_dimension("NatGatewayId", nat_gateway.nat_gateway_id)
         .with(scan.credentials)
 
-      resource.create_finding(scan, ISSUE_TYPE) if success.indicates_zero_activity?
+      resource.create_finding(scan, ISSUE_TYPE) if
+        nat_gateway.state == "available" &&
+          nat_gateway.create_time < (DateTime.now - number_of_days) &&
+          success.indicates_zero_activity?
     end
   end
 
