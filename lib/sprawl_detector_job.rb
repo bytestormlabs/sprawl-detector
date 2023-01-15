@@ -32,7 +32,7 @@ require "detector/secretsmanager/unused_secrets"
 require "detector/transfer/unused_transfer_servers"
 require "detector/vpc/unused_vpc_endpoints"
 require "detector/wafv2/unused_web_acls"
-require "report"
+require "report_job"
 
 class SprawlDetectorJob
   attr_accessor :scan, :account, :role_session, :skip_update_costs, :account_id
@@ -209,6 +209,6 @@ class SprawlDetectorJob
   end
 
   def report_findings
-    Report.new(account.account_id).execute
+    ReportJob.new(account.account_id).execute
   end
 end

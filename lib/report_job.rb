@@ -1,11 +1,15 @@
 require "terminal-table"
 require "cost/cost_calculator"
 
-class Report
+class ReportJob
   attr_accessor :account_id
 
   def initialize(account_id = nil)
     @account_id = account_id || ENV.fetch("AWS_ACCOUNT_ID")
+  end
+
+  def self.perform_now
+    ReportJob.new.execute
   end
 
   LineItem = Struct.new(:region, :resource_type, :issue_type, :count, :total_cost)

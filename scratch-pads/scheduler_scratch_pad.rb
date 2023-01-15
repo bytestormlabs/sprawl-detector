@@ -24,18 +24,15 @@ input = JSON.pretty_generate({
     }
   ]
 })
-pp exports
 
-puts "Input: #{input}"
-
-client.update_schedule(
+request = {
   description: "Periodic sprawl detection for #{account_id}",
   flexible_time_window: {
     mode: "OFF"
   },
   group_name: "sprawl-detector",
-  name: "sprawl-detector-#{account_id}",
-  schedule_expression: "cron(*/12 * * * ? *)",
+  name: "#{account_id}",
+  schedule_expression: "cron(*/15 * * * ? *)",
   state: "ENABLED",
   target: {
     arn: "arn:aws:ecs:us-east-2:163788863765:cluster/Staging-Cluster",
@@ -57,4 +54,10 @@ client.update_schedule(
     },
     input: input
   }
-)
+}
+
+begin
+  client.update_schedule(request)
+rescue Aws::Scheduler::Errors::ResourceNotFoundException => e
+  client.create_schedule(request)
+end
