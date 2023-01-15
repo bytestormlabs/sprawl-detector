@@ -31,7 +31,7 @@ request = {
     mode: "OFF"
   },
   group_name: "sprawl-detector",
-  name: "#{account_id}",
+  name: account_id.to_s,
   schedule_expression: "cron(*/15 * * * ? *)",
   state: "ENABLED",
   target: {
