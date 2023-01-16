@@ -14,7 +14,7 @@ environment = "Staging"
 input = JSON.pretty_generate({
   containerOverrides: [
     {
-      name: "#{image}",
+      name: image.to_s,
       command: [
         "./bin/rails", "runner", "SprawlDetectorJob.perform_now"
       ],
@@ -33,7 +33,7 @@ request = {
   flexible_time_window: {
     mode: "OFF"
   },
-  group_name: "#{image}",
+  group_name: image.to_s,
   name: account_id.to_s,
   schedule_expression: "cron(*/15 * * * ? *)",
   state: "ENABLED",
@@ -61,6 +61,6 @@ request = {
 
 begin
   client.update_schedule(request)
-rescue Aws::Scheduler::Errors::ResourceNotFoundException => e
+rescue Aws::Scheduler::Errors::ResourceNotFoundException
   client.create_schedule(request)
 end
