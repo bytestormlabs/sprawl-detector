@@ -19,6 +19,7 @@ require "detector/ecr/repositories_without_lifecycle_policy"
 require "detector/elasticloadbalancing/unused_classic_load_balancers"
 require "detector/elasticloadbalancingv2/unused_load_balancers"
 require "detector/elasticsearchservice/unused_domains"
+require "detector/kinesis/unused_data_streams"
 require "detector/lambda/unused_lambda_functions"
 require "detector/mq/unused_mq_brokers"
 require "detector/rds/obsolete_snapshots"
@@ -64,32 +65,32 @@ class SprawlDetectorJob
   end
 
   def find_detectors_by_cost_and_usage
-    services_used = AwsCostLineItem.where(account: account).last_7_days.group(:service, :region).sum(:cost).sort_by { |key, cost| -cost }
-    logger.info "Found #{services_used.count} services used in the last 30 days."
+    services_used = AwsCostLineItem.where(account: account).where("cost > ?", 1).last_30_days.group(:service, :region).sum(:cost).sort_by { |key, cost| -cost }
+    logger.info "Found #{services_used.count} services used in the last 7 days."
 
     services_used.each do |key, cost|
       (service, region) = key
       next if ["global", "NoRegion"].include?(region)
       next if service == "Tax"
 
-      if cost > 1.0
-        logger.info "Investigating #{service} in #{region} which incurred $#{"%.2f" % cost} of costs this period."
+      # if cost > 1.0
+      logger.info "Investigating #{service} in #{region} which incurred $#{"%.2f" % cost} of costs this period."
 
-        instances = detectors.find_all do |d|
-          d.service_name == service
-        end
-
-        instances&.each do |detector|
-          before = scan.findings.count
-          logger.info "  Running #{detector.class}"
-          detector.execute(scan, region)
-          after = scan.findings.count
-          logger.info "    Found #{after - before} issues." if before < after
-        rescue RuntimeError => e
-          logger.error "Unhandled exception from #{detector}"
-          logger.error e
-        end
+      instances = detectors.find_all do |d|
+        d.service_name == service
       end
+
+      instances&.each do |detector|
+        before = scan.findings.count
+        logger.info "  Running #{detector.class}"
+        detector.execute(scan, region)
+        after = scan.findings.count
+        logger.info "    Found #{after - before} issues." if before < after
+      rescue RuntimeError => e
+        logger.error "Unhandled exception from #{detector}"
+        logger.error e
+      end
+      # end
     end
 
     logger.info "Found #{scan.resources.count} resources and #{scan.findings.count} findings."
@@ -192,6 +193,7 @@ class SprawlDetectorJob
       UnusedClassicLoadBalancers.new,
       UnusedLoadBalancers.new,
       UnusedDomains.new,
+      UnusedDataStreams.new,
       UnusedLambdaFunctions.new,
       UnusedMqBrokers.new,
       ObsoleteSnapshots.new,
