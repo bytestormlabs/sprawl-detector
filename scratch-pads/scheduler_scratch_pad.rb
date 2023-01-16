@@ -7,11 +7,14 @@ cfn_client = Aws::CloudFormation::Client.new(region: "us-east-2")
 exports = cfn_client.list_exports.exports
 
 account_id = "163788863765"
+region = "us-east-2"
+image = "sprawl-detector"
+environment = "Staging"
 
 input = JSON.pretty_generate({
   containerOverrides: [
     {
-      name: "sprawl-detector",
+      name: "#{image}",
       command: [
         "./bin/rails", "runner", "SprawlDetectorJob.perform_now"
       ],
@@ -30,24 +33,24 @@ request = {
   flexible_time_window: {
     mode: "OFF"
   },
-  group_name: "sprawl-detector",
+  group_name: "#{image}",
   name: account_id.to_s,
   schedule_expression: "cron(*/15 * * * ? *)",
   state: "ENABLED",
   target: {
-    arn: "arn:aws:ecs:us-east-2:163788863765:cluster/Staging-Cluster",
-    role_arn: "arn:aws:iam::163788863765:role/Staging-SchedulerRole-resource-scheduler",
+    arn: "arn:aws:ecs:#{region}:#{account_id}:cluster/#{environment}-Cluster",
+    role_arn: "arn:aws:iam::#{account_id}:role/#{environment}-SchedulerRole-#{image}",
     ecs_parameters: {
-      task_definition_arn: "arn:aws:ecs:us-east-2:163788863765:task-definition/sprawl-detector",
+      task_definition_arn: "arn:aws:ecs:#{region}:#{account_id}:task-definition/#{image}",
       network_configuration: {
         awsvpc_configuration: {
           assign_public_ip: "DISABLED",
           security_groups: [
-            exports.find { |e| e.name == "Staging-MySqlSecurityGroup" }.value
+            exports.find { |e| e.name == "#{environment}-MySqlSecurityGroup" }.value
           ],
           subnets: [
-            exports.find { |e| e.name == "Staging-PrivateSubnet1" }.value,
-            exports.find { |e| e.name == "Staging-PrivateSubnet2" }.value
+            exports.find { |e| e.name == "#{environment}-PrivateSubnet1" }.value,
+            exports.find { |e| e.name == "#{environment}-PrivateSubnet2" }.value
           ]
         }
       }
