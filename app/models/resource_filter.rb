@@ -36,7 +36,7 @@ class ResourceFilter < ActiveRecord::Base
       "AWS::ECS::Service",
       [
         "cluster",
-        "services",
+        "services"
       ],
       "AWS ECS Services"
     )
