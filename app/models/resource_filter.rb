@@ -24,8 +24,23 @@ class ResourceFilter < ActiveRecord::Base
         "engine"
       ],
       "AWS RDS Database Clusters"
+    ),
+    ResourceConfiguration.new(
+      "AWS::AutoScaling::AutoScalingGroup",
+      [
+        "auto_scaling_group_names"
+      ],
+      "AWS AutoScaling Groups"
+    ),
+    ResourceConfiguration.new(
+      "AWS::ECS::Service",
+      [
+        "cluster",
+        "services",
+      ],
+      "AWS ECS Services"
     )
-  ]
+  ].freeze
 
   validates :resource_type, presence: true, inclusion: {
     in: RESOURCE_CONFIGURATIONS.map(&:resource_type)
@@ -50,7 +65,8 @@ class ResourceFilter < ActiveRecord::Base
       "ca-central-1"
     ]
   }
-  # validate :ensure_filters_have_valid_names
+
+  validate :ensure_filters_have_valid_names
 
   # def strategy
   #   [
@@ -63,14 +79,16 @@ class ResourceFilter < ActiveRecord::Base
   #   end
   # end
   #
-  # def ensure_filters_have_valid_names
-  #   filters.each do |filter|
-  #     if !filter.is_tag_based?
-  #       unless strategy.available_filters.include? filter.name
-  #         errors.add(:filters, "Invalid attribute '#{filter.name}'. Allowed values are #{strategy.available_filters.join(", ")}.")
-  #         filter.errors.add(:name, "Invalid attribute '#{filter.name}'. Allowed values are #{strategy.available_filters.join(", ")}.")
-  #       end
-  #     end
-  #   end
-  # end
+  def ensure_filters_have_valid_names
+    filters.each do |filter|
+      if !filter.is_tag_based?
+        resource_configuration = RESOURCE_CONFIGURATIONS.find { |d| d.resource_type == resource_type }
+        next if resource_configuration.nil?
+        unless resource_configuration.filters.include?(filter.name)
+          errors.add(:filters, "Invalid attribute '#{filter.name}'. Allowed values are #{resource_configuration.filters.join(", ")}.")
+          filter.errors.add(:name, "Invalid attribute '#{filter.name}'. Allowed values are #{resource_configuration.filters.join(", ")}.")
+        end
+      end
+    end
+  end
 end
