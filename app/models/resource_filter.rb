@@ -7,8 +7,9 @@ require "forwardable"
 class ResourceFilter < ActiveRecord::Base
   extend Forwardable
 
-  # def_delegators :strategy, :friendly_name
+  default_scope { order(ordinal: :asc) }
 
+  validates :ordinal, presence: true
   belongs_to :scheduled_plan
   has_many :filters
 
@@ -68,17 +69,10 @@ class ResourceFilter < ActiveRecord::Base
 
   validate :ensure_filters_have_valid_names
 
-  # def strategy
-  #   [
-  #     RdsInstanceResourceStrategy.new(self),
-  #     EcsServiceResourceStrategy.new(self),
-  #     RdsClusterResourceStrategy.new(self),
-  #     AutoScalingResourceStrategy.new(self)
-  #   ].find do |strategy|
-  #     strategy.applies_to?(resource_type)
-  #   end
-  # end
-  #
+  before_validation do |rf|
+    rf.ordinal = rf.scheduled_plan.resource_filters.count + 1 if rf.ordinal.nil?
+  end
+
   def ensure_filters_have_valid_names
     filters.each do |filter|
       if !filter.is_tag_based?

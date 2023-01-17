@@ -1,0 +1,2 @@
+queues:
+  default: https://sqs.us-east-2.amazonaws.com/163788863765/byte-storm-labs-staging-apps-sprawl-detector-BackgroundJobQueue-VNBqksPImCSS

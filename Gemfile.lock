@@ -76,6 +76,8 @@ GEM
     ast (2.4.2)
     aws-eventstream (1.2.0)
     aws-partitions (1.688.0)
+    aws-record (2.10.0)
+      aws-sdk-dynamodb (~> 1.18)
     aws-sdk-acm (1.54.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
@@ -144,6 +146,13 @@ GEM
     aws-sdk-pricing (1.41.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
+    aws-sdk-rails (3.6.4)
+      aws-record (~> 2)
+      aws-sdk-ses (~> 1)
+      aws-sdk-sqs (~> 1)
+      aws-sessionstore-dynamodb (~> 2)
+      concurrent-ruby (~> 1)
+      railties (>= 5.2.0)
     aws-sdk-rds (1.169.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
@@ -162,12 +171,21 @@ GEM
     aws-sdk-secretsmanager (1.70.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
+    aws-sdk-ses (1.48.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-sqs (1.52.1)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
     aws-sdk-transfer (1.65.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-wafv2 (1.46.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
+    aws-sessionstore-dynamodb (2.0.1)
+      aws-sdk-dynamodb (~> 1)
+      rack (~> 2)
     aws-sigv4 (1.5.2)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.18)
@@ -385,6 +403,7 @@ DEPENDENCIES
   aws-sdk-lambda
   aws-sdk-mq
   aws-sdk-pricing
+  aws-sdk-rails
   aws-sdk-rds
   aws-sdk-redshift
   aws-sdk-route53resolver

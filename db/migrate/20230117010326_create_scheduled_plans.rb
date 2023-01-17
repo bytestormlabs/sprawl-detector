@@ -10,7 +10,7 @@ class CreateScheduledPlans < ActiveRecord::Migration[7.0]
     create_table :resource_filters do |t|
       t.string :region
       t.string :resource_type
-      t.integer :order
+      t.integer :ordinal
       t.references :scheduled_plan, foreign_key: true
       t.timestamps
     end
