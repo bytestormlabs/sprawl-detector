@@ -13,3 +13,10 @@ Tenant.find_or_create_by(name: "ByteStorm Labs").save!
 account = Account.find_or_create_by(account_id: "163788863765", tenant: Tenant.find_by_name("ByteStorm Labs"))
 account.external_id = "abc-123-def-456"
 account.save!
+
+ScheduledPlan.new(account: account, resource_filters: [
+  ResourceFilter.new(
+    resource_type: "AWS::AutoScaling::AutoScalingGroup",
+    region: "us-east-2"
+  )
+]).save!

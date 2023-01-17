@@ -1,0 +1,151 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://autoscaling.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeAutoScalingGroups&Filters=&Version=2011-01-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-autoscaling/1.84.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - autoscaling.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230117T195037Z
+      X-Amz-Content-Sha256:
+      - f8ee6aef772ce0ef04d6a325790af4ddb3acd00e1890b3a03b41533337480a6f
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '60'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 13787aea-dd93-40f1-8347-23a4b9c0b890
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '5640'
+      Vary:
+      - accept-encoding
+      Date:
+      - Tue, 17 Jan 2023 19:50:37 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <DescribeAutoScalingGroupsResponse xmlns="http://autoscaling.amazonaws.com/doc/2011-01-01/">
+          <DescribeAutoScalingGroupsResult>
+            <AutoScalingGroups>
+              <member>
+                <HealthCheckType>EC2</HealthCheckType>
+                <Instances>
+                  <member>
+                    <LaunchConfigurationName>byte-storm-labs-staging-sample-autoscaling-ECSLaunchConfiguration-Rmw9raYkZdek</LaunchConfigurationName>
+                    <LifecycleState>InService</LifecycleState>
+                    <InstanceId>i-00137f90976b2b17e</InstanceId>
+                    <HealthStatus>Healthy</HealthStatus>
+                    <InstanceType>m6g.large</InstanceType>
+                    <ProtectedFromScaleIn>false</ProtectedFromScaleIn>
+                    <AvailabilityZone>us-east-2b</AvailabilityZone>
+                  </member>
+                  <member>
+                    <LaunchConfigurationName>byte-storm-labs-staging-sample-autoscaling-ECSLaunchConfiguration-Rmw9raYkZdek</LaunchConfigurationName>
+                    <LifecycleState>InService</LifecycleState>
+                    <InstanceId>i-017a2e660c11ef29a</InstanceId>
+                    <HealthStatus>Healthy</HealthStatus>
+                    <InstanceType>m6g.large</InstanceType>
+                    <ProtectedFromScaleIn>false</ProtectedFromScaleIn>
+                    <AvailabilityZone>us-east-2a</AvailabilityZone>
+                  </member>
+                  <member>
+                    <LaunchConfigurationName>byte-storm-labs-staging-sample-autoscaling-ECSLaunchConfiguration-Rmw9raYkZdek</LaunchConfigurationName>
+                    <LifecycleState>InService</LifecycleState>
+                    <InstanceId>i-054e184ff9956c1c0</InstanceId>
+                    <HealthStatus>Healthy</HealthStatus>
+                    <InstanceType>m6g.large</InstanceType>
+                    <ProtectedFromScaleIn>false</ProtectedFromScaleIn>
+                    <AvailabilityZone>us-east-2a</AvailabilityZone>
+                  </member>
+                  <member>
+                    <LaunchConfigurationName>byte-storm-labs-staging-sample-autoscaling-ECSLaunchConfiguration-Rmw9raYkZdek</LaunchConfigurationName>
+                    <LifecycleState>InService</LifecycleState>
+                    <InstanceId>i-092082670a438e8f1</InstanceId>
+                    <HealthStatus>Healthy</HealthStatus>
+                    <InstanceType>m6g.large</InstanceType>
+                    <ProtectedFromScaleIn>false</ProtectedFromScaleIn>
+                    <AvailabilityZone>us-east-2b</AvailabilityZone>
+                  </member>
+                </Instances>
+                <TerminationPolicies>
+                  <member>Default</member>
+                </TerminationPolicies>
+                <DefaultCooldown>300</DefaultCooldown>
+                <EnabledMetrics/>
+                <AutoScalingGroupARN>arn:aws:autoscaling:us-east-2:163788863765:autoScalingGroup:582e2aa4-f360-4b4b-8edf-8ff48c3e28fa:autoScalingGroupName/byte-storm-labs-staging-sample-autoscaling-ECSAutoScalingGroup-1D0HCYVC9HU2N</AutoScalingGroupARN>
+                <MaxSize>4</MaxSize>
+                <AvailabilityZones>
+                  <member>us-east-2a</member>
+                  <member>us-east-2b</member>
+                </AvailabilityZones>
+                <TargetGroupARNs/>
+                <LaunchConfigurationName>byte-storm-labs-staging-sample-autoscaling-ECSLaunchConfiguration-Rmw9raYkZdek</LaunchConfigurationName>
+                <AutoScalingGroupName>byte-storm-labs-staging-sample-autoscaling-ECSAutoScalingGroup-1D0HCYVC9HU2N</AutoScalingGroupName>
+                <HealthCheckGracePeriod>0</HealthCheckGracePeriod>
+                <NewInstancesProtectedFromScaleIn>false</NewInstancesProtectedFromScaleIn>
+                <CreatedTime>2023-01-17T18:46:49.478Z</CreatedTime>
+                <MinSize>4</MinSize>
+                <TrafficSources/>
+                <LoadBalancerNames/>
+                <Tags>
+                  <member>
+                    <ResourceId>byte-storm-labs-staging-sample-autoscaling-ECSAutoScalingGroup-1D0HCYVC9HU2N</ResourceId>
+                    <PropagateAtLaunch>true</PropagateAtLaunch>
+                    <Value>Staging ECS host</Value>
+                    <Key>Name</Key>
+                    <ResourceType>auto-scaling-group</ResourceType>
+                  </member>
+                  <member>
+                    <ResourceId>byte-storm-labs-staging-sample-autoscaling-ECSAutoScalingGroup-1D0HCYVC9HU2N</ResourceId>
+                    <PropagateAtLaunch>true</PropagateAtLaunch>
+                    <Value>ECSAutoScalingGroup</Value>
+                    <Key>aws:cloudformation:logical-id</Key>
+                    <ResourceType>auto-scaling-group</ResourceType>
+                  </member>
+                  <member>
+                    <ResourceId>byte-storm-labs-staging-sample-autoscaling-ECSAutoScalingGroup-1D0HCYVC9HU2N</ResourceId>
+                    <PropagateAtLaunch>true</PropagateAtLaunch>
+                    <Value>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-sample-autoscaling/ee23ae50-9696-11ed-a525-0686531aced4</Value>
+                    <Key>aws:cloudformation:stack-id</Key>
+                    <ResourceType>auto-scaling-group</ResourceType>
+                  </member>
+                  <member>
+                    <ResourceId>byte-storm-labs-staging-sample-autoscaling-ECSAutoScalingGroup-1D0HCYVC9HU2N</ResourceId>
+                    <PropagateAtLaunch>true</PropagateAtLaunch>
+                    <Value>byte-storm-labs-staging-sample-autoscaling</Value>
+                    <Key>aws:cloudformation:stack-name</Key>
+                    <ResourceType>auto-scaling-group</ResourceType>
+                  </member>
+                </Tags>
+                <ServiceLinkedRoleARN>arn:aws:iam::163788863765:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling</ServiceLinkedRoleARN>
+                <SuspendedProcesses/>
+                <DesiredCapacity>4</DesiredCapacity>
+                <VPCZoneIdentifier>subnet-020ad8581c58d9028,subnet-0541a5343c677b72b</VPCZoneIdentifier>
+              </member>
+            </AutoScalingGroups>
+          </DescribeAutoScalingGroupsResult>
+          <ResponseMetadata>
+            <RequestId>13787aea-dd93-40f1-8347-23a4b9c0b890</RequestId>
+          </ResponseMetadata>
+        </DescribeAutoScalingGroupsResponse>
+  recorded_at: Tue, 17 Jan 2023 19:50:37 GMT
+recorded_with: VCR 6.1.0

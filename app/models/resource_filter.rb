@@ -73,6 +73,10 @@ class ResourceFilter < ActiveRecord::Base
     rf.ordinal = rf.scheduled_plan.resource_filters.count + 1 if rf.ordinal.nil?
   end
 
+  def friendly_name
+    RESOURCE_CONFIGURATIONS.find { |d| d.resource_type == resource_type }&.name
+  end
+
   def ensure_filters_have_valid_names
     filters.each do |filter|
       if !filter.is_tag_based?

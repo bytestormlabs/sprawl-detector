@@ -84,6 +84,9 @@ GEM
     aws-sdk-acmpca (1.51.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
+    aws-sdk-autoscaling (1.84.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
     aws-sdk-cloudformation (1.73.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
@@ -384,6 +387,7 @@ DEPENDENCIES
   active_model_serializers
   aws-sdk-acm
   aws-sdk-acmpca
+  aws-sdk-autoscaling
   aws-sdk-cloudformation
   aws-sdk-cloudtrail
   aws-sdk-cloudwatch

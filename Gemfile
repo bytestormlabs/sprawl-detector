@@ -24,6 +24,7 @@ gem "sekreto"
 # AWS SDKs
 gem "aws-sdk-acm"
 gem "aws-sdk-acmpca"
+gem "aws-sdk-autoscaling"
 gem "aws-sdk-cloudformation"
 gem "aws-sdk-cloudtrail"
 gem "aws-sdk-cloudwatch"
