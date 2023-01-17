@@ -2,6 +2,8 @@ class CreateScheduledPlans < ActiveRecord::Migration[7.0]
   def change
     create_table :scheduled_plans do |t|
       t.references :account, foreign_key: true
+      t.string :up_schedule
+      t.string :down_schedule
       t.string :name
       t.timestamps
     end
