@@ -1,9 +1,9 @@
 class Setting < ApplicationRecord
-  belongs_to :account
-  belongs_to :tenant
+  belongs_to :account, optional: true
+  belongs_to :tenant, optional: true
 
   enum :data_type, %i[integer string boolean]
-  validates :name, presence: true
+  validates :key, presence: true
   validates :value, presence: true
 
   validate :data_type_matches_value
@@ -12,7 +12,7 @@ class Setting < ApplicationRecord
     [
       Setting.where(account_id: scan.account.id).where(key: key),
       Setting.where(tenant_id: scan.account.tenant.id).where(key: key),
-      Setting.where("account_id IS NULL AND tenant_id IS NULL"),
+      Setting.where("account_id IS NULL AND tenant_id IS NULL")
     ].find(&:count).value.to_i
   end
 
@@ -25,7 +25,7 @@ class Setting < ApplicationRecord
     end
   end
 
-  def self.create_int(prefix, name, description, value)
-    Setting.new(name: [prefix, name].join("."), description: description, value: value)
+  def self.create_int(prefix, key, description, value)
+    Setting.new(key: [prefix, key].join("."), description: description, value: value)
   end
 end

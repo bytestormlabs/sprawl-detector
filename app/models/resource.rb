@@ -2,7 +2,7 @@ class Resource < ApplicationRecord
   belongs_to :account
   belongs_to :scan
   has_many :findings
-  
+
   %i[region scan account resource_type].each do |field|
     validates field, presence: true
   end
