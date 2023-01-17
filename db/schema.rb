@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_010326) do
   create_table "resource_filters", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "region"
     t.string "resource_type"
+    t.integer "order"
     t.bigint "scheduled_plan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
