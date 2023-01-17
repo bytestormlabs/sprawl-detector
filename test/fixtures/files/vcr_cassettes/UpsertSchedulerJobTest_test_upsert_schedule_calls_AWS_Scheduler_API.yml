@@ -1,0 +1,351 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://cloudformation.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=ListExports&Version=2010-05-15
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudformation/1.73.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - cloudformation.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230117T162946Z
+      X-Amz-Content-Sha256:
+      - 460c3228dfa093f91525c4d26d257d5f6260eeff1d2302a13d2920745f60a411
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '37'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - ab91134c-148a-4800-8cd5-197e4b599269
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '4601'
+      Date:
+      - Tue, 17 Jan 2023 16:29:46 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <ListExportsResponse xmlns="http://cloudformation.amazonaws.com/doc/2010-05-15/">
+          <ListExportsResult>
+            <Exports>
+              <member>
+                <Name>Staging-InternetGateway</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>igw-009445f7f98b30002</Value>
+              </member>
+              <member>
+                <Name>Staging-MySqlSecurityGroup</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-database-mysql/99ba8ef0-966f-11ed-9380-0adf48fb2fe6</ExportingStackId>
+                <Value>sg-0a32535bde8636b7d</Value>
+              </member>
+              <member>
+                <Name>Staging-NatGateway1</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>3.20.157.144</Value>
+              </member>
+              <member>
+                <Name>Staging-NatGateway1CIDR</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>3.20.157.144/32</Value>
+              </member>
+              <member>
+                <Name>Staging-NatGateway2</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>3.141.232.10</Value>
+              </member>
+              <member>
+                <Name>Staging-NatGateway2CIDR</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>3.141.232.10/32</Value>
+              </member>
+              <member>
+                <Name>Staging-PrivateRouteTable1</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>rtb-0060dcfe683113682</Value>
+              </member>
+              <member>
+                <Name>Staging-PrivateRouteTable2</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>rtb-0cdabe97952160d03</Value>
+              </member>
+              <member>
+                <Name>Staging-PrivateSubnet1</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>subnet-0541a5343c677b72b</Value>
+              </member>
+              <member>
+                <Name>Staging-PrivateSubnet2</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>subnet-020ad8581c58d9028</Value>
+              </member>
+              <member>
+                <Name>Staging-PublicRouteTable</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>rtb-072d5a90a59c5c857</Value>
+              </member>
+              <member>
+                <Name>Staging-PublicSubnet1</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>subnet-0537d098b8ff17f85</Value>
+              </member>
+              <member>
+                <Name>Staging-PublicSubnet2</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>subnet-0ea0fdd5dbc1612a4</Value>
+              </member>
+              <member>
+                <Name>Staging-VPC</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>vpc-01d98e071e26e7c5f</Value>
+              </member>
+              <member>
+                <Name>Staging-VpcCIDR</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>10.0.0.0/16</Value>
+              </member>
+            </Exports>
+          </ListExportsResult>
+          <ResponseMetadata>
+            <RequestId>ab91134c-148a-4800-8cd5-197e4b599269</RequestId>
+          </ResponseMetadata>
+        </ListExportsResponse>
+  recorded_at: Tue, 17 Jan 2023 16:29:46 GMT
+- request:
+    method: put
+    uri: https://scheduler.us-east-2.amazonaws.com/schedules/163788863765_496833163_up
+    body:
+      encoding: UTF-8
+      string: '{"ClientToken":"e3d80119-925f-4f03-a61a-d14440bba9a4","Description":"Resource
+        scheduling for 163788863765_496833163_up","FlexibleTimeWindow":{"Mode":"OFF"},"GroupName":"sprawl-detector","ScheduleExpression":"cron(0
+        8 ? * MON-FRI *)","ScheduleExpressionTimezone":"America/New_York","State":"ENABLED","Target":{"Arn":"arn:aws:ecs:us-east-2:163788863765:cluster/Staging-Cluster","RoleArn":"arn:aws:iam::163788863765:role/Staging-SchedulerRole","EcsParameters":{"TaskDefinitionArn":"arn:aws:ecs:us-east-2:163788863765:task-definition/sprawl-detector","NetworkConfiguration":{"awsvpcConfiguration":{"AssignPublicIp":"DISABLED","SecurityGroups":["sg-0a32535bde8636b7d"],"Subnets":["subnet-0541a5343c677b72b","subnet-020ad8581c58d9028"]}}},"Input":"{\n  \"containerOverrides\":
+        [\n    {\n      \"name\": \"sprawl-detector\",\n      \"command\": [\n        \"./bin/rails\",\n        \"runner\",\n        \"ResourcesUpJob.perform_now\"\n      ],\n      \"environment\":
+        [\n        {\n          \"name\": \"AWS_ACCOUNT_ID\",\n          \"value\":
+        \"163788863765\"\n        },\n        {\n          \"name\": \"SCHEDULE_PLAN_ID\",\n          \"value\":
+        \"496833163\"\n        }\n      ]\n    }\n  ]\n}"}}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-scheduler/1.1.0
+      Content-Type:
+      - application/json
+      Host:
+      - scheduler.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230117T162946Z
+      X-Amz-Content-Sha256:
+      - '0294d8ec9df51d3a3be16bbf98879310f35344d6a84c8f5ba8fb76dc481eae63'
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '1193'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 4d485422-b736-4075-b46b-27351d56a466
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '109'
+      Date:
+      - Tue, 17 Jan 2023 16:29:47 GMT
+    body:
+      encoding: UTF-8
+      string: '{"ScheduleArn":"arn:aws:scheduler:us-east-2:163788863765:schedule/sprawl-detector/163788863765_496833163_up"}'
+  recorded_at: Tue, 17 Jan 2023 16:29:47 GMT
+- request:
+    method: post
+    uri: https://cloudformation.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=ListExports&Version=2010-05-15
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudformation/1.73.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - cloudformation.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230117T162947Z
+      X-Amz-Content-Sha256:
+      - 460c3228dfa093f91525c4d26d257d5f6260eeff1d2302a13d2920745f60a411
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '37'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 45d8a170-e73c-4c20-97d3-28848d312a98
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '4601'
+      Date:
+      - Tue, 17 Jan 2023 16:29:47 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <ListExportsResponse xmlns="http://cloudformation.amazonaws.com/doc/2010-05-15/">
+          <ListExportsResult>
+            <Exports>
+              <member>
+                <Name>Staging-InternetGateway</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>igw-009445f7f98b30002</Value>
+              </member>
+              <member>
+                <Name>Staging-MySqlSecurityGroup</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-database-mysql/99ba8ef0-966f-11ed-9380-0adf48fb2fe6</ExportingStackId>
+                <Value>sg-0a32535bde8636b7d</Value>
+              </member>
+              <member>
+                <Name>Staging-NatGateway1</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>3.20.157.144</Value>
+              </member>
+              <member>
+                <Name>Staging-NatGateway1CIDR</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>3.20.157.144/32</Value>
+              </member>
+              <member>
+                <Name>Staging-NatGateway2</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>3.141.232.10</Value>
+              </member>
+              <member>
+                <Name>Staging-NatGateway2CIDR</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>3.141.232.10/32</Value>
+              </member>
+              <member>
+                <Name>Staging-PrivateRouteTable1</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>rtb-0060dcfe683113682</Value>
+              </member>
+              <member>
+                <Name>Staging-PrivateRouteTable2</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>rtb-0cdabe97952160d03</Value>
+              </member>
+              <member>
+                <Name>Staging-PrivateSubnet1</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>subnet-0541a5343c677b72b</Value>
+              </member>
+              <member>
+                <Name>Staging-PrivateSubnet2</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>subnet-020ad8581c58d9028</Value>
+              </member>
+              <member>
+                <Name>Staging-PublicRouteTable</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>rtb-072d5a90a59c5c857</Value>
+              </member>
+              <member>
+                <Name>Staging-PublicSubnet1</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>subnet-0537d098b8ff17f85</Value>
+              </member>
+              <member>
+                <Name>Staging-PublicSubnet2</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>subnet-0ea0fdd5dbc1612a4</Value>
+              </member>
+              <member>
+                <Name>Staging-VPC</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>vpc-01d98e071e26e7c5f</Value>
+              </member>
+              <member>
+                <Name>Staging-VpcCIDR</Name>
+                <ExportingStackId>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-network-vpc/191c1340-966f-11ed-9b83-067144a12bc6</ExportingStackId>
+                <Value>10.0.0.0/16</Value>
+              </member>
+            </Exports>
+          </ListExportsResult>
+          <ResponseMetadata>
+            <RequestId>45d8a170-e73c-4c20-97d3-28848d312a98</RequestId>
+          </ResponseMetadata>
+        </ListExportsResponse>
+  recorded_at: Tue, 17 Jan 2023 16:29:47 GMT
+- request:
+    method: put
+    uri: https://scheduler.us-east-2.amazonaws.com/schedules/163788863765_496833163_down
+    body:
+      encoding: UTF-8
+      string: '{"ClientToken":"3ed4b73c-025c-4b43-a3e0-812f474ee457","Description":"Resource
+        scheduling for 163788863765_496833163_down","FlexibleTimeWindow":{"Mode":"OFF"},"GroupName":"sprawl-detector","ScheduleExpression":"cron(0
+        20 ? * MON-FRI *)","ScheduleExpressionTimezone":"America/New_York","State":"ENABLED","Target":{"Arn":"arn:aws:ecs:us-east-2:163788863765:cluster/Staging-Cluster","RoleArn":"arn:aws:iam::163788863765:role/Staging-SchedulerRole","EcsParameters":{"TaskDefinitionArn":"arn:aws:ecs:us-east-2:163788863765:task-definition/sprawl-detector","NetworkConfiguration":{"awsvpcConfiguration":{"AssignPublicIp":"DISABLED","SecurityGroups":["sg-0a32535bde8636b7d"],"Subnets":["subnet-0541a5343c677b72b","subnet-020ad8581c58d9028"]}}},"Input":"{\n  \"containerOverrides\":
+        [\n    {\n      \"name\": \"sprawl-detector\",\n      \"command\": [\n        \"./bin/rails\",\n        \"runner\",\n        \"ResourcesDownJob.perform_now\"\n      ],\n      \"environment\":
+        [\n        {\n          \"name\": \"AWS_ACCOUNT_ID\",\n          \"value\":
+        \"163788863765\"\n        },\n        {\n          \"name\": \"SCHEDULE_PLAN_ID\",\n          \"value\":
+        \"496833163\"\n        }\n      ]\n    }\n  ]\n}"}}'
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-scheduler/1.1.0
+      Content-Type:
+      - application/json
+      Host:
+      - scheduler.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230117T162947Z
+      X-Amz-Content-Sha256:
+      - 415de2d09716386183de630f4a38e74d5a5398a4ee01c760c0216071d9165f4d
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '1198'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - b9902497-57f3-4290-9a2a-72e727a5b3f6
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '111'
+      Date:
+      - Tue, 17 Jan 2023 16:29:47 GMT
+    body:
+      encoding: UTF-8
+      string: '{"ScheduleArn":"arn:aws:scheduler:us-east-2:163788863765:schedule/sprawl-detector/163788863765_496833163_down"}'
+  recorded_at: Tue, 17 Jan 2023 16:29:47 GMT
+recorded_with: VCR 6.1.0

@@ -6,6 +6,8 @@
 #
 scheduled_plan_rds:
   account: test
+  up_schedule: 0 8 ? * MON-FRI *
+  down_schedule: 0 20 ? * MON-FRI *
 # column: value
 #
 # column: value

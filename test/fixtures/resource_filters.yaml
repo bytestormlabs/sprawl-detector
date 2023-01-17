@@ -1,0 +1,4 @@
+rds:
+  scheduled_plan: scheduled_plan_rds
+  region: us-east-2
+  resource_type: AWS::RDS::DBCluster

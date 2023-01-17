@@ -9,12 +9,12 @@ class ScheduledPlan < ApplicationRecord
 
   after_save do |scheduled_plan|
     # Upsert this as a job in the AWS Scheduler system
-    UpsertSchedulerJob.perform_later(self)
+    UpsertSchedulerJob.perform_later(id)
   end
 
   after_update do |scheduled_plan|
     # Upsert this as a job in the AWS Scheduler system
-    UpsertSchedulerJob.perform_later(self)
+    UpsertSchedulerJob.perform_later(id)
   end
 
   after_destroy do |scheduled_plan|
