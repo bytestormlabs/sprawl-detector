@@ -1,11 +1,20 @@
 class Setting < ApplicationRecord
   belongs_to :account
+  belongs_to :tenant
 
   enum :data_type, %i[integer string boolean]
   validates :name, presence: true
   validates :value, presence: true
 
   validate :data_type_matches_value
+
+  def self.get_int(scan, key)
+    [
+      Setting.where(account_id: scan.account.id).where(key: key),
+      Setting.where(tenant_id: scan.account.tenant.id).where(key: key),
+      Setting.where("account_id IS NULL AND tenant_id IS NULL"),
+    ].find(&:count).value.to_i
+  end
 
   def data_type_matches_value
     case data_type

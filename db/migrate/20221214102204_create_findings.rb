@@ -7,6 +7,7 @@ class CreateFindings < ActiveRecord::Migration[6.0]
     create_table :accounts do |t|
       t.string :account_id, unique: true
       t.string :external_id
+      t.string :name, nullable: true
       t.references :tenant, foreign_key: true
       t.timestamps
     end

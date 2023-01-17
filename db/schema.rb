@@ -14,6 +14,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_09_015310) do
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "account_id"
     t.string "external_id"
+    t.string "name"
     t.bigint "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,14 +79,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_09_015310) do
 
   create_table "settings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "data_type", default: "integer"
-    t.string "name"
     t.text "description"
     t.string "value"
+    t.string "key"
     t.bigint "account_id"
     t.bigint "tenant_id"
+    t.bigint "finding_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_settings_on_account_id"
+    t.index ["finding_id"], name: "index_settings_on_finding_id"
     t.index ["tenant_id"], name: "index_settings_on_tenant_id"
   end
 
@@ -136,5 +139,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_09_015310) do
   add_foreign_key "resources", "scans"
   add_foreign_key "scans", "accounts"
   add_foreign_key "settings", "accounts"
+  add_foreign_key "settings", "findings"
   add_foreign_key "settings", "tenants"
 end
