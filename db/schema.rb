@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_09_015310) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_17_010326) do
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "account_id"
     t.string "external_id"
@@ -30,6 +30,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_09_015310) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_aws_cost_line_items_on_account_id"
+  end
+
+  create_table "filters", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "value"
+    t.string "filter_type", default: "attribute"
+    t.bigint "resource_filter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resource_filter_id"], name: "index_filters_on_resource_filter_id"
   end
 
   create_table "findings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -56,6 +66,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_09_015310) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "resource_filters", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "region"
+    t.string "resource_type"
+    t.bigint "scheduled_plan_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["scheduled_plan_id"], name: "index_resource_filters_on_scheduled_plan_id"
+  end
+
   create_table "resources", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "resource_id"
     t.string "resource_type"
@@ -75,6 +94,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_09_015310) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_scans_on_account_id"
+  end
+
+  create_table "scheduled_plans", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "account_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_scheduled_plans_on_account_id"
   end
 
   create_table "settings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -131,13 +158,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_09_015310) do
 
   add_foreign_key "accounts", "tenants"
   add_foreign_key "aws_cost_line_items", "accounts"
+  add_foreign_key "filters", "resource_filters"
   add_foreign_key "findings", "accounts"
   add_foreign_key "findings", "resolutions"
   add_foreign_key "findings", "resources"
   add_foreign_key "findings", "scans"
+  add_foreign_key "resource_filters", "scheduled_plans"
   add_foreign_key "resources", "accounts"
   add_foreign_key "resources", "scans"
   add_foreign_key "scans", "accounts"
+  add_foreign_key "scheduled_plans", "accounts"
   add_foreign_key "settings", "accounts"
   add_foreign_key "settings", "findings"
   add_foreign_key "settings", "tenants"
