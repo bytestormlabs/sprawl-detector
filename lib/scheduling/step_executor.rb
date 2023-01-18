@@ -1,11 +1,11 @@
 class StepExecutor
-  Result = Struct.new(:resource, :result, :message)
 
-  attr_accessor :client, :step
+  attr_accessor :client, :step, :logger
 
-  def initialize(client, step)
+  def initialize(client, step, logger)
     @client = client
     @step = step
+    @logger = logger
   end
 
   def down
@@ -15,14 +15,14 @@ class StepExecutor
     futures = find_resources.map do |resource|
       Concurrent::Future.execute do
         if client.is_stopped?(resource)
-          puts "its stopped... marking as skipped."
+          logger.warn "#{resource} is already stopped... skipping"
           # No need to do anything....
-          step.increment("number_of_resources_skipped")
+          step.increment(:number_of_resources_skipped)
         else
-          puts "its not stopped..."
           step.add_resource(resource.to_h)
           step.save
 
+          logger.warn "Stopping resource #{resource}"
           client.stop(resource)
           (10 * 60 / 6).times do
             break if client.is_stopped?(resource)
@@ -30,11 +30,11 @@ class StepExecutor
           end
 
           if client.is_stopped?(resource)
-            puts "its now stopped so marking it complete..."
-            step.increment("number_of_resources_completed")
+            logger.info "Successfully stopped..."
+            step.increment(:number_of_resources_completed)
           else
-            puts "its not stopped so marking it skipped..."
-            step.increment("number_of_resources_skipped")
+            logger.warn "Resource didn't stop in 10 minutes... marking as skipped."
+            step.increment(:number_of_resources_skipped)
           end
         end
       end
@@ -77,9 +77,9 @@ class StepExecutor
     futures.each do |future|
       future.value
       if future.reason
-        pp future.reason
+        logger.error future.reason
         step.failed!
-        step.increment("number_of_resources_skipped")
+        step.increment(:number_of_resources_skipped)
       end
     end
     step.stopped! unless step.failed?

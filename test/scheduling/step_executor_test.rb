@@ -31,7 +31,7 @@ class StepExecutorTest < ActiveSupport::TestCase
       client.expect :is_stopped?, true, [{name: "Resource1"}]
     end
 
-    StepExecutor.new(client, step).down
+    StepExecutor.new(client, step, Logger.new($STDOUT)).down
 
     assert_equal 1, step.number_of_resources_found
     assert_equal 1, step.number_of_resources_completed
@@ -47,7 +47,7 @@ class StepExecutorTest < ActiveSupport::TestCase
 
     # client = Minitest::Mock.new
 
-    StepExecutor.new(ClientStub.new, step).down
+    StepExecutor.new(ClientStub.new, step, Logger.new($STDOUT)).down
 
     assert step.reload.failed?
     assert_equal 1, step.number_of_resources_found
