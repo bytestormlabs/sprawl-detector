@@ -14,7 +14,16 @@ class Step < ApplicationRecord
   }
 
   def increment(attr)
-    Step.where(id: self.id).update_all("#{attr} = #{attr} + 1")
-    self.reload
+    Step.where(id: id).update_all("#{attr} = #{attr} + 1")
+    reload
+  end
+
+  def add_resource(resource)
+    self.metadata = (metadata || {"resources" => []})
+    metadata["resources"].push(resource)
+  end
+
+  def resources
+    metadata["resources"]
   end
 end

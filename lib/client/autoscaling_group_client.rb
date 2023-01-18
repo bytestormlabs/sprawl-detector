@@ -12,7 +12,7 @@ class AutoScalingGroupClient
   end
 
   def describe(resource)
-    client.describe_auto_scaling_groups(auto_scaling_group_names: [resource.auto_scaling_group_name]).auto_scaling_groups.first
+    client.describe_auto_scaling_groups(auto_scaling_group_names: [resource[:auto_scaling_group_name]]).auto_scaling_groups.first
   end
 
   def start(resource)
@@ -22,13 +22,14 @@ class AutoScalingGroupClient
   end
 
   def is_started?(resource)
-    count = describe(resource).instances.find { |x| x.lifecycle_status == "InService" }.count
-    resource.desired_capacity == count
+    count = describe(resource).instances.count { |x| x[:lifecycle_state] == "InService" }
+    puts "desired_capacity == #{resource[:desired_capacity]}, count = #{count}"
+    resource[:desired_capacity] == count
   end
 
   def stop(resource)
     client.update_auto_scaling_group(
-      auto_scaling_group_name: resource.auto_scaling_group_name,
+      auto_scaling_group_name: resource[:auto_scaling_group_name],
       min_size: 0,
       max_size: 0,
       desired_capacity: 0
