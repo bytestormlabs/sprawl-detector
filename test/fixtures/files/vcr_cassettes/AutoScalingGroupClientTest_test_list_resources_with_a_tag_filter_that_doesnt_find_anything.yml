@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://autoscaling.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeAutoScalingGroups&Filters.member.1.Name=tag%3AName&Filters.member.1.Values.member.1=OhioState%21&Version=2011-01-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-autoscaling/1.84.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - autoscaling.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230117T195849Z
+      X-Amz-Content-Sha256:
+      - 72038dc20e4284373cf6256f9426d604acf9857d4f22a45ce47aa64f110f955c
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '130'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 937fe3f4-37f6-4679-894d-93552bfe7d14
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '335'
+      Date:
+      - Tue, 17 Jan 2023 19:58:49 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <DescribeAutoScalingGroupsResponse xmlns="http://autoscaling.amazonaws.com/doc/2011-01-01/">
+          <DescribeAutoScalingGroupsResult>
+            <AutoScalingGroups/>
+          </DescribeAutoScalingGroupsResult>
+          <ResponseMetadata>
+            <RequestId>937fe3f4-37f6-4679-894d-93552bfe7d14</RequestId>
+          </ResponseMetadata>
+        </DescribeAutoScalingGroupsResponse>
+  recorded_at: Tue, 17 Jan 2023 19:58:50 GMT
+recorded_with: VCR 6.1.0

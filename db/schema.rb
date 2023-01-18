@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_17_010326) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_17_204911) do
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "account_id"
     t.string "external_id"
@@ -97,6 +97,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_010326) do
     t.index ["account_id"], name: "index_scans_on_account_id"
   end
 
+  create_table "scheduled_plan_executions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "scheduled_plan_id"
+    t.string "status"
+    t.datetime "timestamp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["scheduled_plan_id"], name: "index_scheduled_plan_executions_on_scheduled_plan_id"
+  end
+
   create_table "scheduled_plans", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "account_id"
     t.string "up_schedule"
@@ -120,6 +129,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_010326) do
     t.index ["account_id"], name: "index_settings_on_account_id"
     t.index ["finding_id"], name: "index_settings_on_finding_id"
     t.index ["tenant_id"], name: "index_settings_on_tenant_id"
+  end
+
+  create_table "steps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "scheduled_plan_execution_id"
+    t.bigint "resource_filter_id"
+    t.string "status"
+    t.string "direction"
+    t.integer "number_of_resources_found"
+    t.integer "number_of_resources_skipped"
+    t.integer "number_of_resources_completed"
+    t.json "metadata"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resource_filter_id"], name: "index_steps_on_resource_filter_id"
+    t.index ["scheduled_plan_execution_id"], name: "index_steps_on_scheduled_plan_execution_id"
   end
 
   create_table "tenants", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -174,4 +198,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_010326) do
   add_foreign_key "settings", "accounts"
   add_foreign_key "settings", "findings"
   add_foreign_key "settings", "tenants"
+  add_foreign_key "steps", "resource_filters"
+  add_foreign_key "steps", "scheduled_plan_executions"
 end
