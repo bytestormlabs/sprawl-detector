@@ -1,7 +1,7 @@
 require "aws-sdk-autoscaling"
 
 class AutoScalingGroupClient
-  attr_accessor :client, :wait_time
+  attr_accessor :client
 
   def initialize(region, credentials)
     @client = Aws::AutoScaling::Client.new(region: region, credentials: credentials)

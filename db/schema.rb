@@ -137,8 +137,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_204911) do
     t.string "status"
     t.string "direction"
     t.integer "number_of_resources_found"
-    t.integer "number_of_resources_skipped"
-    t.integer "number_of_resources_completed"
+    t.integer "number_of_resources_skipped", default: 0
+    t.integer "number_of_resources_completed", default: 0
     t.json "metadata"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
