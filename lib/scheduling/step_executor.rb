@@ -1,5 +1,4 @@
 class StepExecutor
-
   attr_accessor :client, :step, :logger
 
   def initialize(client, step, logger)

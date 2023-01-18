@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_17_204911) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_18_171509) do
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "account_id"
     t.string "external_id"
@@ -85,8 +85,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_204911) do
     t.bigint "scan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "step_id"
     t.index ["account_id"], name: "index_resources_on_account_id"
     t.index ["scan_id"], name: "index_resources_on_scan_id"
+    t.index ["step_id"], name: "index_resources_on_step_id"
   end
 
   create_table "scans", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -136,7 +138,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_204911) do
     t.bigint "resource_filter_id"
     t.string "status"
     t.string "direction"
-    t.integer "number_of_resources_found"
+    t.integer "number_of_resources_found", default: 0
     t.integer "number_of_resources_skipped", default: 0
     t.integer "number_of_resources_completed", default: 0
     t.json "metadata"
@@ -193,6 +195,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_204911) do
   add_foreign_key "resource_filters", "scheduled_plans"
   add_foreign_key "resources", "accounts"
   add_foreign_key "resources", "scans"
+  add_foreign_key "resources", "steps"
   add_foreign_key "scans", "accounts"
   add_foreign_key "scheduled_plans", "accounts"
   add_foreign_key "settings", "accounts"

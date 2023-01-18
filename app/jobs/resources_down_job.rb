@@ -6,7 +6,6 @@ require "base_job"
 class ResourcesDownJob < BaseJob
   def execute
     logger.tagged("ScheduledPlan id=#{scheduled_plan.id}") do
-
       logger.info "entering execute(scheduled_plan = #{scheduled_plan})"
       logger.info " Processing #{scheduled_plan.resource_filters.count} resource filters."
 
