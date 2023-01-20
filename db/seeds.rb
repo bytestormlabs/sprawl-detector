@@ -20,3 +20,7 @@ ScheduledPlan.new(account: account, resource_filters: [
     region: "us-east-2"
   )
 ]).save!
+
+if File.exists?("db/development-seeds.rb")
+  require_relative "./development-seeds.rb"
+end

@@ -10,7 +10,7 @@ class CostCalculator
       YAML.load_file(file)
     end
     @logger = Logger.new($stdout)
-    @client = Aws::Pricing::Client.new(region: "us-east-1")
+    @client = Aws::Pricing::Client.new(region: "us-east-1", credentials: Aws::SharedCredentials.new(profile_name: "default"))
     @cache = {}
     @warnings = []
   end
@@ -38,6 +38,10 @@ class CostCalculator
     end
 
     return if descriptor.nil?
+
+    if descriptor["cost"].present?
+      return descriptor["cost"].to_d
+    end
 
     result = retrieve_from_cache({
       service_code: descriptor["service"],
