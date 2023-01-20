@@ -8,6 +8,10 @@ class Account < ApplicationRecord
   has_many :settings
   has_many :resources
 
+  before_validation do |a|
+    a.create_random_external_id if a.external_id.nil?
+  end
+
   def create_random_external_id
     self.external_id = "#{Faker::Adjective.positive}-#{Faker::Appliance.equipment}".gsub(/\s+/, "-").downcase
   end
