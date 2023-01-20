@@ -14,6 +14,7 @@ require "detector/ec2/unused_instances"
 require "detector/ec2/unused_nat_gateways"
 require "detector/ec2/unused_security_groups"
 require "detector/ec2/unused_volumes"
+require "detector/ec2/unused_vpn_connections"
 require "detector/ec2/vpc_without_s3_endpoint"
 require "detector/ecr/repositories_without_lifecycle_policy"
 require "detector/elasticloadbalancing/unused_classic_load_balancers"
@@ -35,7 +36,7 @@ require "detector/vpc/unused_vpc_endpoints"
 require "detector/wafv2/unused_web_acls"
 require "report_job"
 
-class SprawlDetectorJob
+class SprawlDetectorJob < ApplicationJob
   attr_accessor :scan, :account, :role_session, :skip_update_costs, :account_id
 
   def self.perform_now
@@ -45,11 +46,14 @@ class SprawlDetectorJob
 
   def execute
     setup
-    assume_role
-    update_cost_and_usage_patterns
-    find_detectors_by_cost_and_usage
-    finalize
-    report_findings
+
+    logger.tagged("Account id=#{account.account_id}") do
+      assume_role
+      update_cost_and_usage_patterns
+      find_detectors_by_cost_and_usage
+      finalize
+      report_findings
+    end
   end
 
   def setup
@@ -82,10 +86,11 @@ class SprawlDetectorJob
 
       instances&.each do |detector|
         before = scan.findings.count
-        logger.info "  Running #{detector.class}"
-        detector.execute(scan, region)
-        after = scan.findings.count
-        logger.info "    Found #{after - before} issues." if before < after
+        logger.tagged(detector.class) do
+          detector.execute(scan, region)
+          after = scan.findings.count
+          logger.info "Found #{after - before} issues." if before < after
+        end
       rescue RuntimeError => e
         logger.error "Unhandled exception from #{detector}"
         logger.error e
@@ -162,15 +167,6 @@ class SprawlDetectorJob
     logger.debug "Stored cost & usage data for #{items.count} line items."
   end
 
-  def logger
-    @logger ||= Logger.new($stdout)
-    @logger.level = Logger::DEBUG
-    @logger.formatter = proc do |severity, datetime, progname, msg|
-      "[#{severity}] [account_id: #{@account.account_id}]\t #{msg}\n"
-    end
-    @logger
-  end
-
   def detectors
     [
       UnusedPrivateAcmCA.new,
@@ -188,6 +184,7 @@ class SprawlDetectorJob
       UnusedNatGateways.new,
       UnusedSecurityGroups.new,
       UnusedVolumes.new,
+      UnusedVpnConnections.new,
       VpcWithoutS3Endpoint.new,
       RepositoriesWithoutLifecyclePolicy.new,
       UnusedClassicLoadBalancers.new,

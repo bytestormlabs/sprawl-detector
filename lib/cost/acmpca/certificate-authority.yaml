@@ -1,0 +1,11 @@
+service: AWSCertificateManager
+resource_type: AWS::ACMPCA::CertificateAuthority
+filters:
+  - key: productFamily
+    value: AWS Certificate Manager
+  - key: regionCode
+    eval: region
+  - key: group
+    value: Certificate Authority Paid
+price_components:
+  - price_per_unit
