@@ -13,7 +13,7 @@ gem "mysql2"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
-gem "active_model_serializers"
+gem "rack-cors"
 
 gem "ox"
 gem "devise"
@@ -56,6 +56,8 @@ gem "aws-sdk-wafv2"
 
 gem "nokogiri"
 gem "terminal-table"
+
+gem "active_reporting"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

@@ -5,11 +5,13 @@
 # below each fixture, per the syntax in the comments below
 #
 test:
+  name: Test
   account_id: 163788863765
   tenant: bytestormlabs
   external_id: <%= Account.new.send(:create_random_external_id) %>
 
 acme:
+  name: Acme - Production
   account_id: 123456789012
   tenant: acme
   external_id: <%= Account.new.send(:create_random_external_id) %>

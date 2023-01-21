@@ -4,7 +4,7 @@ class CreateAwsCostLineItems < ActiveRecord::Migration[7.0]
       t.date :date
       t.string :service
       t.string :region
-      t.decimal :cost
+      t.decimal :cost, precision: 64, scale: 12
       t.references :account, foreign_key: true
       t.timestamps
     end

@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :findings
+  resources :finding_summary, only: %w(index)
   resources :accounts
 end
