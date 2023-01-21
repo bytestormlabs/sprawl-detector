@@ -4,12 +4,12 @@ class FindingSummary
 
   def self.find_by_tenant(id)
     sql = """
-      SELECT accounts.name as account, region, issue_type, COUNT(*) as count, SUM(resources.estimated_cost) as estimated_cost
+      SELECT accounts.account_id as account_id, accounts.name as account, region, issue_type, COUNT(*) as count, SUM(resources.estimated_cost) as estimated_cost
       FROM findings
         JOIN resources on findings.resource_id = resources.id
         JOIN accounts on findings.account_id = accounts.id
       WHERE accounts.tenant_id = '#{id}' AND findings.status = 'OPEN'
-      GROUP BY 1, 2, 3
+      GROUP BY 1, 2, 3, 4
     """
 
     puts sql

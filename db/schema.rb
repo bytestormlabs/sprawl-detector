@@ -87,7 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_20_131435) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "step_id"
-    t.decimal "estimated_cost", precision: 10
+    t.decimal "estimated_cost", precision: 7, scale: 2
     t.index ["account_id"], name: "index_resources_on_account_id"
     t.index ["scan_id"], name: "index_resources_on_scan_id"
     t.index ["step_id"], name: "index_resources_on_step_id"

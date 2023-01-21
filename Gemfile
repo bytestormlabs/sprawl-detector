@@ -57,7 +57,7 @@ gem "aws-sdk-wafv2"
 gem "nokogiri"
 gem "terminal-table"
 
-gem "active_reporting"
+gem "active_model_serializers"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

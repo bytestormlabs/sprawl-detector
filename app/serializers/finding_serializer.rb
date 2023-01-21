@@ -1,8 +1,25 @@
 class FindingSerializer < ActiveModel::Serializer
-  attributes :id, :account_id, :message, :issue_type, :resource_id, :resource_type, :region, :status
+  attributes :id, :account
+  attributes :message, :issue_type, :resource_id, :resource_type, :creation_date, :region, :status
+  attributes :metadata
 
-  def account_id
-    object&.resource&.account&.account_id
+  def metadata
+    object&.resource&.metadata
+  end
+
+  def creation_date
+    return nil if object&.resource&.metadata.nil?
+    hash = object&.resource&.metadata
+    ["instance_create_time", "launch_time"].map do |key|
+      hash[key]
+    end.filter.first
+  end
+
+  def account
+    {
+      id: object&.resource&.account&.account_id,
+      name: object&.resource&.account&.name
+    }
   end
 
   def resource_id
