@@ -38,12 +38,11 @@ class UnusedPrivateAcmCA
       number_of_days = 90   # TODO: Refactor this
       cloudwatch_issue_certificate_metrics = check("AWS/ACMPrivateCA", "Success")
         .in(region)
-        .in_last(number_of_days)
         .with_dimension("Operation", "IssueCertificate")
         .with_dimension("PrivateCAArn", certificate_authority.arn)
         .with(scan.credentials)
 
-      resource.create_finding(scan, ISSUE_TYPE) if cloudwatch_issue_certificate_metrics.indicates_zero_activity?
+      resource.create_finding(scan, ISSUE_TYPE, cloudwatch_issue_certificate_metrics.last_activity_date) if cloudwatch_issue_certificate_metrics.indicates_zero_activity?
     end
   end
 

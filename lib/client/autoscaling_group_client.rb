@@ -23,7 +23,6 @@ class AutoScalingGroupClient
 
   def is_started?(resource)
     count = describe(resource).instances.count { |x| x[:lifecycle_state] == "InService" }
-    puts "desired_capacity == #{resource[:desired_capacity]}, count = #{count}"
     resource[:desired_capacity] == count
   end
 

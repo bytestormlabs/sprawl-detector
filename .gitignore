@@ -30,3 +30,4 @@ tmp/cache/
 /config/master.key
 vendor/bundle
 db/development-seeds.rb
+config/master.key

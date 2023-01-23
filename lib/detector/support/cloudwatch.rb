@@ -3,10 +3,6 @@ module Cloudwatch
     RequestBuilder.new(namespace, metric)
   end
 
-  # b = check("AWS/ACMPrivateCA", "Success").in_last(60).days
-  # b.with_dimension("Operation", "IssueCertificate")
-  # b.with_dimension("PrivateCAArn", resource.arn)
-  # b.indicates_no_activity
   class RequestBuilder
     PERIOD_DAILY = (60 * 60 * 24)
 
@@ -72,9 +68,16 @@ module Cloudwatch
       self
     end
 
-    def has_expected_number_of_data_points?
-      fetch_results if @results.nil?
-      @results.datapoints.count >= @number_of_days
+    def last_activity_date
+      activity_date_request = {}.merge(@request)
+      activity_date_request[:start_time] = (DateTime.now - 180)
+      fetch_results(activity_date_request)
+
+      @results.datapoints.filter { |d|
+        d[@request[:statistics].first.downcase.to_sym] > 0.0
+      }.sort_by(&:timestamp).max { |s|
+        s.timestamp
+      }&.timestamp
     end
 
     def indicates_zero_activity?
@@ -98,7 +101,7 @@ module Cloudwatch
 
     private
 
-    def fetch_results
+    def fetch_results(request = @request)
       params = {
         region: region
       }

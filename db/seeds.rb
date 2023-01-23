@@ -21,6 +21,6 @@ ScheduledPlan.new(account: account, resource_filters: [
   )
 ]).save!
 
-if File.exists?("db/development-seeds.rb")
-  require_relative "./development-seeds.rb"
+if File.exist?("db/development-seeds.rb")
+  require_relative "./development-seeds"
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_20_131435) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_22_000017) do
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "account_id"
     t.string "external_id"
@@ -88,6 +88,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_20_131435) do
     t.datetime "updated_at", null: false
     t.bigint "step_id"
     t.decimal "estimated_cost", precision: 7, scale: 2
+    t.date "last_activity_date"
+    t.date "creation_date"
     t.index ["account_id"], name: "index_resources_on_account_id"
     t.index ["scan_id"], name: "index_resources_on_scan_id"
     t.index ["step_id"], name: "index_resources_on_step_id"

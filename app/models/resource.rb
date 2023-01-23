@@ -17,7 +17,12 @@ class Resource < ApplicationRecord
     end
   end
 
-  def create_finding(scan, issue_type)
+  def create_finding(scan, issue_type, last_activity_date = nil)
+    if last_activity_date
+      self.last_activity_date = last_activity_date
+      save
+    end
+
     finding = Finding.create_with(status: :open).find_or_create_by!(
       resource: self,
       issue_type: issue_type,
@@ -27,5 +32,9 @@ class Resource < ApplicationRecord
     finding.scan = scan
     finding.save!
     finding
+  end
+
+  def last_used_before?(target_date)
+    self.last_activity_date.nil? || self.last_activity_date < target_date
   end
 end

@@ -66,6 +66,8 @@ class SprawlDetectorJob < ApplicationJob
 
     @scan = Scan.create(account: account, status: :started)
     logger.info "Starting scan ##{scan.id}"
+
+    ActiveRecord::Base.logger.level = 1
   end
 
   def find_detectors_by_cost_and_usage

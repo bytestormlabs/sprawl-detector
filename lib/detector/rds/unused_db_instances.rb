@@ -19,13 +19,21 @@ class UnusedDbInstances
         next if db_instance.db_instance_status != "available"
 
         number_of_days = 14   # TODO: Refactor this
-        success = check("AWS/RDS", "DatabaseConnections")
+
+        puts "Resolved last activity date: #{resource.last_activity_date}"
+        resource.last_activity_date = check("AWS/RDS", "DatabaseConnections")
           .in(region)
-          .in_last(number_of_days)
           .with_dimension("DBInstanceIdentifier", db_instance.db_instance_identifier)
           .with(scan.credentials)
+          .last_activity_date
 
-        resource.create_finding(scan, ISSUE_TYPE) if db_instance.instance_create_time < (DateTime.now - number_of_days) && success.indicates_zero_activity?
+        # binding.break
+
+        resource.save!
+        target_date = (DateTime.now - number_of_days)
+        resource.create_finding(scan, ISSUE_TYPE) if
+          db_instance.instance_create_time < target_date &&
+            resource.last_used_before?(target_date)
       end
     end
   end
