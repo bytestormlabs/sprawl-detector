@@ -10,7 +10,6 @@ class FindingsController < ApplicationController
       .where("accounts.account_id = ?", params[:account])
 
     render json: @findings
-
   end
 
   private

@@ -35,6 +35,6 @@ class Resource < ApplicationRecord
   end
 
   def last_used_before?(target_date)
-    self.last_activity_date.nil? || self.last_activity_date < target_date
+    last_activity_date.nil? || last_activity_date < target_date
   end
 end

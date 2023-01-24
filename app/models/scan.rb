@@ -23,17 +23,19 @@ class Scan < ApplicationRecord
     ).tap do |r|
       r.scan = self
       r.metadata = resource.to_h
-      r.creation_date = [
-        resource.to_h[:instance_create_time],
-        resource.to_h[:launch_time],
-        resource.to_h[:snapshot_create_time],
-        resource.to_h[:start_time],
-        resource.to_h[:creation_date],
-        resource.to_h[:create_time],
-        resource.to_h[:creation_timestamp],
-        resource.to_h[:created_time],
-        resource.to_h[:cache_cluster_create_time]
-      ].find(&:itself) if resource&.to_h
+      if resource&.to_h
+        r.creation_date = [
+          resource.to_h[:instance_create_time],
+          resource.to_h[:launch_time],
+          resource.to_h[:snapshot_create_time],
+          resource.to_h[:start_time],
+          resource.to_h[:creation_date],
+          resource.to_h[:create_time],
+          resource.to_h[:creation_timestamp],
+          resource.to_h[:created_time],
+          resource.to_h[:cache_cluster_create_time]
+        ].find(&:itself)
+      end
       r.save
     end
   end
