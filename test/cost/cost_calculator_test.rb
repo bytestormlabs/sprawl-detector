@@ -108,4 +108,13 @@ class CostCalculatorTest < BaseAwsIntegrationTest
     ))
     assert_equal 5.90, cost
   end
+
+  test "cost of vpn connection" do
+    cost = decorator.decorate(Resource.new(
+      region: "us-east-1",
+      resource_type: "AWS::EC2::VPNConnection",
+    ))
+
+    assert_equal 36.0, cost
+  end
 end

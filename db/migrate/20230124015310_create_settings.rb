@@ -7,7 +7,7 @@ class CreateSettings < ActiveRecord::Migration[7.0]
       t.string :key
       t.references :account, foreign_key: true
       t.references :tenant, foreign_key: true
-      t.references :finding, foreign_key: true
+      t.references :issue_type, foreign_key: true
       t.timestamps
     end
   end

@@ -1,5 +1,6 @@
 class FindingSummary
   attr_accessor :account_id, :account, :region, :priority, :issue_type, :count, :estimated_cost
+  attr_accessor :name, :category, :service, :description
 
   def self.find_by_tenant(id)
     sql = "
@@ -22,6 +23,12 @@ class FindingSummary
         summary.send(method, row[i]) if summary.respond_to?(method)
       end
 
+      %w(name category service description).each do |field|
+        value = IssueType.find_by_code(summary.issue_type).send(field)
+        puts "Resolved #{value} for #{field}"
+        summary.send("#{field}=", value) if summary.respond_to?(field)
+      end
+      
       summary.priority = if summary.estimated_cost.nil?
         "Low"
       elsif summary.estimated_cost > 400

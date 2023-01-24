@@ -24,3 +24,28 @@ ScheduledPlan.new(account: account, resource_filters: [
 if File.exist?("db/development-seeds.rb")
   require_relative "./development-seeds"
 end
+
+if (File.exist?("lib/detector/issue-types.yaml"))
+  require "yaml"
+  contents = YAML.load_file("lib/detector/issue-types.yaml")
+  contents["categories"].each do |category|
+    category_nm = category["name"]
+    category_code = category["code"]
+
+    category["issue-types"].each do |descriptor|
+      issue_type = IssueType.find_or_create_by(code: descriptor["code"])
+      issue_type.name = descriptor["name"]
+      issue_type.description = descriptor["description"]
+      issue_type.category = category_nm
+      issue_type.service = descriptor["service"]
+      issue_type.parameters = descriptor["parameters"] || []
+      descriptor["parameters"]&.each do |parameter|
+        setting = issue_type.settings.find_or_create_by(key: parameter["key"])
+        setting.value = parameter["default"];
+        setting.description = parameter["description"]
+      end
+      issue_type.settings.find_or_create_by(key: "enabled", value: "true", description: "")
+      issue_type.save!
+    end
+  end
+end

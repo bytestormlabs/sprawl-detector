@@ -1,8 +1,29 @@
 class FindingSerializer < ActiveModel::Serializer
-  attributes :id, :account
-  attributes :message, :issue_type, :resource_id, :resource_type, :creation_date, :last_activity_date, :region, :status
+  attributes :id, :account, :resource_id, :resource_type, :creation_date, :region
+  attributes :issue_type, :status
   attributes :metadata
   attributes :estimated_cost
+
+  attributes :category
+  attributes :service
+  attributes :description
+  attributes :name
+
+  def name
+    IssueType.find_by_code(object&.issue_type).name
+  end
+
+  def category
+    IssueType.find_by_code(object&.issue_type).category
+  end
+
+  def service
+    IssueType.find_by_code(object&.issue_type).service
+  end
+
+  def description
+    IssueType.find_by_code(object&.issue_type).description
+  end
 
   def metadata
     object&.resource&.metadata

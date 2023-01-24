@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_22_000017) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_24_103505) do
   create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "account_id"
     t.string "external_id"
@@ -59,6 +59,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_22_000017) do
     t.index ["resolution_id"], name: "index_findings_on_resolution_id"
     t.index ["resource_id"], name: "index_findings_on_resource_id"
     t.index ["scan_id"], name: "index_findings_on_scan_id"
+  end
+
+  create_table "issue_types", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.text "description"
+    t.string "category"
+    t.string "service"
+    t.json "parameters"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "resolutions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -129,11 +140,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_22_000017) do
     t.string "key"
     t.bigint "account_id"
     t.bigint "tenant_id"
-    t.bigint "finding_id"
+    t.bigint "issue_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_settings_on_account_id"
-    t.index ["finding_id"], name: "index_settings_on_finding_id"
+    t.index ["issue_type_id"], name: "index_settings_on_issue_type_id"
     t.index ["tenant_id"], name: "index_settings_on_tenant_id"
   end
 
@@ -203,7 +214,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_22_000017) do
   add_foreign_key "scans", "accounts"
   add_foreign_key "scheduled_plans", "accounts"
   add_foreign_key "settings", "accounts"
-  add_foreign_key "settings", "findings"
+  add_foreign_key "settings", "issue_types"
   add_foreign_key "settings", "tenants"
   add_foreign_key "steps", "resource_filters"
   add_foreign_key "steps", "scheduled_plan_executions"

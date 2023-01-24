@@ -1,8 +1,9 @@
 require "detector/support/cloudwatch"
 require "aws-sdk-dynamodb"
 
+# TODO: Rename this thing since its actually unused...not overprovisioned.
 class OverProvisionedTables
-  ISSUE_TYPE = "aws-dynamodb-over-provisioned-tables"
+  ISSUE_TYPE = "aws-dynamodb-unused-tables"
 
   include AwsSdkOperations
   include Assertions

@@ -1,0 +1,307 @@
+
+categories:
+  - name: Unused
+    issue-types:
+      - code: aws-kinesis-unused-data-stream
+        name: Unused AWS Kinesis Data Stream
+        description: An AWS Kinesis data stream appears to be unused because it has not had any messages in the last {days} days.
+        service: AWS Kinesis
+        parameters:
+          - key: days
+            description: The number of days to look back for incoming records.
+            default: 30
+
+      - code: aws-secretsmanager-secret-obsolete
+        name: Unused AWS Secrets Manager Secret
+        description: An AWS Secrets Manager Secret appears to be unused because it has not been accessed in the last {days} days.
+        service: AWS Secrets Manager
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 60
+
+      - code: aws-elasticache-instance-unused
+        name: Unused ElastiCache Instance
+        description: An AWS ElastiCache instance appears to be unused as it has not had meaningful network activity in {days} days.
+        service: AWS ElastiCache
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+          - key: daily_network_bytes_in
+            description: The sum of daily network bytes processed to determine if this is used.
+            default: 250000
+
+      - code: aws-wafv2-unused-web-acls
+        name: Unused AWS Web Application Firewall ACL
+        description: An AWS WAF ACL appears to be unused as it has not processed any requests in the last {days} days.
+        service: AWS WAF
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-transfer-server-unused
+        name: Unused AWS Transfer Family Server
+        description: An AWS Transfer Family Server appears to be unused as it has not had any file uploads or downloads in the last {days} days.
+        service: AWS Transfer Family
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-dynamodb-unused-tables
+        name: Unused DynamoDB Table
+        description: A DynamoDB table is configured with provisioned read & write units but has not used any read or write units in the last {days} days.
+        service: AWS DynamoDB
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-elb-unused-load-balancer
+        name: Unused Elastic Load Balancer
+        description: An AWS Elastic Load Balancer appears to be unused as it has not processed any requests in the last {days} days.
+        service: AWS Elastic Load Balancing
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-directory-service-unused-directory
+        name: Unused AWS Directory Service Directory
+        description: An AWS Directory Service instance appears to be unused as it has not processed any NTLM or Kerberos authentications in the last {days} days.
+        service: AWS Directory Service
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-route53resolver-endpoint-unused
+        name: Unused AWS Route53 Resolver Endpoint
+        description: An AWS Route53 Resolver Endpoint appears to be unused as it has not accepted any new connections in the last {days} days.
+        service: AWS Route53
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-elastic-search-domain-unused
+        name: Unused AWS ElasticSearch Domain
+        description: An AWS ElasticSearch Domain appears to be unused as it has not responded with any 2xx status code responses in the last {days} days.
+        service: AWS ElasticSearch
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-ec2-unused-load-balancer
+        name: Unused Elastic Load Balancer
+        description: An AWS Elastic Load Balancer appears to be unused as it has not processed any requests in the last {days} days.
+        service: AWS Elastic Load Balancing
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-redshift-unused-cluster
+        name: Unused AWS Redshift Cluster
+        description: An AWS Redshift Cluster appears to be unused as it has not received any incoming connections in the last {days} days.
+        service: AWS Redshift
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-lambda-unused-function
+        name: Unused AWS Lambda Function
+        description: An AWS Lambda function appears to be unused as it has not been invoked in the last {days} days.
+        service: AWS Lambda
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-mq-broker-instance-unused
+        name: Unused AWS MQ Broker Instance
+        description: An AWS MQ Broker Instance appears to be unused as it has not received any connections in the last {days} days.
+        service: AWS MQ
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-dms-replication-instance-unused
+        name: Unused Database Migration Service Replication Instance
+        description: An AWS DMS Instance appears to be unused as it has negligible network traffic in the last {days} days.
+        service: AWS Database Migration Service
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-ec2-vpc-endpoint-unused
+        name: Unused AWS EC2 VPC Endpoint
+        description: An AWS EC2 VPC endpoint appears to be unused as it has not accepted any new connections in the last {days} days.
+        service: AWS Virtual Private Cloud
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-rds-db-instance-unused
+        name: Unused AWS RDS Database Instance
+        description: An AWS RDS Database Instance appears to be unused as it has not accepted any new connections in the last {days} days.
+        service: AWS Relational Database Service
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-sagemaker-notebook-instance-unused
+        name: Unused AWS SageMaker Notebook
+        description: An AWS SageMaker Notebook appears to be unused as it has not triggered any events in the last {days} days.
+        service: AWS SageMaker
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-sagemaker-domain-instance-unused
+        name: Unused AWS SageMaker Domain
+        description: An AWS SageMaker Domain appears to be unused as it has not triggered any events in the last {days} days.
+        service: AWS SageMaker
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-private-ca-unused
+        name: Unused ACM Private Certificate Authority
+        description: An AWS Private Certificate Authority appears to be unused because it has not issued any certificates in the last {days} days.
+        service: AWS Certificate Manager
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-ec2-unused-volumes
+        name: Unused EBS Volumes
+        description: An EBS volume appears to be unused because it is not attached to a running EC2 instance.
+        service: AWS Elastic Cloud Compute
+
+      - code: aws-ec2-unused-security-groups
+        name: Unused EC2 Security Groups
+        description: An EC2 Security Group is not attached to any network interfaces.
+        service: AWS Elastic Cloud Compute
+
+      - code: aws-ec2-unused-client-vpn
+        name: Unused EC2 Client VPN
+        description: An EC2 Client VPN appears to be unused because it has not received any new connections in {days} days.
+        service: AWS Elastic Cloud Compute
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-ec2-nat-gateway-unused
+        name: Unused EC2 NAT Gateway
+        description: An EC2 NAT Gateway appears to be unused because it has not received any new connections in the last {days} days.
+        service: AWS Elastic Cloud Compute
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-vpc-unused-vpn-connections
+        name: Unused AWS VPC Virtual Private Network
+        description: An AWS Virtual Private Network appears to be unused as it has not issued any incoming or outgoing tunnel connections in the last {days} days.
+        service: AWS Elastic Cloud Compute
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-ec2-instance-unused
+        name: Unused AWS EC2 Instance
+        description: An AWS EC2 Instance appears to be unused because it has had negligible network traffic in the last {days} days.
+        service: AWS Elastic Cloud Compute
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 30
+
+      - code: aws-ec2-keypair-obsolete
+        name: Unused EC2 Key Pair
+        description: An AWS EC2 Key Pair appears to be unused because it is not attached to any running instances.
+        service: AWS Elastic Cloud Compute
+
+  - name: Outdated
+    code: outdated
+    issue-types:
+      - code: aws-cloudwatch-dashboard-obsolete
+        name: Outdated AWS Cloudwatch Dashboard
+        description: An AWS Cloudwatch dashboard appears to be outdated because it hasn't been modified in {days} days.
+        service: AWS Cloudwatch
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 120
+
+      - code: aws-redshift-snapshot-obsolete
+        name: Outdated AWS Redshift Snapshot
+        description: An AWS Redshift backup appears to be outdated because it is older than {days} days.
+        service: AWS Redshift
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 180
+
+      - code: aws-rds-db-snapshot-obsolete
+        name: Outdated AWS RDS Snapshot
+        description: An AWS RDS backup appears to be outdated because it is older than {days} days.
+        service: AWS Relational Database Service
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 180
+
+      - code: aws-ebs-snapshot-obsolete
+        name: Outdated AWS EBS Snapshot
+        description: An AWS EBS snapshot appears to be outdated because it is older than {days} days.
+        service: AWS Elastic Cloud Compute
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 180
+
+      - code: aws-ec2-ami-obsolete
+        name: Outdated AWS EC2 Image
+        description: An AWS EC2 image appears to be outdated because it is older than {days} days.
+        service: AWS Elastic Cloud Compute
+        parameters:
+          - key: days
+            description: The number of days to look back for usage.
+            default: 180
+
+  - name: Configuration
+    code: configuration
+    issue-types:
+      - code: aws-ecr-repository-no-lifecycle-policy
+        name: AWS ECR Repository doesn't have a lifecycle policy.
+        description: An AWS ECR Repository is not configured with a life-cycle policy that would help to remove old Docker images.
+        service: AWS ECR
+
+      - code: aws-logs-log-group-has-unacceptable-retention-period
+        name: AWS Log Group doesn't have a set retention period.
+        description: An AWS Logs log group is not configured to have a retention policy for log files.
+        service: AWS Logs
+        parameters:
+          - key: days
+            description: The maximum number of days set for the retention policy.
+            default: 30
+
+      - code: aws-ec2-vpc-without-s3-endpoint
+        name: AWS Virtual Private Cloud doesn't have an S3 VPC Endpoint
+        description: Workloads that interact with S3 can save on egress networking costs by adding a free AWS S3 VPC Endpoint to their VPC.
+        service: AWS Virtual Private Cloud

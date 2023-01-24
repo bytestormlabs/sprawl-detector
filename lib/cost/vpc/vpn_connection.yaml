@@ -1,0 +1,10 @@
+resource_type: AWS::EC2::VPNConnection
+service: AmazonVPC
+filters:
+  - key: regionCode
+    eval: region
+  - key: usagetype
+    eval: region_prefix(region) + "VPN-Usage-Hours:ipsec.1"
+price_components:
+  - price_per_unit
+  - "720.0"
