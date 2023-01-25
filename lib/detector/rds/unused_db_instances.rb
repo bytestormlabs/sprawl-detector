@@ -20,7 +20,6 @@ class UnusedDbInstances
 
         number_of_days = 14   # TODO: Refactor this
 
-        puts "Resolved last activity date: #{resource.last_activity_date}"
         resource.last_activity_date = check("AWS/RDS", "DatabaseConnections")
           .in(region)
           .with_dimension("DBInstanceIdentifier", db_instance.db_instance_identifier)

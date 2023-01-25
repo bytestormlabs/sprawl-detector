@@ -1,7 +1,7 @@
 class Setting < ApplicationRecord
   belongs_to :account, optional: true
   belongs_to :tenant, optional: true
-  belongs_to :issue_type
+  belongs_to :issue_type, optional: true
 
   enum :data_type, %i[integer string boolean]
   validates :key, presence: true

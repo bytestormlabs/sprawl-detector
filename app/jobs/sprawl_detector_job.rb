@@ -140,6 +140,13 @@ class SprawlDetectorJob < ApplicationJob
       },
       granularity: "DAILY",
       metrics: ["NetUnblendedCost"],
+      filter: {
+        dimensions: {
+          key: "LINKED_ACCOUNT",
+          values: [account.account_id],
+          match_options: ["EQUALS"]
+        }
+      },
       group_by: [
         {
           type: "DIMENSION",
