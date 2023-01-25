@@ -20,10 +20,10 @@ class FindingSummary
       results.columns.each_with_index do |col, i|
         method = "#{col}="
         value = row[i]
-        summary.send(method, row[i]) if summary.respond_to?(method)
+        summary.send(method, value) if summary.respond_to?(method)
       end
 
-      %w(name category service description).each do |field|
+      %w[name category service description].each do |field|
         value = IssueType.find_by_code(summary.issue_type).send(field)
         summary.send("#{field}=", value) if summary.respond_to?(field)
       end

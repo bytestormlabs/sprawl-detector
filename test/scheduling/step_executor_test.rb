@@ -2,6 +2,9 @@ require "scheduling/step_executor"
 require "minitest/autorun"
 
 class StepExecutorTest < ActiveSupport::TestCase
+  # rubocop:disable Style/GlobalVars
+  logger = Logger.new($STDOUT)
+  # rubocop:enable Style/GlobalVars
   class ClientStub
     def list_resources(params)
       [{name: "Resource1"}]
@@ -31,7 +34,7 @@ class StepExecutorTest < ActiveSupport::TestCase
       client.expect :is_stopped?, true, [{name: "Resource1"}]
     end
 
-    StepExecutor.new(client, step, Logger.new($STDOUT)).down
+    StepExecutor.new(client, step, logger).down
 
     assert_equal 1, step.number_of_resources_found
     assert_equal 1, step.number_of_resources_completed
@@ -47,7 +50,7 @@ class StepExecutorTest < ActiveSupport::TestCase
 
     # client = Minitest::Mock.new
 
-    StepExecutor.new(ClientStub.new, step, Logger.new($STDOUT)).down
+    StepExecutor.new(ClientStub.new, step, logger).down
 
     assert step.reload.failed?
     assert_equal 1, step.number_of_resources_found

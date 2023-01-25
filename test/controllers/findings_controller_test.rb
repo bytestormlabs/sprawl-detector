@@ -2,7 +2,6 @@ require "test_helper"
 
 class FindingsControllerTest < ActionDispatch::IntegrationTest
   class AuthenticatedTests < FindingsControllerTest
-
     test "show all findings" do
       skip "Broken until integration is done"
       get findings_url, headers: {Authorization: "Bearer: abc-123-def-456"}
@@ -23,7 +22,6 @@ class FindingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   class UnauthenticatedTests < FindingsControllerTest
-
     test "findings requires a signed in user" do
       skip "Broken until integration is done"
       get findings_url

@@ -20,19 +20,16 @@ class UnusedDbInstances
 
         number_of_days = 14   # TODO: Refactor this
 
-        resource.last_activity_date = check("AWS/RDS", "DatabaseConnections")
+        connections = check("AWS/RDS", "DatabaseConnections")
           .in(region)
+          .in_last(number_of_days)
           .with_dimension("DBInstanceIdentifier", db_instance.db_instance_identifier)
           .with(scan.credentials)
-          .last_activity_date
 
-        # binding.break
-
-        resource.save!
         target_date = (DateTime.now - number_of_days)
-        resource.create_finding(scan, ISSUE_TYPE) if
+        resource.create_finding(scan, ISSUE_TYPE, connections.last_activity_date) if
           db_instance.instance_create_time < target_date &&
-            resource.last_used_before?(target_date)
+            connections.indicates_zero_activity?
       end
     end
   end

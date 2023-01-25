@@ -236,4 +236,61 @@ http_interactions:
           </ResponseMetadata>
         </GetMetricStatisticsResponse>
   recorded_at: Wed, 11 Jan 2023 21:08:29 GMT
+- request:
+    method: post
+    uri: https://monitoring.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=GetMetricStatistics&Dimensions.member.1.Name=DBInstanceIdentifier&Dimensions.member.1.Value=byte-storm-labs-staging-database-mysql-dbinstance-ryrhogpjvtyq&EndTime=2023-01-11T21%3A08%3A28Z&MetricName=DatabaseConnections&Namespace=AWS%2FRDS&Period=86400&StartTime=2022-12-28T21%3A08%3A28Z&Statistics.member.1=Sum&Version=2010-08-01
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-cloudwatch/1.70.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - monitoring.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230111T210828Z
+      X-Amz-Content-Sha256:
+      - 9c6664e53f4799550c86276c7b9ccff6d55828f1de033df9a26fc16f30581c78
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '336'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - 804dc0e1-840b-4fb2-a508-3438aa9209ce
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '492'
+      Date:
+      - Wed, 11 Jan 2023 21:08:28 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <GetMetricStatisticsResponse xmlns="http://monitoring.amazonaws.com/doc/2010-08-01/">
+          <GetMetricStatisticsResult>
+            <Datapoints>
+              <member>
+                <Unit>Count</Unit>
+                <Sum>0.0</Sum>
+                <Timestamp>2023-01-10T21:08:00Z</Timestamp>
+              </member>
+            </Datapoints>
+            <Label>DatabaseConnections</Label>
+          </GetMetricStatisticsResult>
+          <ResponseMetadata>
+            <RequestId>804dc0e1-840b-4fb2-a508-3438aa9209ce</RequestId>
+          </ResponseMetadata>
+        </GetMetricStatisticsResponse>
+  recorded_at: Wed, 11 Jan 2023 21:08:29 GMT
 recorded_with: VCR 6.1.0

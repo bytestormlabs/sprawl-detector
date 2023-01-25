@@ -25,12 +25,12 @@ if File.exist?("db/development-seeds.rb")
   require_relative "./development-seeds"
 end
 
-if (File.exist?("lib/detector/issue-types.yaml"))
+if File.exist?("lib/detector/issue-types.yaml")
   require "yaml"
   contents = YAML.load_file("lib/detector/issue-types.yaml")
   contents["categories"].each do |category|
     category_nm = category["name"]
-    category_code = category["code"]
+    # category_code = category["code"]
 
     category["issue-types"].each do |descriptor|
       issue_type = IssueType.find_or_create_by(code: descriptor["code"])
@@ -41,7 +41,7 @@ if (File.exist?("lib/detector/issue-types.yaml"))
       issue_type.parameters = descriptor["parameters"] || []
       descriptor["parameters"]&.each do |parameter|
         setting = issue_type.settings.find_or_create_by(key: parameter["key"])
-        setting.value = parameter["default"];
+        setting.value = parameter["default"]
         setting.description = parameter["description"]
       end
       issue_type.settings.find_or_create_by(key: "enabled", value: "true", description: "")

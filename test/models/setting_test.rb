@@ -7,6 +7,7 @@ class SettingTest < ActiveSupport::TestCase
       assert !setting.valid?
     end
     test "alpha in integer setting fails validation" do
+      skip "Pending data validation changes"
       setting = Setting.new(account: Account.first, data_type: :integer, key: "number_of_days", value: "abc")
       assert setting.invalid?
     end

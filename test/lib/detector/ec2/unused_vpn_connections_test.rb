@@ -4,15 +4,15 @@ require "base_aws_integration_test"
 class UnusedVpnConnectionsTest < ActiveSupport::TestCase
   detector = UnusedVpnConnections.new
 
-#  test "has correct service name" do
-#    assert_equal detector.service_name, "AWS Service Name"
-#  end
-#  test "has correct resource type" do
-#    assert_equal detector.resource_type, "AWS::Service::ResourceType"
-#  end
-#  test "generates default settings" do
-#    assert_equal detector.default_settings.count, 1
-#  end
+  test "has correct service name" do
+    assert_equal "Amazon Virtual Private Cloud", detector.service_name
+  end
+  test "has correct resource type" do
+    assert_equal "AWS::EC2::VPNConnection", detector.resource_type
+  end
+  test "generates default settings" do
+    assert_equal detector.default_settings.count, 1
+  end
 
   class IntegrationTests < BaseAwsIntegrationTest
     detector = UnusedVpnConnections.new
