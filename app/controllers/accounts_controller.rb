@@ -1,7 +1,6 @@
 class AccountsController < ApplicationController
-  before_action :authenticate_with_token!, only: [:update, :destroy]
   def index
-    render json: Account.all
+    render json: @current_user.tenant.accounts
     # render json: {
     #   data: ActiveModelSerializers::SerializableResource.new(@current_user.accounts, each_serializer: AccountSerializer)
     # }, status: 200
