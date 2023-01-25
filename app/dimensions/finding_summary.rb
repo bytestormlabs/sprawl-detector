@@ -25,10 +25,9 @@ class FindingSummary
 
       %w(name category service description).each do |field|
         value = IssueType.find_by_code(summary.issue_type).send(field)
-        puts "Resolved #{value} for #{field}"
         summary.send("#{field}=", value) if summary.respond_to?(field)
       end
-      
+
       summary.priority = if summary.estimated_cost.nil?
         "Low"
       elsif summary.estimated_cost > 400

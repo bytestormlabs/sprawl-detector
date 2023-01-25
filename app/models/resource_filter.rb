@@ -1,8 +1,4 @@
 require "forwardable"
-# require_relative "../strategy/autoscaling_resource_strategy"
-# require_relative "../strategy/rds_instance_resource_strategy"
-# require_relative "../strategy/rds_cluster_resource_strategy"
-# require_relative "../strategy/ecs_service_resource_strategy"
 
 class ResourceFilter < ActiveRecord::Base
   extend Forwardable

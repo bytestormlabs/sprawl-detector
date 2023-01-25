@@ -1,4 +1,5 @@
 require "faker"
+
 class Account < ApplicationRecord
   belongs_to :tenant
   validates :account_id, presence: true, uniqueness: true
