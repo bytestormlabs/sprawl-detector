@@ -23,6 +23,8 @@ class Scan < ApplicationRecord
     ).tap do |r|
       r.scan = self
       r.metadata = resource.to_h
+
+      # Try to find the creation date...
       if resource&.to_h
         r.creation_date = [
           resource.to_h[:instance_create_time],
@@ -36,6 +38,11 @@ class Scan < ApplicationRecord
           resource.to_h[:cache_cluster_create_time]
         ].find(&:itself)
       end
+
+      # Try to find the Cloudtrail fields
+
+      
+
       r.save
     end
   end
