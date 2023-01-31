@@ -66,7 +66,12 @@ class SprawlDetectorJob < ApplicationJob
 
     @scan = Scan.create(account: account, status: :started)
     logger.info "Starting scan ##{scan.id}"
+    @scan.skip_audit_logging = false
 
+    # See if there is a profile for this account...
+    # Then see if there is a profile for this tenant...
+    # Then use the default...
+    # But for now just use the default.
     ActiveRecord::Base.logger.level = 1
   end
 

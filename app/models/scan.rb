@@ -1,9 +1,17 @@
+require "detector/support/cloudtrail"
+
 class Scan < ApplicationRecord
+  include Cloudtrail
   has_many :findings
   has_many :resources
   belongs_to :account
 
-  attr_accessor :credentials
+  attr_accessor :credentials, :skip_audit_logging
+
+  def initialize(*args)
+    super
+    @skip_audit_logging = true
+  end
 
   enum :status, {
     started: "STARTED",
@@ -39,10 +47,25 @@ class Scan < ApplicationRecord
         ].find(&:itself)
       end
 
-      # Try to find the Cloudtrail fields
+      unless skip_audit_logging
+        if r.creation_date && r.creation_date > 90.days.ago && credentials && r.created_by.nil?
 
-      
-
+          unless [
+            "AWS::EC2::Volume",
+            "AWS::EC2::Ami",
+            "AWS::EBS::Snapshot"
+          ].include?(r.resource_type)
+            # Try to find the Cloudtrail fields
+            event = resource_name(r.resource_id).in(r.region).find.last
+            # TODO: Check for 'create' events?
+            if event&.event_name&.start_with?("Create")
+              r.created_by = event.username
+              r.created_on = event.event_time.to_s
+              r.event_id = event.event_id
+            end
+          end
+        end
+      end
       r.save
     end
   end

@@ -1,5 +1,5 @@
 class FindingSerializer < ActiveModel::Serializer
-  attributes :id, :account, :resource_id, :resource_type, :creation_date, :region
+  attributes :id, :account, :resource_id, :resource_type, :creation_date, :region, :username
   attributes :issue_type, :status
   attributes :metadata
   attributes :estimated_cost
@@ -23,6 +23,10 @@ class FindingSerializer < ActiveModel::Serializer
 
   def description
     IssueType.find_by_code(object&.issue_type).description
+  end
+
+  def username
+    object&.resource&.created_by
   end
 
   def metadata

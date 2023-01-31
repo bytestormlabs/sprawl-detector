@@ -18,8 +18,8 @@ module Cloudtrail
       @number_of_days = 14
       @request = {
         lookup_attributes: [],
-        start_time: (DateTime.now - @number_of_days).to_s,
-        end_time: DateTime.now.to_s
+        start_time: (DateTime.now - @number_of_days).to_time.utc.to_datetime.to_s,
+        end_time: DateTime.now.to_time.utc.to_datetime.to_s
       }
     end
 
@@ -44,13 +44,19 @@ module Cloudtrail
     def find(params = nil)
       results = []
       loop_until_finished(client, :lookup_events, @request) do |page|
-        if block_given?
-          results = results.concat(page.events.find_all do |event|
+        results = if block_given?
+          results.concat(page.events.find_all do |event|
             yield(event)
           end)
+        else
+          results.concat(page.events)
         end
       end
       results
+    end
+
+    def first_event
+      find.last
     end
 
     def in_last(n)

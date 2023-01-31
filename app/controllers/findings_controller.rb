@@ -1,6 +1,6 @@
 class FindingsController < ApplicationController
   def index
-    @findings = @current_user.findings.joins(:resource => [:account])
+    @findings = @current_user.findings.joins(resource: [:account])
       .where("resources.region" => params[:region])
       .where("accounts.account_id" => params[:account])
       .where(issue_type: params[:issue_type])
@@ -8,7 +8,7 @@ class FindingsController < ApplicationController
 
     render json: @findings
   end
-  # 
+  #
   # private
   #
   # def list_params
