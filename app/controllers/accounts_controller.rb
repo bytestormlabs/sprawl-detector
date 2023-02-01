@@ -46,7 +46,9 @@ class AccountsController < ApplicationController
 
   def validate
     validator = AccountValidator.new(Account.find_by_account_id(params[:id]))
-    render json: validator.validate
+    result = validator.validate
+
+    render json: result, status: result.success ? 200 : 409
   end
 
   private

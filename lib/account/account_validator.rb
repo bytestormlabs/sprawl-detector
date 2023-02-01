@@ -1,7 +1,7 @@
 require "aws-sdk-sts"
 
 class AccountValidator
-  ValidationResult = Struct.new(:successful, :message)
+  ValidationResult = Struct.new(:success, :message)
 
   attr_accessor :account
 
@@ -26,8 +26,8 @@ class AccountValidator
         role_session_name: role_session_name
       })
       ValidationResult.new(true, nil)
-    rescue => e
-      ValidationResult.new(false, e.message)
+    rescue Aws::STS::Errors::AccessDenied
+      ValidationResult.new(false, "Unable to assume role #{role_arn}. Check your configuration.")
     end
   end
 end
