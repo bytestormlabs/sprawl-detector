@@ -2,7 +2,7 @@ require "faker"
 
 class Account < ApplicationRecord
   belongs_to :tenant
-  validates :account_id, presence: true, uniqueness: true
+  validates :account_id, presence: true
   validates :external_id, presence: true
   has_many :findings
   has_many :scans
