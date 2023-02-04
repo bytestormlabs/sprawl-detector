@@ -43,7 +43,7 @@ class StepExecutorTest < ActiveSupport::TestCase
   end
 
   test "it should fail the step if the resource can't be stopped" do
-    skip "focus on other test"
+    # skip "focus on other test"
     plan = scheduled_plans(:scheduled_plan_rds)
     execution = ScheduledPlanExecution.create(scheduled_plan: plan)
     step = execution.steps.create(direction: :down, resource_filter: ResourceFilter.new(scheduled_plan: plan, region: "us-east-1", resource_type: "AWS::RDS::DBCluster"))

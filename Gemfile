@@ -96,4 +96,5 @@ group :test do
   gem "vcr"
   gem "webmock"
   gem "standard"
+  gem "simplecov"
 end
