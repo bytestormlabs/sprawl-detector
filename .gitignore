@@ -31,3 +31,4 @@ tmp/cache/
 vendor/bundle
 db/development-seeds.rb
 config/master.key
+coverage/
