@@ -25,7 +25,7 @@ if File.exist?("db/development-seeds.rb")
   require_relative "./development-seeds"
 end
 
-User.create!(email: "frank@bytestormlabs.com", tenant: Tenant.find_by_name("ByteStorm Labs"), password: "123456")
+User.create(email: "frank@bytestormlabs.com", tenant: Tenant.find_by_name("ByteStorm Labs"), password: "123456")
 
 if File.exist?("lib/detector/issue-types.yaml")
   require "yaml"
@@ -35,11 +35,14 @@ if File.exist?("lib/detector/issue-types.yaml")
     # category_code = category["code"]
 
     category["issue-types"].each do |descriptor|
-      issue_type = IssueType.find_or_create_by(code: descriptor["code"])
-      issue_type.name = descriptor["name"]
-      issue_type.description = descriptor["description"]
-      issue_type.category = category_nm
-      issue_type.service = descriptor["service"]
+      issue_type = IssueType.create_with(
+        name: descriptor["name"],
+        description: descriptor["description"],
+        service: descriptor["service"],
+        category: category_nm
+      ).find_or_create_by(code: descriptor["code"])
+      issue_type.save!
+      
       issue_type.parameters = descriptor["parameters"] || []
       descriptor["parameters"]&.each do |parameter|
         setting = issue_type.settings.find_or_create_by(key: parameter["key"])
