@@ -56,7 +56,7 @@ class Scan < ApplicationRecord
             "AWS::EBS::Snapshot"
           ].include?(r.resource_type)
             # Try to find the Cloudtrail fields
-            event = resource_name(r.resource_id).in(r.region).find.last
+            event = resource_name(r.resource_id).in(r.region).with(credentials).find.last
             # TODO: Check for 'create' events?
             if event&.event_name&.start_with?("Create")
               r.created_by = event.username
