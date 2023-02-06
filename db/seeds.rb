@@ -42,7 +42,7 @@ if File.exist?("lib/detector/issue-types.yaml")
         category: category_nm
       ).find_or_create_by(code: descriptor["code"])
       issue_type.save!
-      
+
       issue_type.parameters = descriptor["parameters"] || []
       descriptor["parameters"]&.each do |parameter|
         setting = issue_type.settings.find_or_create_by(key: parameter["key"])
