@@ -10,7 +10,7 @@ class CostCalculator
       YAML.load_file(file)
     end
     @logger = Logger.new($stdout)
-    @client = Aws::Pricing::Client.new(region: "us-east-1", credentials: Aws::SharedCredentials.new(profile_name: "default"))
+    @client = Aws::Pricing::Client.new(region: "us-east-1")
     @cache = {}
     @warnings = []
   end
