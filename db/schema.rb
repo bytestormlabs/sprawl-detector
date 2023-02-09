@@ -10,48 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_28_012000) do
-  create_table "accounts", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2023_02_08_223924) do
+  create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "account_id"
     t.string "external_id"
     t.string "name"
-    t.integer "tenant_id"
+    t.bigint "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tenant_id"], name: "index_accounts_on_tenant_id"
   end
 
-  create_table "aws_cost_line_items", force: :cascade do |t|
+  create_table "aws_cost_line_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "date"
     t.string "service"
     t.string "region"
-    t.decimal "cost", precision: 64, scale: 12
-    t.integer "account_id"
+    t.decimal "cost", precision: 10
+    t.bigint "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_aws_cost_line_items_on_account_id"
   end
 
-  create_table "filters", force: :cascade do |t|
+  create_table "filters", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "value"
     t.string "filter_type", default: "attribute"
-    t.integer "resource_filter_id"
+    t.bigint "resource_filter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["resource_filter_id"], name: "index_filters_on_resource_filter_id"
   end
 
-  create_table "findings", force: :cascade do |t|
+  create_table "findings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "category"
     t.string "issue_type"
     t.string "status"
     t.decimal "estimated_cost", precision: 64, scale: 12
     t.json "params"
-    t.integer "resource_id"
-    t.integer "account_id"
-    t.integer "resolution_id"
-    t.integer "scan_id"
+    t.bigint "resource_id"
+    t.bigint "account_id"
+    t.bigint "resolution_id"
+    t.bigint "scan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "priority"
@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_012000) do
     t.index ["scan_id"], name: "index_findings_on_scan_id"
   end
 
-  create_table "issue_types", force: :cascade do |t|
+  create_table "issue_types", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "code"
     t.string "name"
     t.text "description"
@@ -72,38 +72,38 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_012000) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "profiles", force: :cascade do |t|
+  create_table "profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "resolutions", force: :cascade do |t|
+  create_table "resolutions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "resource_filters", force: :cascade do |t|
+  create_table "resource_filters", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "region"
     t.string "resource_type"
     t.integer "ordinal"
-    t.integer "scheduled_plan_id"
+    t.bigint "scheduled_plan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["scheduled_plan_id"], name: "index_resource_filters_on_scheduled_plan_id"
   end
 
-  create_table "resources", force: :cascade do |t|
+  create_table "resources", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "resource_id"
     t.string "resource_type"
     t.string "region"
     t.json "metadata"
-    t.integer "account_id"
-    t.integer "scan_id"
+    t.bigint "account_id"
+    t.bigint "scan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "step_id"
-    t.decimal "estimated_cost"
+    t.bigint "step_id"
+    t.decimal "estimated_cost", precision: 7, scale: 2
     t.date "last_activity_date"
     t.date "creation_date"
     t.string "created_by"
@@ -115,16 +115,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_012000) do
     t.index ["step_id"], name: "index_resources_on_step_id"
   end
 
-  create_table "scans", force: :cascade do |t|
-    t.integer "account_id"
+  create_table "scans", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "account_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_scans_on_account_id"
   end
 
-  create_table "scheduled_plan_executions", force: :cascade do |t|
-    t.integer "scheduled_plan_id"
+  create_table "scheduled_plan_executions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "scheduled_plan_id"
     t.string "status"
     t.datetime "timestamp"
     t.datetime "created_at", null: false
@@ -132,8 +132,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_012000) do
     t.index ["scheduled_plan_id"], name: "index_scheduled_plan_executions_on_scheduled_plan_id"
   end
 
-  create_table "scheduled_plans", force: :cascade do |t|
-    t.integer "account_id"
+  create_table "scheduled_plans", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "account_id"
     t.string "up_schedule"
     t.string "down_schedule"
     t.string "name"
@@ -142,14 +142,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_012000) do
     t.index ["account_id"], name: "index_scheduled_plans_on_account_id"
   end
 
-  create_table "settings", force: :cascade do |t|
+  create_table "settings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "data_type", default: "integer"
     t.text "description"
     t.string "value"
     t.string "key"
-    t.integer "account_id"
-    t.integer "tenant_id"
-    t.integer "issue_type_id"
+    t.bigint "account_id"
+    t.bigint "tenant_id"
+    t.bigint "issue_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_settings_on_account_id"
@@ -157,9 +157,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_012000) do
     t.index ["tenant_id"], name: "index_settings_on_tenant_id"
   end
 
-  create_table "steps", force: :cascade do |t|
-    t.integer "scheduled_plan_execution_id"
-    t.integer "resource_filter_id"
+  create_table "steps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "scheduled_plan_execution_id"
+    t.bigint "resource_filter_id"
     t.string "status"
     t.string "direction"
     t.integer "number_of_resources_found", default: 0
@@ -172,13 +172,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_012000) do
     t.index ["scheduled_plan_execution_id"], name: "index_steps_on_scheduled_plan_execution_id"
   end
 
-  create_table "tenants", force: :cascade do |t|
+  create_table "tenants", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -197,11 +197,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_012000) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.string "authentication_token", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "tenant_id"
-    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
+    t.bigint "tenant_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -25,7 +25,7 @@ if File.exist?("db/development-seeds.rb")
   require_relative "./development-seeds"
 end
 
-User.create(email: "frank@bytestormlabs.com", tenant: Tenant.find_by_name("ByteStorm Labs"), password: "123456")
+User.create_with(tenant: Tenant.find_by_name("ByteStorm Labs"), password: "123456").find_or_create_by!(email: "frank@bytestormlabs.com")
 
 if File.exist?("lib/detector/issue-types.yaml")
   require "yaml"

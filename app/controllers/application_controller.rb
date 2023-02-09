@@ -8,6 +8,7 @@ class ApplicationController < ActionController::API
   after_action :cors_set_access_control_headers
 
   include Authenticable
+  include ActionController::Serialization
 
   def cors_set_access_control_headers
     headers["Access-Control-Allow-Origin"] = "*"
@@ -18,7 +19,6 @@ class ApplicationController < ActionController::API
 
   def cors_preflight_check
     if request.method == :options
-      puts "Responding to OPTIONS"
       headers["Access-Control-Allow-Origin"] = "*"
       headers["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS, DELETE, PUT"
       headers["Access-Control-Allow-Headers"] = "*"

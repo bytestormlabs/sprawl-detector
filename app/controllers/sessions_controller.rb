@@ -13,9 +13,10 @@ class SessionsController < ApplicationController
 
     if resource.valid_password?(params[:user][:password])
       sign_in(:user, resource)
-
+      resource.authentication_token = Token.create(email: params[:user][:email]).to_base64
+      puts "setting authentication_token: #{resource.authentication_token}"
       render json: {
-        data: resource
+        data: ActiveModelSerializers::SerializableResource.new(resource)
       }, status: 200
       return
     end

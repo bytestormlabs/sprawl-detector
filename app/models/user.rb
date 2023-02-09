@@ -8,4 +8,6 @@ class User < ApplicationRecord
   belongs_to :tenant
   has_many :accounts, through: :tenant
   has_many :findings, through: :accounts
+
+  attr_accessor :authentication_token
 end

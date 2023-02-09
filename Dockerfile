@@ -10,4 +10,6 @@ RUN bundle install
 
 COPY . /home/
 
+EXPOSE 3000
+
 CMD bundle exec rails s
