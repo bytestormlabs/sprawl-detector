@@ -28,7 +28,6 @@ class FindingSummary
         summary.send("#{field}=", value) if summary.respond_to?(field)
       end
 
-
       IssueType.find_by_code(summary.issue_type).settings.each do |setting|
         summary.description = summary.description.gsub("{#{setting.key}}", setting.value)
       end

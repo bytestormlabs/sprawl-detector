@@ -20,6 +20,8 @@ gem "devise"
 gem "omniauth"
 gem "faker"
 gem "sekreto"
+gem "health_check"
+gem "silencer"
 
 # AWS SDKs
 gem "aws-sdk-acm"

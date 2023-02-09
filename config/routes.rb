@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :findings
   resources :finding_summary, only: %w[index]
   resources :accounts
-
+  health_check_routes
+  
   get "/accounts/:id/validate", to: "accounts#validate"
 end
