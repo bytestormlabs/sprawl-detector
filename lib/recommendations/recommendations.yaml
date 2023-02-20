@@ -1,0 +1,36 @@
+recommendations:
+  - name: Create Lifecycle Policy
+    code: create-lifecycle-policy
+    description: |
+      Create a ByteStorm lifecycle policy to automatically delete these resources after a set period of time.
+
+  - name: Schedule Termination
+    code: schedule-termination
+    category: Scheduled Actions
+    description: |
+      Schedule these resources for termination on a future date, providing time for your team to stop automated deletion.
+
+  - name: Schedule Downtime
+    code: schedule-downtime
+    category: Scheduled Actions
+    description: |
+      Automatically turn these resources off during certain hours to reduce the on-demand cost.
+
+  - name: Terminate
+    code: terminate
+    description: |
+      Delete these resources immediately.
+
+  - name: Stop Immediately
+    code: stop
+    description: |
+      Stop these resources immediately.
+
+  - name: Copy
+    code: copy
+    description: |
+      Copy details of these findings to the clipboard.
+  - name: Ignore
+    code: ignore
+    description: |
+      Ignore this issue type entirely.

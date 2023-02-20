@@ -31,6 +31,7 @@ module SprawlDetector
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("lib")
     config.autoload_paths << Rails.root.join("lib")
+    config.autoloader = :classic
 
     # Use Amazon SQS for job processing
     config.active_job.queue_adapter = :amazon_sqs if ENV["RAILS_USE_AWS_SQS"].present?

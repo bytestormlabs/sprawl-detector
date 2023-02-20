@@ -2,6 +2,7 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 require "vcr"
+require "authentication/token"
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
@@ -20,5 +21,9 @@ class ActiveSupport::TestCase
     config.filter_sensitive_data("SecretAmzSecurityToken") do |interaction|
       interaction.request.headers["X-Amz-Security-Token"]&.first
     end
+  end
+
+  def signin_with_email(email)
+    Token.create(email: email).to_base64
   end
 end

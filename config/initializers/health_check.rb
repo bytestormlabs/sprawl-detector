@@ -1,20 +1,19 @@
 HealthCheck.setup do |config|
-
   # uri prefix (no leading slash)
-  config.uri = 'health_check'
+  config.uri = "health_check"
 
   # Text output upon success
-  config.success = 'success'
+  config.success = "success"
 
   # Text output upon failure
-  config.failure = 'health_check failed'
+  config.failure = "health_check failed"
 
   # Disable the error message to prevent /health_check from leaking
   # sensitive information
   config.include_error_in_response_body = false
 
   # Log level (success or failure message with error details is sent to rails log unless this is set to nil)
-  config.log_level = 'info'
+  config.log_level = "info"
 
   # Timeout in seconds used when checking smtp server
   config.smtp_timeout = 30.0
@@ -35,13 +34,13 @@ HealthCheck.setup do |config|
   # config.buckets = {'bucket_name' => [:R, :W, :D]}
 
   # You can customize which checks happen on a standard health check, eg to set an explicit list use:
-  config.standard_checks = [ 'database', 'migrations' ]
+  config.standard_checks = ["database", "migrations"]
 
   # Or to exclude one check:
-  config.standard_checks -= [ 'emailconf' ]
+  config.standard_checks -= ["emailconf"]
 
   # You can set what tests are run with the 'full' or 'all' parameter
-  config.full_checks = ['database', 'migrations', 'custom', 'email', 'cache', 'redis', 'resque-redis', 'sidekiq-redis', 's3']
+  config.full_checks = ["database", "migrations", "custom", "email", "cache", "redis", "resque-redis", "sidekiq-redis", "s3"]
 
   # Add one or more custom checks that return a blank string if ok, or an error message if there is an error
   config.add_custom_check do
@@ -95,5 +94,4 @@ HealthCheck.setup do |config|
   config.on_success do |checks|
     # flag that everything is well
   end
-
 end

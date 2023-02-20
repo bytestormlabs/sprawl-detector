@@ -54,3 +54,6 @@ if File.exist?("lib/detector/issue-types.yaml")
     end
   end
 end
+
+Recommendation.find_or_create_by(name: "Create Lifecycle Policy", description: "")
+Recommendation.find_or_create_by(name: "Create Lifecycle Policy", description: "Create a ByteStorm lifecycle policy to automatically delete these resources after a set period of time.")

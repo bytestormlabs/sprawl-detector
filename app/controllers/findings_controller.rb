@@ -8,12 +8,4 @@ class FindingsController < ApplicationController
 
     render json: @findings
   end
-  #
-  # private
-  #
-  # def list_params
-  #   {
-  #     status: (params[:status]&.to_sym || :open)
-  #   }
-  # end
 end

@@ -1,11 +1,8 @@
-require "account/account_validator"
+require "accounts/account_validator"
 
 class AccountsController < ApplicationController
   def index
     render json: @current_user.tenant.accounts
-    # render json: {
-    #   data: ActiveModelSerializers::SerializableResource.new(@current_user.accounts, each_serializer: AccountSerializer)
-    # }, status: 200
   end
 
   def show
@@ -45,7 +42,7 @@ class AccountsController < ApplicationController
   end
 
   def validate
-    validator = AccountValidator.new(Account.find_by_account_id(params[:id]))
+    validator = Accounts::AccountValidator.new(Account.find_by_account_id(params[:id]))
     result = validator.validate
 
     render json: result, status: result.success ? 200 : 409
