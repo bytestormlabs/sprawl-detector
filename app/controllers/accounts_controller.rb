@@ -1,4 +1,6 @@
 require "accounts/account_validator"
+require "client/rds_clusters_client"
+require "client/autoscaling_group_client"
 
 class AccountsController < ApplicationController
   def index
@@ -46,6 +48,40 @@ class AccountsController < ApplicationController
     result = validator.validate
 
     render json: result, status: result.success ? 200 : 409
+  end
+
+  def list_resources
+    id = params[:id]
+
+    unless @current_user.tenant.accounts.pluck(:id).include?(id.to_i)
+      render json: {
+        message: "Unauthenticated."
+      }, status: 403
+      return
+    end
+
+    region = params[:region] || "us-east-2"
+    @account = Account.find(id)
+    account_id = @account.account_id
+
+    role_arn = "arn:aws:iam::#{account_id}:role/BS-SprawlDetector"
+    role_session_name = "byte-storm-labs-sprawl-detector"
+
+    sts = Aws::STS::Client.new(region: "us-east-1")
+    credentials = sts.assume_role({
+      external_id: @account.external_id,
+      role_arn: role_arn,
+      role_session_name: role_session_name
+    })
+
+    results = [
+      RdsClustersClient.new(region, credentials),
+      AutoScalingGroupClient.new(region, credentials),
+    ].collect do |client|
+      client.list_resources([]).map(&:to_h)
+    end
+
+    render json: results
   end
 
   private

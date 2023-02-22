@@ -1,4 +1,5 @@
 require "client/autoscaling_group_client"
+require "client/rds_clusters_client"
 require "scheduling/step_executor"
 require "concurrent-ruby"
 
@@ -43,7 +44,8 @@ class BaseJob < ApplicationJob
 
   def client_for(resource_type)
     {
-      "AWS::AutoScaling::AutoScalingGroup" => AutoScalingGroupClient
+      "AWS::AutoScaling::AutoScalingGroup" => AutoScalingGroupClient,
+      "AWS::RDS::DBCluster" => RdsClustersClient
     }[resource_type]
   end
 end

@@ -1,0 +1,146 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://rds.us-east-2.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: Action=DescribeDBClusters&DBClusterIdentifier=byte-storm-labs-staging-database-mysql-dbcluster-xh0cchxc4pg9&Version=2014-10-31
+    headers:
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.168.4 ruby/3.1.0 arm64-darwin22 aws-sdk-rds/1.169.0
+      Content-Type:
+      - application/x-www-form-urlencoded; charset=utf-8
+      Host:
+      - rds.us-east-2.amazonaws.com
+      X-Amz-Date:
+      - 20230222T105405Z
+      X-Amz-Content-Sha256:
+      - 4617318cfb41fa4ae63f9d2c1be6ba26497d0ee3907af5ad43635bd66a239b07
+      Authorization:
+      - SecretToken
+      Content-Length:
+      - '126'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amzn-Requestid:
+      - d62c84db-bb0d-41ed-9922-36188e19d73a
+      Strict-Transport-Security:
+      - max-age=31536000
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '4819'
+      Date:
+      - Wed, 22 Feb 2023 10:54:05 GMT
+    body:
+      encoding: UTF-8
+      string: |
+        <DescribeDBClustersResponse xmlns="http://rds.amazonaws.com/doc/2014-10-31/">
+          <DescribeDBClustersResult>
+            <DBClusters>
+              <DBCluster>
+                <CrossAccountClone>false</CrossAccountClone>
+                <AllocatedStorage>1</AllocatedStorage>
+                <EnabledCloudwatchLogsExports>
+                  <member>audit</member>
+                  <member>error</member>
+                  <member>general</member>
+                  <member>slowquery</member>
+                </EnabledCloudwatchLogsExports>
+                <DatabaseName>public</DatabaseName>
+                <AssociatedRoles/>
+                <AvailabilityZones>
+                  <AvailabilityZone>us-east-2b</AvailabilityZone>
+                  <AvailabilityZone>us-east-2c</AvailabilityZone>
+                  <AvailabilityZone>us-east-2a</AvailabilityZone>
+                </AvailabilityZones>
+                <ReadReplicaIdentifiers/>
+                <EngineVersion>8.0.mysql_aurora.3.02.0</EngineVersion>
+                <MasterUsername>root</MasterUsername>
+                <DBClusterMembers>
+                  <DBClusterMember>
+                    <DBInstanceIdentifier>byte-storm-labs-staging-database-mysql-dbinstance-hwre1sbwpzvo</DBInstanceIdentifier>
+                    <DBClusterParameterGroupStatus>in-sync</DBClusterParameterGroupStatus>
+                    <PromotionTier>1</PromotionTier>
+                    <IsClusterWriter>true</IsClusterWriter>
+                  </DBClusterMember>
+                </DBClusterMembers>
+                <DBActivityStreamStatus>stopped</DBActivityStreamStatus>
+                <HttpEndpointEnabled>false</HttpEndpointEnabled>
+                <Port>3306</Port>
+                <BackupRetentionPeriod>1</BackupRetentionPeriod>
+                <KmsKeyId>arn:aws:kms:us-east-2:163788863765:key/c1921cb5-25d1-47f1-8edc-ce50d67ac9ce</KmsKeyId>
+                <DBClusterIdentifier>byte-storm-labs-staging-database-mysql-dbcluster-xh0cchxc4pg9</DBClusterIdentifier>
+                <DbClusterResourceId>cluster-3RYF4GWBIIHX4FRO6ZZP7UI4IE</DbClusterResourceId>
+                <Status>available</Status>
+                <LatestRestorableTime>2023-02-22T10:47:26.104Z</LatestRestorableTime>
+                <PreferredBackupWindow>05:37-06:07</PreferredBackupWindow>
+                <DeletionProtection>false</DeletionProtection>
+                <Endpoint>byte-storm-labs-staging-database-mysql-dbcluster-xh0cchxc4pg9.cluster-cgq713i7cnmj.us-east-2.rds.amazonaws.com</Endpoint>
+                <EngineMode>provisioned</EngineMode>
+                <Engine>aurora-mysql</Engine>
+                <ReaderEndpoint>byte-storm-labs-staging-database-mysql-dbcluster-xh0cchxc4pg9.cluster-ro-cgq713i7cnmj.us-east-2.rds.amazonaws.com</ReaderEndpoint>
+                <IAMDatabaseAuthenticationEnabled>false</IAMDatabaseAuthenticationEnabled>
+                <EarliestRestorableTime>2023-02-22T10:47:26.104Z</EarliestRestorableTime>
+                <NetworkType>IPV4</NetworkType>
+                <ClusterCreateTime>2023-02-22T10:46:13.384Z</ClusterCreateTime>
+                <ActivityStreamStatus>stopped</ActivityStreamStatus>
+                <MultiAZ>false</MultiAZ>
+                <DomainMemberships/>
+                <StorageEncrypted>true</StorageEncrypted>
+                <DBSubnetGroup>mysql-dbsubnetgroup-byte-storm-labs-staging-database-mysql</DBSubnetGroup>
+                <VpcSecurityGroups>
+                  <VpcSecurityGroupMembership>
+                    <VpcSecurityGroupId>sg-070cf6c145cc820be</VpcSecurityGroupId>
+                    <Status>active</Status>
+                  </VpcSecurityGroupMembership>
+                </VpcSecurityGroups>
+                <TagList>
+                  <Tag>
+                    <Value>Shared</Value>
+                    <Key>Tenancy</Key>
+                  </Tag>
+                  <Tag>
+                    <Value>byte-storm-labs-staging-database-mysql</Value>
+                    <Key>aws:cloudformation:stack-name</Key>
+                  </Tag>
+                  <Tag>
+                    <Value>Staging</Value>
+                    <Key>Environment</Key>
+                  </Tag>
+                  <Tag>
+                    <Value>DBCluster</Value>
+                    <Key>aws:cloudformation:logical-id</Key>
+                  </Tag>
+                  <Tag>
+                    <Value>arn:aws:cloudformation:us-east-2:163788863765:stack/byte-storm-labs-staging-database-mysql/1423a290-b29e-11ed-bf1c-02ca2b9b6504</Value>
+                    <Key>aws:cloudformation:stack-id</Key>
+                  </Tag>
+                  <Tag>
+                    <Value>Database</Value>
+                    <Key>Tier</Key>
+                  </Tag>
+                </TagList>
+                <HostedZoneId>Z2XHWR1WZ565X2</HostedZoneId>
+                <PreferredMaintenanceWindow>thu:09:17-thu:09:47</PreferredMaintenanceWindow>
+                <DBClusterParameterGroup>byte-storm-labs-staging-database-mysql-dbclusterparametergroup-wlapavdcmlpk</DBClusterParameterGroup>
+                <AutoMinorVersionUpgrade>false</AutoMinorVersionUpgrade>
+                <CopyTagsToSnapshot>false</CopyTagsToSnapshot>
+                <DBClusterArn>arn:aws:rds:us-east-2:163788863765:cluster:byte-storm-labs-staging-database-mysql-dbcluster-xh0cchxc4pg9</DBClusterArn>
+              </DBCluster>
+            </DBClusters>
+          </DescribeDBClustersResult>
+          <ResponseMetadata>
+            <RequestId>d62c84db-bb0d-41ed-9922-36188e19d73a</RequestId>
+          </ResponseMetadata>
+        </DescribeDBClustersResponse>
+  recorded_at: Wed, 22 Feb 2023 10:54:05 GMT
+recorded_with: VCR 6.1.0
