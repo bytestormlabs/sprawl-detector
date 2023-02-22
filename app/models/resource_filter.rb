@@ -75,7 +75,7 @@ class ResourceFilter < ActiveRecord::Base
 
   def ensure_filters_have_valid_names
     filters.each do |filter|
-      if !filter.is_tag_based?
+      unless filter.is_tag_based?
         resource_configuration = RESOURCE_CONFIGURATIONS.find { |d| d.resource_type == resource_type }
         next if resource_configuration.nil?
         unless resource_configuration.filters.include?(filter.name)
@@ -84,5 +84,9 @@ class ResourceFilter < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def self.resource_configurations
+    RESOURCE_CONFIGURATIONS
   end
 end
