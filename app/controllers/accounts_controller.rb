@@ -3,6 +3,8 @@ require "client/rds_clusters_client"
 require "client/autoscaling_group_client"
 
 class AccountsController < ApplicationController
+  include AccountsHelper
+
   def index
     render json: @current_user.tenant.accounts
   end
@@ -61,27 +63,21 @@ class AccountsController < ApplicationController
     end
 
     region = params[:region] || "us-east-2"
-    @account = Account.find(id)
-    account_id = @account.account_id
+    account = Account.find_by_id(id)
 
-    role_arn = "arn:aws:iam::#{account_id}:role/BS-SprawlDetector"
-    role_session_name = "byte-storm-labs-sprawl-detector"
-
-    sts = Aws::STS::Client.new(region: "us-east-1")
-    credentials = sts.assume_role({
-      external_id: @account.external_id,
-      role_arn: role_arn,
-      role_session_name: role_session_name
-    })
-
-    results = [
-      RdsClustersClient.new(region, credentials),
-      AutoScalingGroupClient.new(region, credentials),
-    ].collect do |client|
-      client.list_resources([]).map(&:to_h)
+    unless account
+      render json: {
+        message: "Not found."
+      }, status: 404
+      return
     end
-
-    render json: results
+    
+    begin
+      results = resources_by_account(region, account)
+      render json: results
+    rescue Aws::STS::Errors::AccessDenied => e
+      render json: {message: e}, status: 500
+    end
   end
 
   private
