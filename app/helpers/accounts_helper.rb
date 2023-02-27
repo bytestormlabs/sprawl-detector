@@ -1,8 +1,6 @@
-require "cost/cost_calculator"
+# require "cost/cost_calculator"
 
 module AccountsHelper
-
-  @@calculator = CostCalculator.new
 
   def resources_by_account(region, account)
     account_id = account.account_id
