@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :finding_summary, only: %w[index]
   resources :resource_types, only: %w[index]
   resources :schedules, only: %w[index]
+  resources :scheduled_plans
   resources :accounts
   health_check_routes
 

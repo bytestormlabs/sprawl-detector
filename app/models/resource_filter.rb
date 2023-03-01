@@ -89,4 +89,15 @@ class ResourceFilter < ActiveRecord::Base
   def self.resource_configurations
     RESOURCE_CONFIGURATIONS
   end
+
+  def build_filter_params
+    filters.each do |filter|
+      if filter.is_tag_based?
+        params[:filters] = (params[:filters] || [])
+        params[:filters] << filter.to_filter
+      else
+        params[filter.name.to_sym] = filter.value
+      end
+    end
+  end
 end

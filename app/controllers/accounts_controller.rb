@@ -10,11 +10,22 @@ class AccountsController < ApplicationController
   end
 
   def show
-    # TODO: Check this user is allowed to see this.
+    unless @current_user.tenant.accounts.pluck(:id).include?(id.to_i)
+      render json: {
+        message: "Unauthenticated."
+      }, status: 403
+      return
+    end
     render json: Account.find(params[:id])
   end
 
   def destroy
+    unless @current_user.tenant.accounts.pluck(:id).include?(id.to_i)
+      render json: {
+        message: "Unauthenticated."
+      }, status: 403
+      return
+    end
     render json: Account.find(params[:id]).destroy
   end
 
@@ -71,7 +82,7 @@ class AccountsController < ApplicationController
       }, status: 404
       return
     end
-    
+
     begin
       results = resources_by_account(region, account)
       render json: results

@@ -8,7 +8,8 @@ class Account < ApplicationRecord
   has_many :scans
   has_many :settings
   has_many :resources
-
+  has_many :scheduled_plans
+  
   before_validation do |a|
     a.create_random_external_id if a.external_id.nil?
   end

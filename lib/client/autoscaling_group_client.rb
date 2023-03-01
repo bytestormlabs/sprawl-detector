@@ -8,7 +8,10 @@ class AutoScalingGroupClient
   end
 
   def list_resources(filters)
-    client.describe_auto_scaling_groups(filters: filters).auto_scaling_groups
+    # Find any tag or
+    params = {}
+
+    client.describe_auto_scaling_groups(params).auto_scaling_groups
   end
 
   def describe(resource)

@@ -21,7 +21,7 @@ module AccountsHelper
       tags = resources.collect { |r| r[type_definition[:tags_key]] }.flatten.map { |tag| tag.slice(:key, :value) }.uniq
       filters = resources.map do |resource|
         type_definition[:filters].map do |filter|
-          filter.slice(:name, :type, :key).merge({
+          filter.slice(:name, :type, :key, :filter_name).merge({
             value: resource[filter[:key].to_sym],
             description: type_definition[:descriptor]&.call(resource)
           })
@@ -56,7 +56,7 @@ module AccountsHelper
         }
       },
       {
-        type: "AWS::EC2::AutoScalingGroup",
+        type: "AWS::AutoScaling::AutoScalingGroup",
         name: "AWS EC2 AutoScaling Group",
         tags_key: :tags,
         client: AutoScalingGroupClient.new(region, credentials),

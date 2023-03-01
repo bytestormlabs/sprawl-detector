@@ -15,8 +15,8 @@ class UpsertSchedulerJob < ApplicationJob
   end
 
   def perform(*args)
-    return if !enabled
     logger.debug "entering perform()"
+    return if !enabled
 
     id = args.first
 

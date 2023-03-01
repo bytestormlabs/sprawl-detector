@@ -85,7 +85,7 @@ class StepExecutor
   end
 
   def find_resources
-    filters = step.resource_filter.filters.map(&:to_filter)
+    filters = step.resource_filter.build_filter_params()
     resources = client.list_resources(filters)
 
     # step.metadata = resources.map(&:to_h)
